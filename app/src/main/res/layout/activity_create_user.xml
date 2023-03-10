@@ -53,17 +53,29 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createUserPassCheck" />
+    
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createUserType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserEmail"
+        >
+
 
     <AutoCompleteTextView
-        android:id="@+id/createUserType"
-        android:layout_width="142dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="136dp"
-        android:dropDownHeight="match_parent"
-        android:hint="Select User Type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserEmail" />
+        android:id="@+id/createUserTypeSub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="440dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <Button
         android:id="@+id/createUserButton"
