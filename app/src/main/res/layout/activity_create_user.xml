@@ -6,4 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".CreateUserActivity">
 
+    <EditText
+        android:id="@+id/createUserName"
+        android:layout_width="205dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginEnd="106dp"
+        android:ems="10"
+        android:hint="Enter Username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/createUserPass"
+        android:layout_width="209dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="105dp"
+        android:ems="10"
+        android:hint="Enter Password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserName" />
+
+    <EditText
+        android:id="@+id/createUserPassCheck"
+        android:layout_width="211dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="104dp"
+        android:ems="10"
+        android:hint="Re-enter Password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserPass" />
+
+    <EditText
+        android:id="@+id/createUserEmail"
+        android:layout_width="209dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="103dp"
+        android:ems="10"
+        android:hint="Enter Email"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserPassCheck" />
+
+    <AutoCompleteTextView
+        android:id="@+id/createUserType"
+        android:layout_width="142dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="136dp"
+        android:dropDownHeight="match_parent"
+        android:hint="Select User Type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserEmail" />
+
+    <Button
+        android:id="@+id/createUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="152dp"
+        android:text="Create User"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserType" />
 </androidx.constraintlayout.widget.ConstraintLayout>

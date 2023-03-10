@@ -24,7 +24,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "USER_GENDER TEXT NOT NULL, " +
                 "USER_EMAIL TEXT NOT NULL, " +
                 "USER_DOB INT NOT NULL, " +
-                "USER_TYPE INT NOT NULL" +
+                "USER_TYPE INT NOT NULL, " +
+                "USER_PASS INT NOT NULL" +
                 ")";
 
         String createEventTable = "CREATE TABLE IF NOT EXISTS EVENTS " +
@@ -38,7 +39,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "EVENT_START_DATE INT NOT NULL, " +
                 "EVENT_END_DATE INT NOT NULL, " +
                 "EVENT_START_TIME INT NOT NULL, " +
-                "EVENT_END_TIME INT NOT NULL, " +
+                "EVENT_END_TIME INT NOT NULL" +
                 ")";
 
         String createUserFollowingTable = "CREATE TABLE IF NOT EXISTS USER_FOLLOWING " +
