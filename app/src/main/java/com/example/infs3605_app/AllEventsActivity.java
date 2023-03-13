@@ -10,18 +10,18 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class HomePageActivity extends AppCompatActivity {
+public class AllEventsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_all_events);
 
-        // Bottom Navigation set for Home (student view)
+        // Bottom Navigation set for All Events (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);
-        bottomNavigationView.setSelectedItemId(R.id.homeNavButton);
+        bottomNavigationView.setSelectedItemId(R.id.allEventsNavButton);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -29,13 +29,13 @@ public class HomePageActivity extends AppCompatActivity {
 
                 switch (item.getItemId())
                 {
-                    case R.id.savedNavButton:
-                        startActivity(new Intent(getApplicationContext(), SavedEventsActivity.class));
+                    case R.id.homeNavButton:
+                        startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.allEventsNavButton:
-                        startActivity(new Intent(getApplicationContext(), AllEventsActivity.class));
+                    case R.id.savedNavButton:
+                        startActivity(new Intent(getApplicationContext(), SavedEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
@@ -49,7 +49,7 @@ public class HomePageActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.homeNavButton:
+                    case R.id.allEventsNavButton:
                         return true;
                 }
                 return false;

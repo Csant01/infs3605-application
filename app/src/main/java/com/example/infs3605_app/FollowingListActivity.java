@@ -10,18 +10,18 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class HomePageActivity extends AppCompatActivity {
+public class FollowingListActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_following_list);
 
-        // Bottom Navigation set for Home (student view)
+        // Bottom Navigation set for Following List (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);
-        bottomNavigationView.setSelectedItemId(R.id.homeNavButton);
+        bottomNavigationView.setSelectedItemId(R.id.followingNavButton);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -29,6 +29,11 @@ public class HomePageActivity extends AppCompatActivity {
 
                 switch (item.getItemId())
                 {
+                    case R.id.homeNavButton:
+                        startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
                     case R.id.savedNavButton:
                         startActivity(new Intent(getApplicationContext(), SavedEventsActivity.class));
                         overridePendingTransition(0,0);
@@ -45,16 +50,10 @@ public class HomePageActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.followingNavButton:
-                        startActivity(new Intent(getApplicationContext(), FollowingListActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.homeNavButton:
                         return true;
                 }
                 return false;
             }
         });
-
     }
 }
