@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-public class CreateEventActivity extends AppCompatActivity {
+public class StaffCreateEventActivity extends AppCompatActivity {
 
     TextInputLayout eventName, eventDate, eventTime, eventDescription;
     AppCompatButton selectImage, submitEvent;
@@ -15,7 +15,7 @@ public class CreateEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_event);
+        setContentView(R.layout.activity_staff_create_event);
 
         eventName = findViewById(R.id.eventName);
         eventDate = findViewById(R.id.eventDate);
