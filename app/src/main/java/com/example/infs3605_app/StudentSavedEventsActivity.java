@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class SavedEventsActivity extends AppCompatActivity {
+public class StudentSavedEventsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
@@ -19,7 +19,7 @@ public class SavedEventsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_saved_events);
+        setContentView(R.layout.activity_student_saved_events);
 
         // Bottom Navigation set for Saved Events (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);
@@ -32,22 +32,22 @@ public class SavedEventsActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.homeNavButton:
-                        startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.allEventsNavButton:
-                        startActivity(new Intent(getApplicationContext(), AllEventsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentAllEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.pastEventsNavButton:
-                        startActivity(new Intent(getApplicationContext(), PastEventsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentPastEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.followingNavButton:
-                        startActivity(new Intent(getApplicationContext(), FollowingListActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentFollowingListActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 

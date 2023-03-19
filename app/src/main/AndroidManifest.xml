@@ -15,7 +15,7 @@
             android:name=".EventsPendingApprovalActivity"
             android:exported="false" />
         <activity
-            android:name=".manageEventActivity"
+            android:name=".ManageEventActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterAlumni"
@@ -24,19 +24,19 @@
             android:name=".CreateEventActivity"
             android:exported="false" />
         <activity
-            android:name=".FollowingListActivity"
+            android:name=".StudentFollowingListActivity"
             android:exported="false" />
         <activity
-            android:name=".PastEventsActivity"
+            android:name=".StudentPastEventsActivity"
             android:exported="false" />
         <activity
-            android:name=".AllEventsActivity"
+            android:name=".StudentAllEventsActivity"
             android:exported="false" />
         <activity
-            android:name=".SavedEventsActivity"
+            android:name=".StudentSavedEventsActivity"
             android:exported="false" />
         <activity
-            android:name=".HomePageActivity"
+            android:name=".StudentHomePageActivity"
             android:exported="false" />
         <activity
             android:name=".CreateUserActivity"

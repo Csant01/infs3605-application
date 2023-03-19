@@ -10,18 +10,18 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class HomePageActivity extends AppCompatActivity {
+public class StudentPastEventsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_student_past_events);
 
-        // Bottom Navigation set for Home (student view)
+        // Bottom Navigation set for Past Events (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);
-        bottomNavigationView.setSelectedItemId(R.id.homeNavButton);
+        bottomNavigationView.setSelectedItemId(R.id.pastEventsNavButton);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -29,32 +29,31 @@ public class HomePageActivity extends AppCompatActivity {
 
                 switch (item.getItemId())
                 {
+                    case R.id.homeNavButton:
+                        startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
                     case R.id.savedNavButton:
-                        startActivity(new Intent(getApplicationContext(), SavedEventsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentSavedEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.allEventsNavButton:
-                        startActivity(new Intent(getApplicationContext(), AllEventsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.pastEventsNavButton:
-                        startActivity(new Intent(getApplicationContext(), PastEventsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentAllEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.followingNavButton:
-                        startActivity(new Intent(getApplicationContext(), FollowingListActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentFollowingListActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.homeNavButton:
+                    case R.id.pastEventsNavButton:
                         return true;
                 }
                 return false;
             }
         });
-
     }
 }

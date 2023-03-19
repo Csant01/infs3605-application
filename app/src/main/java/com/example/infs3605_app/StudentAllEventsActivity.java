@@ -10,14 +10,14 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class AllEventsActivity extends AppCompatActivity {
+public class StudentAllEventsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_events);
+        setContentView(R.layout.activity_student_all_events);
 
         // Bottom Navigation set for All Events (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);
@@ -30,22 +30,22 @@ public class AllEventsActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.homeNavButton:
-                        startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.savedNavButton:
-                        startActivity(new Intent(getApplicationContext(), SavedEventsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentSavedEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.pastEventsNavButton:
-                        startActivity(new Intent(getApplicationContext(), PastEventsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentPastEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.followingNavButton:
-                        startActivity(new Intent(getApplicationContext(), FollowingListActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentFollowingListActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 

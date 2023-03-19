@@ -2,10 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pastEventsRV"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PastEventsActivity">
+    tools:context=".StudentHomePageActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
@@ -18,7 +17,9 @@
         app:menu="@menu/student_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homePageRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigator" />
+
 </RelativeLayout>
