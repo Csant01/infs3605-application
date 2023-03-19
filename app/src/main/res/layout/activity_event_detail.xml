@@ -4,6 +4,122 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventDetail">
+    tools:context=".EventDetailActivity">
 
+    <ImageView
+        android:id="@+id/displayEventImage"
+        android:layout_width="408dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/eventNameField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:text="Event Name:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displayEventImage" />
+
+    <TextView
+        android:id="@+id/eventCategoryField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="45dp"
+        android:text="Category:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventNameField" />
+
+    <TextView
+        android:id="@+id/eventDateField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="Date:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventCategoryField" />
+
+    <TextView
+        android:id="@+id/eventTimeField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="38dp"
+        android:text="Time:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventDateField" />
+
+    <TextView
+        android:id="@+id/eventDescriptionField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="34dp"
+        android:text="Description:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventTimeField" />
+
+    <TextView
+        android:id="@+id/displayEventName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="29dp"
+        app:layout_constraintStart_toEndOf="@+id/eventNameField"
+        app:layout_constraintTop_toBottomOf="@+id/displayEventImage" />
+
+    <TextView
+        android:id="@+id/displayEventCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="51dp"
+        app:layout_constraintStart_toEndOf="@+id/eventCategoryField"
+        app:layout_constraintTop_toBottomOf="@+id/displayEventName" />
+
+    <TextView
+        android:id="@+id/displayEventDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintStart_toEndOf="@+id/eventDateField"
+        app:layout_constraintTop_toBottomOf="@+id/eventCategoryField" />
+
+    <TextView
+        android:id="@+id/displayEventTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toEndOf="@+id/eventTimeField"
+        app:layout_constraintTop_toBottomOf="@+id/displayEventDate" />
+
+    <TextView
+        android:id="@+id/displayEventDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventDescriptionField" />
 </androidx.constraintlayout.widget.ConstraintLayout>

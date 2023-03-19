@@ -17,7 +17,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_student_home_page);
 
         // Bottom Navigation set for Home (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);

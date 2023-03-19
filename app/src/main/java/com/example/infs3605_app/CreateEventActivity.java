@@ -9,7 +9,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class CreateEventActivity extends AppCompatActivity {
 
-    TextInputLayout eventName, eventDate, eventTime, eventDescription;
+    TextInputLayout eventName, eventCategory, eventDate, eventTime, eventDescription;
     AppCompatButton selectImage, submitEvent;
 
     @Override
@@ -18,6 +18,7 @@ public class CreateEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_event);
 
         eventName = findViewById(R.id.eventName);
+        eventCategory = findViewById(R.id.eventCategory);
         eventDate = findViewById(R.id.eventDate);
         eventTime = findViewById(R.id.eventTime);
         eventDescription = findViewById(R.id.eventDescription);
