@@ -2,10 +2,13 @@ package com.example.infs3605_app;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.*;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class DatabaseConnector extends SQLiteOpenHelper {
 
@@ -164,5 +167,26 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         hashResult = hash * hashResult + (pass.hashCode());
         hashResult = hash * hashResult + (int) (hash2 ^ (hash2 >>> 32));
         return hashResult;
+    }
+
+    public ArrayList<User> getUserInfo () {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM USERS;";
+        ArrayList<User> allUsers = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                User user = new User(cursor.getString(0), cursor.getString(2), cursor.getString(3),
+                        cursor.getString(4), cursor.getString(1), cursor.getString(9), String.valueOf(cursor.getInt(11)),
+                        String.valueOf(cursor.getInt(10)));
+                allUsers.add(user);
+                cursor.moveToNext();
+            }
+        }
+
+        return allUsers;
+
     }
 }

@@ -4,13 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterAlumni extends AppCompatActivity {
 
-    TextInputLayout alumniFirstName, alumniLastName, alumniEmail, graduationYear, uniDegree;
-    AppCompatButton registerAlumni;
+    TextView alumniFirstName, alumniLastName, alumniEmail, graduationYear, uniDegree;
+    Button registerAlumni;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
