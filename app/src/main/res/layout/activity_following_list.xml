@@ -14,7 +14,7 @@
         app:itemBackground="@android:color/white"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu" />
+        app:menu="@menu/student_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/followingListRV"
