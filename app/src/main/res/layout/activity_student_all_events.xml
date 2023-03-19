@@ -1,24 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/allEventsRV"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StudentAllEventsActivity">
 
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/box_light_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </SearchView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         app:itemBackground="@android:color/white"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
-        app:menu="@menu/student_menu" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/student_menu">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <Button
+        android:id="@+id/networkFilterButton"
+        android:layout_width="70dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/box_light_grey"
+        android:drawableTop="@drawable/ic_networking"
+        android:drawablePadding="-15sp"
+        android:paddingTop="6sp"
+        android:text="Network"
+        android:textAllCaps="false"
+        android:textColor="@color/dark_grey"
+        android:textSize="8sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <Button
+        android:id="@+id/socialFilterButton"
+        android:layout_width="70dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/box_light_grey"
+        android:drawableTop="@drawable/ic_social"
+        android:drawablePadding="-15sp"
+        android:paddingTop="6sp"
+        android:text="Social"
+        android:textAllCaps="false"
+        android:textColor="@color/dark_grey"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/travelFilterButton"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <Button
+        android:id="@+id/careerFilterButton"
+        android:layout_width="70dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/box_light_grey"
+        android:drawableTop="@drawable/ic_career"
+        android:drawablePadding="-15sp"
+        android:paddingTop="6sp"
+        android:text="Career"
+        android:textAllCaps="false"
+        android:textColor="@color/dark_grey"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/networkFilterButton"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <Button
+        android:id="@+id/travelFilterButton"
+        android:layout_width="70dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/box_light_grey"
+        android:drawableTop="@drawable/ic_travel"
+        android:drawablePadding="-15sp"
+        android:paddingTop="6sp"
+        android:text="Travel"
+        android:textAllCaps="false"
+        android:textColor="@color/dark_grey"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/careerFilterButton"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <TextView
+        android:id="@+id/studentAllEventsTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Events (could be dynamic - change w filter)"
+        android:textColor="@color/darkest_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/networkFilterButton" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigator" />
-</RelativeLayout>
+        android:id="@+id/studentAllEventsRV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentAllEventsTitleText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
