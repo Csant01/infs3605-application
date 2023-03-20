@@ -10,18 +10,18 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class DashboardActivity extends AppCompatActivity {
+public class EventsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_events);
 
-        // Bottom Navigation set for Dashboard Page
+        // Bottom Navigation set for Events Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);
-        bottomNavigationView.setSelectedItemId(R.id.dashboardNavButton);
+        bottomNavigationView.setSelectedItemId(R.id.eventsNavButton);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -29,8 +29,8 @@ public class DashboardActivity extends AppCompatActivity {
 
                 switch (item.getItemId())
                 {
-                    case R.id.eventsNavButton:
-                        startActivity(new Intent(getApplicationContext(), EventsActivity.class));
+                    case R.id.dashboardNavButton:
+                        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
@@ -49,12 +49,11 @@ public class DashboardActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.dashboardNavButton:
+                    case R.id.eventsNavButton:
                         return true;
                 }
                 return false;
             }
         });
-
     }
 }
