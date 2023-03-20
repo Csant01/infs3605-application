@@ -3,16 +3,27 @@
 
     <item
         android:id="@+id/dashboardButton"
+        android:icon="@drawable/ic_dashboard"
         android:title="Dashboard " />
 
     <item
         android:id="@+id/eventsButton"
+        android:icon="@drawable/ic_list"
         android:title="Events" />
+
     <item
         android:id="@+id/addEventButton"
+        android:icon="@drawable/ic_home"
         android:title="Add Event" />
 
     <item
+        android:id="@+id/approvalsButton"
+        android:icon="@drawable/ic_home"
+        android:title="Approvals" />
+
+
+    <item
         android:id="@+id/eventFeedback"
-        android:title="Event Feedback" />
+        android:icon="@drawable/ic_home"
+        android:title="Feedback" />
 </menu>
