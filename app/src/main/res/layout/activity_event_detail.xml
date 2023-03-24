@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".EventDetailActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_back" />
+
     <ImageView
         android:id="@+id/displayEventImage"
         android:layout_width="408dp"
