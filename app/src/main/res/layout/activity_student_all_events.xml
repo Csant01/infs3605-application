@@ -31,7 +31,6 @@
         android:layout_width="70dp"
         android:layout_height="85dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/box_light_grey"
         android:drawableTop="@drawable/ic_networking"
         android:drawablePadding="-15sp"
@@ -41,14 +40,13 @@
         android:textColor="@color/dark_grey"
         android:textSize="8sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toTopOf="@+id/careerFilterButton" />
 
     <Button
         android:id="@+id/socialFilterButton"
         android:layout_width="70dp"
         android:layout_height="85dp"
         android:layout_marginStart="33dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/box_light_grey"
         android:drawableTop="@drawable/ic_social"
@@ -61,14 +59,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/travelFilterButton"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/clearFilter" />
 
     <Button
         android:id="@+id/careerFilterButton"
         android:layout_width="70dp"
         android:layout_height="85dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/box_light_grey"
         android:drawableTop="@drawable/ic_career"
         android:drawablePadding="-15sp"
@@ -78,14 +75,13 @@
         android:textColor="@color/dark_grey"
         android:textSize="8sp"
         app:layout_constraintStart_toEndOf="@+id/networkFilterButton"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toTopOf="@+id/travelFilterButton" />
 
     <Button
         android:id="@+id/travelFilterButton"
         android:layout_width="70dp"
         android:layout_height="85dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/box_light_grey"
         android:drawableTop="@drawable/ic_travel"
         android:drawablePadding="-15sp"
@@ -95,7 +91,19 @@
         android:textColor="@color/dark_grey"
         android:textSize="8sp"
         app:layout_constraintStart_toEndOf="@+id/careerFilterButton"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toTopOf="@+id/socialFilterButton" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentAllEventsTitleText" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
@@ -113,7 +121,7 @@
     <TextView
         android:id="@+id/studentAllEventsTitleText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
@@ -131,8 +139,20 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentAllEventsTitleText" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
+    <TextView
+        android:id="@+id/clearFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_light"
+        android:padding="4dp"
+        android:text="Clear Filters"
+        android:textColor="@color/dark_grey"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/searchView"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

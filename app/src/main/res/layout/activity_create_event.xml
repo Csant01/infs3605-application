@@ -313,7 +313,8 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="YES" />
+                    android:text="YES"
+                    android:textColor="@color/darkest_grey" />
 
                 <Button
                     android:id="@+id/noTicketedButton"
@@ -321,7 +322,8 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="NO" />
+                    android:text="NO"
+                    android:textColor="@color/darkest_grey" />
             </LinearLayout>
 
             <TextView
