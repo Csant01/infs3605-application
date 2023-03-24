@@ -8,7 +8,10 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DatabaseConnector extends SQLiteOpenHelper {
 
@@ -46,11 +49,11 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "EVENT_OWNER TEXT NOT NULL, " +
                 "EVENT_COUNTRY TEXT NOT NULL, " +
                 "EVENT_CITY TEXT NOT NULL, " +
-                "EVENT_LOCATION TEXT NOT NULL, " +
+                "EVENT_CAT TEXT NOT NULL, " +
                 "EVENT_PRED_ATTN_NUM INT DEFAULT 0, " +
-                "EVENT_ACTUAL_ATTN_NUT INT DEFAULT 0, " +
-                "EVENT_BUDGETED_COST INT DEFAULT 0, " +
-                "EVENT_COST_ID TEXT NOT NULL, " +
+                "EVENT_ACTUAL_ATTN_NUM INT DEFAULT 0, " +
+                "EVENT_BUDGETED_COST REAL DEFAULT 0, " +
+                "EVENT_COST_ID TEXT, " +
                 "EVENT_TICKETED INT DEFAULT 0," +
                 "EVENT_IMAGE TEXT, " +
                 "EVENT_START_DATE INT NOT NULL, " +
@@ -58,6 +61,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "EVENT_START_TIME INT NOT NULL, " +
                 "EVENT_END_TIME INT NOT NULL, " +
                 "EVENT_ISDELETED INT DEFAULT 0, " +
+                "EVENT_ISAPPROVED INT DEFAULT 0, " +
                 "FOREIGN KEY (EVENT_COST_ID) REFERENCES EVENT_COSTING(EVENT_COST_ID), " +
                 "FOREIGN KEY (EVENT_OWNER) REFERENCES USERS(USER_ID)" +
                 ")";
@@ -188,5 +192,107 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
         return allUsers;
 
+    }
+
+    public ArrayList<Event> getEventInfo () {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM EVENTS;";
+        ArrayList<Event> allEvents = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Event event = new Event(cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                        cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
+                        cursor.getString(7), cursor.getInt(8), cursor.getInt(9), cursor.getDouble(10),
+                        cursor.getInt(12), cursor.getString(13), cursor.getInt(14), cursor.getInt(15),
+                        cursor.getInt(16), cursor.getInt(17), cursor.getInt(18), cursor.getInt(19));
+                allEvents.add(event);
+                cursor.moveToNext();
+            }
+        }
+
+        return allEvents;
+    }
+
+    public String formatEpoch (long value) {
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(value*1000));
+        return date;
+
+    }
+
+    public void addSampleEventData () {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        for (int i = 0; i < 10; i++) {
+            ContentValues cv = new ContentValues();
+            cv.put("EVENT_ID", String.format("eventid0%d", i));
+            cv.put("EVENT_NAME", String.format("evname0%d", i));
+            cv.put("EVENT_LOC", String.format("evloc0%d", i));
+            cv.put("EVENT_OWNER", String.format("evowner0%d", i));
+            cv.put("EVENT_DESC", String.format("evdesc0%d", i));
+            cv.put("EVENT_COUNTRY", String.format("evcountry0%d", i));
+            cv.put("EVENT_CITY", String.format("evcity0%d", i));
+            cv.put("EVENT_CAT", "Network");
+            cv.put("EVENT_PRED_ATTN_NUM", 100);
+            cv.put("EVENT_ACTUAL_ATTN_NUM", 105);
+            cv.put("EVENT_BUDGETED_COST", 55.55);
+            cv.put("EVENT_TICKETED", 0);
+            cv.put("EVENT_START_DATE", 1600000000);
+            cv.put("EVENT_END_DATE", 1679660928);
+            cv.put("EVENT_START_TIME", 4);
+            cv.put("EVENT_END_TIME", 6);
+            cv.put("EVENT_ISAPPROVED", 1);
+
+            db.insert("EVENTS", null, cv);
+        }
+
+        for (int i = 100; i > 90; i--) {
+            ContentValues cv = new ContentValues();
+            cv.put("EVENT_ID", String.format("eventid0%d", i));
+            cv.put("EVENT_NAME", String.format("evname0%d", i));
+            cv.put("EVENT_LOC", String.format("evloc0%d", i));
+            cv.put("EVENT_OWNER", String.format("evowner0%d", i));
+            cv.put("EVENT_DESC", String.format("evdesc0%d", i));
+            cv.put("EVENT_COUNTRY", String.format("evcountry0%d", i));
+            cv.put("EVENT_CITY", String.format("evcity0%d", i));
+            cv.put("EVENT_CAT", "Travel");
+            cv.put("EVENT_PRED_ATTN_NUM", 100);
+            cv.put("EVENT_ACTUAL_ATTN_NUM", 105);
+            cv.put("EVENT_BUDGETED_COST", 55.55);
+            cv.put("EVENT_TICKETED", 0);
+            cv.put("EVENT_START_DATE", 1600000000);
+            cv.put("EVENT_END_DATE", 1679660928);
+            cv.put("EVENT_START_TIME", 4);
+            cv.put("EVENT_END_TIME", 6);
+            cv.put("EVENT_ISAPPROVED", 1);
+
+            db.insert("EVENTS", null, cv);
+        }
+
+        for (int i = 1000; i > 990; i--) {
+            ContentValues cv = new ContentValues();
+            cv.put("EVENT_ID", String.format("eventid0%d", i));
+            cv.put("EVENT_NAME", String.format("evname0%d", i));
+            cv.put("EVENT_LOC", String.format("evloc0%d", i));
+            cv.put("EVENT_OWNER", String.format("evowner0%d", i));
+            cv.put("EVENT_DESC", String.format("evdesc0%d", i));
+            cv.put("EVENT_COUNTRY", String.format("evcountry0%d", i));
+            cv.put("EVENT_CITY", String.format("evcity0%d", i));
+            cv.put("EVENT_CAT", "Social");
+            cv.put("EVENT_PRED_ATTN_NUM", 100);
+            cv.put("EVENT_ACTUAL_ATTN_NUM", 105);
+            cv.put("EVENT_BUDGETED_COST", 55.55);
+            cv.put("EVENT_TICKETED", 0);
+            cv.put("EVENT_START_DATE", 1600000000);
+            cv.put("EVENT_END_DATE", 1679660928);
+            cv.put("EVENT_START_TIME", 4);
+            cv.put("EVENT_END_TIME", 6);
+            cv.put("EVENT_ISAPPROVED", 1);
+
+            db.insert("EVENTS", null, cv);
+            Log.d(">> addSampleData", "sample entries complete.");
+        }
     }
 }
