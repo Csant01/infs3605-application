@@ -2,15 +2,19 @@ package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,11 +25,13 @@ import java.util.ArrayList;
 public class StudentAllEventsActivity extends AppCompatActivity {
 
     RecyclerView allEventsRv;
-    ArrayList<String> eventName, eventDate, eventOrg;
+    ArrayList<Event> eventList;
     Button networkBtn, careerBtn, travelBtn, socialBtn;
     DatabaseConnector db;
     StudentAllEventsAdapter adapter;
+    SearchView searchView;
     BottomNavigationView bottomNavigationView;
+    TextView clearFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +44,23 @@ public class StudentAllEventsActivity extends AppCompatActivity {
         careerBtn = findViewById(R.id.careerFilterButton);
         travelBtn = findViewById(R.id.travelFilterButton);
         socialBtn = findViewById(R.id.socialFilterButton);
+        clearFilter = findViewById(R.id.clearFilter);
+        searchView = findViewById(R.id.searchView);
+        searchView.clearFocus();
+
+        clearFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayEventData();
+            }
+        });
 
 
         networkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 displayFilteredEventData("Network");
-                recreate();
+
             }
         });
 
@@ -52,7 +68,7 @@ public class StudentAllEventsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayFilteredEventData("Careers");
-                recreate();
+
             }
         });
 
@@ -60,7 +76,7 @@ public class StudentAllEventsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayFilteredEventData("Travel");
-                recreate();
+
             }
         });
 
@@ -68,18 +84,16 @@ public class StudentAllEventsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayFilteredEventData("Social");
-                recreate();
+
             }
         });
 
 
 
         // RecyclerView setup
-        eventName = new ArrayList<>();
-        eventDate = new ArrayList<>();
-        eventOrg = new ArrayList<>();
+        eventList = new ArrayList<>();
         allEventsRv = findViewById(R.id.studentAllEventsRV);
-        adapter = new StudentAllEventsAdapter(this, eventName, eventDate, eventOrg);
+        adapter = new StudentAllEventsAdapter(this, eventList);
         allEventsRv.setAdapter(adapter);
         allEventsRv.setLayoutManager(new LinearLayoutManager(this));
         if (!displayEventData()) {
@@ -90,6 +104,20 @@ public class StudentAllEventsActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                Log.d("AllEvents Filter", newText);
+                return false;
+            }
+        });
 
         // Bottom Navigation set for All Events (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);
@@ -133,14 +161,13 @@ public class StudentAllEventsActivity extends AppCompatActivity {
     public boolean displayEventData () {
         ArrayList<Event> allEvents = db.getEventInfo();
         if (!allEvents.isEmpty()) {
-            eventName.clear();
-            eventDate.clear();
-            eventOrg.clear();
+            allEventsRv.getRecycledViewPool().clear();
+            eventList.clear();
+            adapter.notifyDataSetChanged();
             for (int i = 0; i < allEvents.size(); i++) {
                 if (allEvents.get(i).getEventIsApproved() != 0) {
-                    eventName.add(allEvents.get(i).getEventName());
-                    eventDate.add(db.formatEpoch(allEvents.get(i).getEventEndDate()));
-                    eventOrg.add(allEvents.get(i).getEventOwner());
+                    eventList.add(allEvents.get(i));
+                    adapter.notifyDataSetChanged();
                 }
             }
             return true;
@@ -152,14 +179,13 @@ public class StudentAllEventsActivity extends AppCompatActivity {
     public boolean displayFilteredEventData (String filter) {
         ArrayList<Event> allEvents = db.getEventInfo();
         if (!allEvents.isEmpty()) {
-            eventName.clear();
-            eventDate.clear();
-            eventOrg.clear();
+            allEventsRv.getRecycledViewPool().clear();
+            eventList.clear();
+            adapter.notifyDataSetChanged();
             for (int i = 0; i < allEvents.size(); i++) {
                 if (allEvents.get(i).getEventCategory().equals(filter)) {
-                    eventName.add(allEvents.get(i).getEventName());
-                    eventDate.add(db.formatEpoch(allEvents.get(i).getEventEndDate()));
-                    eventOrg.add(allEvents.get(i).getEventOwner());
+                    eventList.add(allEvents.get(i));
+                    adapter.notifyDataSetChanged();
                 }
             }
             return true;
@@ -167,4 +193,22 @@ public class StudentAllEventsActivity extends AppCompatActivity {
             return false;
         }
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        SearchView searchView = findViewById(R.id.searchView);
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                adapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
+//        return true;
+//    }
 }
