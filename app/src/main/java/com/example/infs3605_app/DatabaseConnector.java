@@ -56,8 +56,9 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "EVENT_COST_ID TEXT, " +
                 "EVENT_TICKETED INT DEFAULT 0," +
                 "EVENT_IMAGE TEXT, " +
-                "EVENT_START_DATE INT NOT NULL, " +
-                "EVENT_END_DATE INT NOT NULL, " +
+                "EVENT_FACILITY TEXT NOT NULL, " +
+                "EVENT_STAFFING INT NOT NULL, " +
+                "EVENT_DATE INT NOT NULL, " +
                 "EVENT_START_TIME INT NOT NULL, " +
                 "EVENT_END_TIME INT NOT NULL, " +
                 "EVENT_ISDELETED INT DEFAULT 0, " +

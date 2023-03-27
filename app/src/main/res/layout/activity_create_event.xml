@@ -272,7 +272,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/eventAttendanceTextBox" />
 
             <EditText
-                android:id="@+id/editTextNumberDecimal"
+                android:id="@+id/eventCosting"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="24dp"
@@ -294,8 +294,8 @@
                 android:text="TICKETED EVENT:"
                 android:textColor="@color/darkest_grey"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/editTextNumberDecimal"
-                app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+                app:layout_constraintStart_toStartOf="@+id/eventCosting"
+                app:layout_constraintTop_toBottomOf="@+id/eventCosting" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -365,7 +365,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/startTimeTextBox" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName12"
+                android:id="@+id/endTimeTextBox"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="24dp"
@@ -387,8 +387,8 @@
                 android:text="CATERING AVAILABLE:"
                 android:textColor="@color/darkest_grey"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName12"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName12" />
+                app:layout_constraintStart_toStartOf="@+id/endTimeTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/endTimeTextBox" />
 
             <EditText
                 android:id="@+id/cateringTextBox"
@@ -417,7 +417,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cateringTextBox" />
 
             <EditText
-                android:id="@+id/editTextNumber4"
+                android:id="@+id/eventStaffingTextBox"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="24dp"
@@ -445,7 +445,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextNumber4" />
+                app:layout_constraintTop_toBottomOf="@+id/eventStaffingTextBox" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

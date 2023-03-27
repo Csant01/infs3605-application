@@ -10,10 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class CreateUserActivity extends AppCompatActivity {
@@ -33,7 +30,6 @@ public class CreateUserActivity extends AppCompatActivity {
     String userPass;
     String userPassCheck;
     String userType;
-    String userID;
     String userFirstName;
     String userLastName;
     String userGender;
@@ -69,10 +65,10 @@ public class CreateUserActivity extends AppCompatActivity {
         createUserFirstName = findViewById(R.id.createUserFirstName);
         createUserLastName = findViewById(R.id.createUserLastName);
 
-        userTypeAdapter = new ArrayAdapter<>(this, R.layout.user_type_list, userTypeArray);
+        userTypeAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, userTypeArray);
         createUserType.setAdapter(userTypeAdapter);
 
-        userGenderAdapter = new ArrayAdapter<>(this, R.layout.user_type_list, userGenderArray);
+        userGenderAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, userGenderArray);
         createUserGender.setAdapter(userGenderAdapter);
 
         createUserButton.setOnClickListener(new View.OnClickListener() {

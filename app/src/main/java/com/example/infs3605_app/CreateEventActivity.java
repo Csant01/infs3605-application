@@ -2,26 +2,61 @@ package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.ArrayList;
 
 public class CreateEventActivity extends AppCompatActivity {
 
-    TextInputLayout eventName, eventCategory, eventDate, eventTime, eventDescription;
-    AppCompatButton selectImage, submitEvent;
+    TextView eventName, eventDate, eventTime, eventDescription, eventLocation, eventCity,
+                eventCountry, eventFacility, predictedAttn, eventCost, eventStartTime, eventEndTime,
+                eventCatering, eventStaffing;
+    AutoCompleteTextView eventCategory;
+    ArrayList<String> eventCategories;
+    ArrayAdapter<String> categoryAdapter;
+    Button submitEvent, ticketedYes, ticketedNo;
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
+        eventCategories = new ArrayList<>();
+        eventCategories.add("Network");
+        eventCategories.add("Careers");
+        eventCategories.add("Social");
+        eventCategories.add("Travel");
+
+        eventName = findViewById(R.id.eventNameTextBox);
+        eventDescription = findViewById(R.id.eventDescriptionTextBox);
+        eventLocation = findViewById(R.id.eventLocationTextBox);
+        eventCity = findViewById(R.id.eventCityTextBox);
+        eventCountry = findViewById(R.id.eventCountryTextBox);
+        eventFacility = findViewById(R.id.eventFacilityTextBox);
+        predictedAttn = findViewById(R.id.eventAttendanceTextBox);
+        eventCost = findViewById(R.id.eventCosting);
+        ticketedYes = findViewById(R.id.yesTicketedButton);
+        ticketedNo = findViewById(R.id.noTicketedButton);
+        eventStartTime = findViewById(R.id.startTimeTextBox);
+        eventEndTime = findViewById(R.id.endTimeTextBox);
+        eventCatering = findViewById(R.id.cateringTextBox);
+        eventStaffing = findViewById(R.id.eventStaffingTextBox);
+        submitEvent = findViewById(R.id.eventFormSubmitButton);
+        eventCategory = findViewById(R.id.eventCategoryDropdownSelector);
+
+        categoryAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, eventCategories);
+        eventCategory.setAdapter(categoryAdapter);
+
 
         // Bottom Navigation set for Create Event Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);
@@ -60,13 +95,6 @@ public class CreateEventActivity extends AppCompatActivity {
             }
         });
 
-//        eventName = findViewById(R.id.eventName);
-//        eventCategory = findViewById(R.id.eventCategory);
-//        eventDate = findViewById(R.id.eventDate);
-//        eventTime = findViewById(R.id.eventTime);
-//        eventDescription = findViewById(R.id.eventDescription);
-//        selectImage = findViewById(R.id.selectImage);
-//        submitEvent = findViewById(R.id.submitEvent);
 
     }
 }
