@@ -17,5 +17,229 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/nameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="NAME:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="52dp"
+                tools:layout_editor_absoluteY="114dp" />
+
+            <TextView
+                android:id="@+id/descriptionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="DESCRIPTION:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/nameLabel"
+                app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
+
+            <TextView
+                android:id="@+id/locationLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="LOCATION:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/descriptionLabel"
+                tools:layout_editor_absoluteY="180dp" />
+
+            <TextView
+                android:id="@+id/cityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="CITY:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/locationLabel"
+                app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+
+            <TextView
+                android:id="@+id/countryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="COUNTRY:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/cityLabel"
+                app:layout_constraintTop_toBottomOf="@+id/cityLabel" />
+
+            <TextView
+                android:id="@+id/facilityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="FACILITY:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/countryLabel"
+                app:layout_constraintTop_toBottomOf="@+id/countryLabel" />
+
+            <TextView
+                android:id="@+id/categoryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="CATEGORY:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/facilityLabel"
+                app:layout_constraintTop_toBottomOf="@+id/facilityLabel" />
+
+            <TextView
+                android:id="@+id/ticketedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="TICKETED:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/categoryLabel"
+                app:layout_constraintTop_toBottomOf="@+id/categoryLabel" />
+
+            <TextView
+                android:id="@+id/startLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="START TIME:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/ticketedLabel"
+                app:layout_constraintTop_toBottomOf="@+id/ticketedLabel" />
+
+            <TextView
+                android:id="@+id/endLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="END TIME:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/startLabel"
+                app:layout_constraintTop_toBottomOf="@+id/startLabel" />
+
+            <TextView
+                android:id="@+id/cateringAvailableLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="CATERING:"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/endLabel"
+                app:layout_constraintTop_toBottomOf="@+id/endLabel" />
+
+            <TextView
+                android:id="@+id/namePrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/descriptionPrint"
+                app:layout_constraintTop_toTopOf="@+id/nameLabel" />
+
+            <TextView
+                android:id="@+id/descriptionPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/locationPrint"
+                app:layout_constraintTop_toTopOf="@+id/descriptionLabel" />
+
+            <TextView
+                android:id="@+id/locationPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/cityPrint"
+                app:layout_constraintTop_toTopOf="@+id/locationLabel" />
+
+            <TextView
+                android:id="@+id/cityPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/countryPrint"
+                app:layout_constraintTop_toTopOf="@+id/cityLabel" />
+
+            <TextView
+                android:id="@+id/countryPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/facilityPrint"
+                app:layout_constraintTop_toTopOf="@+id/countryLabel" />
+
+            <TextView
+                android:id="@+id/facilityPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/categoryPrint"
+                app:layout_constraintTop_toTopOf="@+id/facilityLabel" />
+
+            <TextView
+                android:id="@+id/categoryPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/ticketedPrint"
+                app:layout_constraintTop_toTopOf="@+id/categoryLabel" />
+
+            <TextView
+                android:id="@+id/ticketedPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/startTimePrint"
+                app:layout_constraintTop_toTopOf="@+id/ticketedLabel" />
+
+            <TextView
+                android:id="@+id/startTimePrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/endTimePrint"
+                app:layout_constraintTop_toTopOf="@+id/startLabel" />
+
+            <TextView
+                android:id="@+id/endTimePrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/cateringAvailablePrint"
+                app:layout_constraintTop_toTopOf="@+id/endLabel" />
+
+            <TextView
+                android:id="@+id/cateringAvailablePrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintTop_toTopOf="@+id/cateringAvailableLabel"
+                tools:layout_editor_absoluteX="102dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
