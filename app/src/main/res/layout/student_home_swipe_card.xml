@@ -24,44 +24,57 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/nameLabel"
+                android:id="@+id/namePrint3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/nameLabel3"
+                app:layout_constraintTop_toTopOf="@+id/nameLabel3" />
+
+            <TextView
+                android:id="@+id/nameLabel3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="244dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="NAME:"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
-                tools:layout_editor_absoluteX="52dp"
-                tools:layout_editor_absoluteY="114dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/descriptionLabel"
+                android:id="@+id/organiserLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="DESCRIPTION:"
+                android:text="ORGANISER:"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/nameLabel"
-                app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
+                app:layout_constraintEnd_toEndOf="@+id/nameLabel3"
+                app:layout_constraintTop_toBottomOf="@+id/nameLabel3" />
 
             <TextView
                 android:id="@+id/locationLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="LOCATION:"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/descriptionLabel"
-                tools:layout_editor_absoluteY="180dp" />
+                app:layout_constraintEnd_toEndOf="@+id/organiserLabel"
+                app:layout_constraintTop_toBottomOf="@+id/organiserLabel" />
 
             <TextView
                 android:id="@+id/cityLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="CITY:"
                 android:textColor="@color/grey"
@@ -70,48 +83,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
 
             <TextView
-                android:id="@+id/countryLabel"
+                android:id="@+id/categoryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="COUNTRY:"
+                android:text="CATEGORY:"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/cityLabel"
                 app:layout_constraintTop_toBottomOf="@+id/cityLabel" />
 
             <TextView
-                android:id="@+id/facilityLabel"
+                android:id="@+id/dateLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="FACILITY:"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/countryLabel"
-                app:layout_constraintTop_toBottomOf="@+id/countryLabel" />
-
-            <TextView
-                android:id="@+id/categoryLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="CATEGORY:"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/facilityLabel"
-                app:layout_constraintTop_toBottomOf="@+id/facilityLabel" />
-
-            <TextView
-                android:id="@+id/ticketedLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="TICKETED:"
+                android:text="DATE:"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/categoryLabel"
@@ -121,19 +110,19 @@
                 android:id="@+id/startLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="START TIME:"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/ticketedLabel"
-                app:layout_constraintTop_toBottomOf="@+id/ticketedLabel" />
+                app:layout_constraintEnd_toEndOf="@+id/dateLabel"
+                app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
 
             <TextView
                 android:id="@+id/endLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="END TIME:"
                 android:textColor="@color/grey"
@@ -142,104 +131,86 @@
                 app:layout_constraintTop_toBottomOf="@+id/startLabel" />
 
             <TextView
-                android:id="@+id/cateringAvailableLabel"
-                android:layout_width="wrap_content"
+                android:id="@+id/organiserPrint"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="CATERING:"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/endLabel"
-                app:layout_constraintTop_toBottomOf="@+id/endLabel" />
-
-            <TextView
-                android:id="@+id/namePrint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/descriptionPrint"
-                app:layout_constraintTop_toTopOf="@+id/nameLabel" />
-
-            <TextView
-                android:id="@+id/descriptionPrint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/locationPrint"
-                app:layout_constraintTop_toTopOf="@+id/descriptionLabel" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/organiserLabel"
+                app:layout_constraintTop_toTopOf="@+id/organiserLabel" />
 
             <TextView
                 android:id="@+id/locationPrint"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/cityPrint"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/locationLabel"
                 app:layout_constraintTop_toTopOf="@+id/locationLabel" />
 
             <TextView
                 android:id="@+id/cityPrint"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/countryPrint"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cityLabel"
                 app:layout_constraintTop_toTopOf="@+id/cityLabel" />
 
             <TextView
-                android:id="@+id/countryPrint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/facilityPrint"
-                app:layout_constraintTop_toTopOf="@+id/countryLabel" />
-
-            <TextView
-                android:id="@+id/facilityPrint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/categoryPrint"
-                app:layout_constraintTop_toTopOf="@+id/facilityLabel" />
-
-            <TextView
                 android:id="@+id/categoryPrint"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/ticketedPrint"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/categoryLabel"
                 app:layout_constraintTop_toTopOf="@+id/categoryLabel" />
 
             <TextView
                 android:id="@+id/ticketedPrint"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/startTimePrint"
-                app:layout_constraintTop_toTopOf="@+id/ticketedLabel" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/dateLabel"
+                app:layout_constraintTop_toTopOf="@+id/dateLabel" />
 
             <TextView
                 android:id="@+id/startTimePrint"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/endTimePrint"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/startLabel"
                 app:layout_constraintTop_toTopOf="@+id/startLabel" />
 
             <TextView
                 android:id="@+id/endTimePrint"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toStartOf="@+id/cateringAvailablePrint"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/endLabel"
                 app:layout_constraintTop_toTopOf="@+id/endLabel" />
 
-            <TextView
-                android:id="@+id/cateringAvailablePrint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintTop_toTopOf="@+id/cateringAvailableLabel"
-                tools:layout_editor_absoluteX="102dp" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="380dp"
+                android:layout_height="220dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/namePrint3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@mipmap/ic_launcher" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
