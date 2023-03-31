@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="30dp"
         android:text="Category:"
         android:textColor="#444443"
         android:textSize="16sp"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:text="Date:"
         android:textColor="#444443"
         android:textSize="16sp"
@@ -59,12 +59,12 @@
         app:layout_constraintTop_toBottomOf="@+id/eventCategoryField" />
 
     <TextView
-        android:id="@+id/eventTimeField"
+        android:id="@+id/eventStartTimeField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="38dp"
-        android:text="Time:"
+        android:layout_marginTop="30dp"
+        android:text="Start Time:"
         android:textColor="#444443"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,13 +74,13 @@
         android:id="@+id/eventDescriptionField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="29dp"
         android:text="Description:"
         android:textColor="#444443"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventTimeField" />
+        app:layout_constraintTop_toBottomOf="@+id/eventFacilityField" />
 
     <TextView
         android:id="@+id/displayEventName"
@@ -110,22 +110,22 @@
         app:layout_constraintTop_toBottomOf="@+id/eventCategoryField" />
 
     <TextView
-        android:id="@+id/displayEventTime"
+        android:id="@+id/displayEventStartTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintStart_toEndOf="@+id/eventTimeField"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@+id/eventStartTimeField"
         app:layout_constraintTop_toBottomOf="@+id/displayEventDate" />
 
     <TextView
         android:id="@+id/displayEventDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDescriptionField" />
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintStart_toEndOf="@+id/eventDescriptionField"
+        app:layout_constraintTop_toBottomOf="@+id/displayEventFacility" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
@@ -139,5 +139,106 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/staff_alumni_menu" />
+
+    <TextView
+        android:id="@+id/eventEndTimeField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:text="End Time:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/displayEventStartTime"
+        tools:layout_editor_absoluteY="377dp" />
+
+    <TextView
+        android:id="@+id/displayEventEndTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        app:layout_constraintStart_toEndOf="@+id/eventEndTimeField"
+        tools:layout_editor_absoluteY="375dp" />
+
+    <TextView
+        android:id="@+id/eventLocationField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:text="Location:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventStartTimeField" />
+
+    <TextView
+        android:id="@+id/eventCityField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="28dp"
+        android:text="City:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventLocationField" />
+
+    <TextView
+        android:id="@+id/eventCountryField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="85dp"
+        android:text="Country:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/displayEventCity"
+        app:layout_constraintTop_toBottomOf="@+id/eventEndTimeField" />
+
+    <TextView
+        android:id="@+id/eventFacilityField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:text="Facility:"
+        android:textColor="#444443"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/eventCityField" />
+
+    <TextView
+        android:id="@+id/displayEventLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        app:layout_constraintStart_toEndOf="@+id/eventLocationField"
+        tools:layout_editor_absoluteY="435dp" />
+
+    <TextView
+        android:id="@+id/displayEventCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="85dp"
+        app:layout_constraintStart_toEndOf="@+id/eventCountryField"
+        app:layout_constraintTop_toBottomOf="@+id/eventEndTimeField" />
+
+    <TextView
+        android:id="@+id/displayEventCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/eventCityField"
+        tools:layout_editor_absoluteY="489dp" />
+
+    <TextView
+        android:id="@+id/displayEventFacility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintStart_toEndOf="@+id/eventFacilityField"
+        app:layout_constraintTop_toBottomOf="@+id/displayEventCity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
