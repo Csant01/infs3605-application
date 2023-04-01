@@ -11,6 +11,30 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <com.daprlabs.cardstack.SwipeFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <!--below widget is used for creating a swipe deck-->
+        <!--in below widget card spacing is the spacing between cards
+            max visible is the max number of cards which are visible
+            render above is to render the cards
+            rotation degree is the angle of card rotation when card is swiped-->
+        <com.daprlabs.cardstack.SwipeDeck
+            android:id="@+id/homePageSwipeDeck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            app:card_spacing="10dp"
+            app:max_visible="3"
+            app:render_above="true"
+            app:rotation_degrees="15" />
+
+    </com.daprlabs.cardstack.SwipeFrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
         android:layout_width="wrap_content"
@@ -22,14 +46,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/student_menu" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/homePageRV"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.infs3605_app;
 import android.text.TextUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class User {
     private String userID;
@@ -13,6 +14,7 @@ public class User {
     private String userFirstName;
     private String userLastName;
     private String userGender;
+    public static ArrayList<String> currentlyLoggedIn = new ArrayList<>();
 
     public User (String userID, String userFirstName, String userLastName, String userGender,
                  String userName, String userEmail,

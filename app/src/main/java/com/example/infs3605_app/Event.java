@@ -10,16 +10,18 @@ public class Event {
     private String eventCity;
     private String eventCategory;
     private String eventImage;
-    private long eventStartDate;
-    private long eventEndDate;
-    private long eventStartTime;
-    private long eventEndTime;
+    private long eventDate;
+    private String eventStartTime;
+    private String eventEndTime;
     private int eventIsDeleted;
     private int eventIsApproved;
     private int eventPredAttn;
     private int eventTicketed;
     private int eventActAttn;
     private double eventCost;
+    private int eventStaffing;
+    private String eventFacility;
+
 
 
 
@@ -27,8 +29,8 @@ public class Event {
     public Event(String eventId, String eventName, String eventLocation, String eventDescription,
                  String eventOwner, String eventCountry, String eventCity, String eventCategory,
                  int eventPredAttn, int eventActAttn, double eventCost, int eventTicketed, String eventImage,
-                 long eventStartDate, long eventEndDate, long eventStartTime, long eventEndTime,
-                 int eventIsDeleted, int eventIsApproved) {
+                 long eventDate, String eventStartTime, String eventEndTime,
+                 int eventIsDeleted, int eventIsApproved, int eventStaffing, String eventFacility) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventLocation = eventLocation;
@@ -38,8 +40,7 @@ public class Event {
         this.eventCity = eventCity;
         this.eventCategory = eventCategory;
         this.eventImage = eventImage;
-        this.eventStartDate = eventStartDate;
-        this.eventEndDate = eventEndDate;
+        this.eventDate = eventDate;
         this.eventStartTime = eventStartTime;
         this.eventEndTime = eventEndTime;
         this.eventIsDeleted = eventIsDeleted;
@@ -48,8 +49,40 @@ public class Event {
         this.eventActAttn = eventActAttn;
         this.eventPredAttn = eventPredAttn;
         this.eventTicketed = eventTicketed;
+        this.eventStaffing = eventStaffing;
+        this.eventFacility = eventFacility;
     }
 
+    public String getEventFacility() {
+        return eventFacility;
+    }
+
+    public void setEventFacility(String eventFacility) {
+        this.eventFacility = eventFacility;
+    }
+    public int getEventStaffing() {
+        return eventStaffing;
+    }
+
+    public void setEventStaffing(int eventStaffing) {
+        this.eventStaffing = eventStaffing;
+    }
+
+    public long getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(long eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public int getEventTicketed() {
+        return eventTicketed;
+    }
+
+    public void setEventTicketed(int eventTicketed) {
+        this.eventTicketed = eventTicketed;
+    }
     // Getter and Setter methods for all fields
     public String getEventId() {
         return eventId;
@@ -139,35 +172,19 @@ public class Event {
         this.eventImage = eventImage;
     }
 
-    public long getEventStartDate() {
-        return eventStartDate;
-    }
-
-    public void setEventStartDate(long eventStartDate) {
-        this.eventStartDate = eventStartDate;
-    }
-
-    public long getEventEndDate() {
-        return eventEndDate;
-    }
-
-    public void setEventEndDate(long eventEndDate) {
-        this.eventEndDate = eventEndDate;
-    }
-
-    public long getEventStartTime() {
+    public String getEventStartTime() {
         return eventStartTime;
     }
 
-    public void setEventStartTime(long eventStartTime) {
+    public void setEventStartTime(String eventStartTime) {
         this.eventStartTime = eventStartTime;
     }
 
-    public long getEventEndTime() {
+    public String getEventEndTime() {
         return eventEndTime;
     }
 
-    public void setEventEndTime(long eventEndTime) {
+    public void setEventEndTime(String eventEndTime) {
         this.eventEndTime = eventEndTime;
     }
 

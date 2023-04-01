@@ -24,7 +24,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/namePrint3"
+                android:id="@+id/namePrint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -171,7 +171,7 @@
                 app:layout_constraintTop_toTopOf="@+id/categoryLabel" />
 
             <TextView
-                android:id="@+id/ticketedPrint"
+                android:id="@+id/datePrint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -201,11 +201,11 @@
                 app:layout_constraintTop_toTopOf="@+id/endLabel" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/cardImage"
                 android:layout_width="380dp"
                 android:layout_height="220dp"
                 android:layout_marginBottom="24dp"
-                app:layout_constraintBottom_toTopOf="@+id/namePrint3"
+                app:layout_constraintBottom_toTopOf="@+id/namePrint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@mipmap/ic_launcher" />

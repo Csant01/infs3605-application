@@ -2,6 +2,7 @@ package com.example.infs3605_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -97,6 +98,7 @@ public class CreateUserActivity extends AppCompatActivity {
                         if(db.addUserToDatabase(user)) {
                             Toast.makeText(CreateUserActivity.this, "User created successfully.",
                                     Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                         }
                     } else {
                         Toast.makeText(CreateUserActivity.this, "Please ensure to use your" +

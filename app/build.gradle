@@ -33,6 +33,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation group: 'com.daprlabs.aaron', name: 'cardstack', version: '0.3.1'
     // dependency for bottom nav material:1.0.0
     //implementation 'com.google.android.material:material:1.0.0'
     // dependency for card view

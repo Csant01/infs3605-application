@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 userEmail = emailInput.getText().toString();
                 userPass = passwordInput.getText().toString();
                 if (checkLogin(userEmail, userPass)) {
-                    startActivity(new Intent(getApplicationContext(), CreateUserActivity.class));
+                    startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Please ensure all details are correct.",
                             Toast.LENGTH_SHORT).show();
@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         for (int i = 0; i < allUsers.size(); i++) {
             if (allUsers.get(i).getUserEmail().equals(email)) {
                 if (db.toHashCode(pass) == Integer.parseInt(allUsers.get(i).getUserPass())) {
+                    User.currentlyLoggedIn.add(allUsers.get(i).getUserName());
                     return true;
                 } else {
                     return false;

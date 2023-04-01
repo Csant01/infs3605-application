@@ -39,7 +39,7 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Event event = filteredEvents.get(position);
         holder.eventName.setText(String.valueOf(event.getEventName()));
-        holder.eventDate.setText(formatEpoch(event.getEventEndDate()));
+        holder.eventDate.setText(formatEpoch(event.getEventDate()));
         holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
         if (event.getEventCategory().equals("Network")) {
             holder.eventImage.setImageResource(R.drawable.ic_networking);
@@ -87,63 +87,6 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
             }
         };
     }
-
-//    private Filter filteredData = new Filter() {
-//        @Override
-//        protected FilterResults performFiltering(CharSequence constraint) {
-//            Log.d("Search Query", constraint.toString());
-//            String query = constraint.toString();
-//            if (query.isEmpty()) {
-//                Log.d("Search Query", "Adding all entries");
-//                eventList = eventListFull;
-//                    Log.d("Search Query", "eventList size - " + eventList.size());
-//                    Log.d("Search Query", "eventListFull size - " + eventListFull.size());
-//            } else {
-//                List<Event> eventFilteredList = new ArrayList<>();
-//                for (Event event: eventListFull) {
-//                    if (event.getEventName().startsWith(query.toLowerCase().trim())) {
-//                        eventFilteredList.add(event);
-//                    }
-//                }
-//                eventList = (ArrayList) eventFilteredList;
-//            }
-//            FilterResults results = new FilterResults();
-//            results.values = eventList;
-//            return results;
-
-//            ArrayList<Event> filteredEventList = new ArrayList<>();
-////            Log.d("Search Query", constraint.toString());
-//            if (constraint == null || constraint.length() == 0) {
-//                Log.d("Search Query", "Adding all entries");
-//                filteredEventList.addAll(eventListFull);
-//            } else {
-//                String filterString = constraint.toString().toLowerCase().trim();
-//                Log.d("Search Query", filterString);
-//                Log.d("Search Query", "eventList size - " + eventList.size());
-//                Log.d("Search Query", "eventListFull size - " + eventListFull.size());
-//
-//                for (Event event : eventListFull) {
-//                    Log.d("Search Query", "Event Name - " + event.getEventName());
-//                    if (event.getEventName().toLowerCase().startsWith(filterString)) {
-//                        Log.d("Filtered Event Name", event.getEventName());
-//                        filteredEventList.add(event);
-//                    }
-//                }
-//            }
-//
-//            FilterResults results = new FilterResults();
-//            results.values = filteredEventList;
-//
-//            return results;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//            eventList.clear();
-//            eventList.addAll((ArrayList)results.values);
-//            notifyDataSetChanged();
-//        }
-//    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView eventName, eventDate, eventOrg;

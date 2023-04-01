@@ -8,10 +8,17 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class DatabaseConnector extends SQLiteOpenHelper {
 
@@ -56,11 +63,11 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "EVENT_COST_ID TEXT, " +
                 "EVENT_TICKETED INT DEFAULT 0," +
                 "EVENT_IMAGE TEXT, " +
-                "EVENT_FACILITY TEXT NOT NULL, " +
+                "EVENT_FACILITY TEXT, " +
                 "EVENT_STAFFING INT NOT NULL, " +
                 "EVENT_DATE INT NOT NULL, " +
-                "EVENT_START_TIME INT NOT NULL, " +
-                "EVENT_END_TIME INT NOT NULL, " +
+                "EVENT_START_TIME TEXT NOT NULL, " +
+                "EVENT_END_TIME TEXT NOT NULL, " +
                 "EVENT_ISDELETED INT DEFAULT 0, " +
                 "EVENT_ISAPPROVED INT DEFAULT 0, " +
                 "FOREIGN KEY (EVENT_COST_ID) REFERENCES EVENT_COSTING(EVENT_COST_ID), " +
@@ -201,14 +208,13 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         ArrayList<Event> allEvents = new ArrayList<>();
 
         Cursor cursor = db.rawQuery(query, null);
-
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 Event event = new Event(cursor.getString(0), cursor.getString(1), cursor.getString(2),
                         cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
                         cursor.getString(7), cursor.getInt(8), cursor.getInt(9), cursor.getDouble(10),
-                        cursor.getInt(12), cursor.getString(13), cursor.getInt(14), cursor.getInt(15),
-                        cursor.getInt(16), cursor.getInt(17), cursor.getInt(18), cursor.getInt(19));
+                        cursor.getInt(12), cursor.getString(13), cursor.getLong(16), cursor.getString(17),
+                        cursor.getString(18), cursor.getInt(19), cursor.getInt(20), cursor.getInt(15), cursor.getString(14));
                 allEvents.add(event);
                 cursor.moveToNext();
             }
@@ -220,6 +226,42 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public String formatEpoch (long value) {
         String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(value*1000));
         return date;
+    }
+
+    public long formatDateToEpoch(String date) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        formatter.setTimeZone(TimeZone.getTimeZone("Australia/Sydney"));
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Australia/Sydney"));
+        calendar.setTime(formatter.parse(date));
+        long epochSeconds = calendar.getTimeInMillis() / 1000;
+        return epochSeconds;
+    }
+
+
+    public boolean addEventToDatabase (Event event) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("EVENT_ID", event.getEventId());
+        cv.put("EVENT_NAME", event.getEventName());
+        cv.put("EVENT_LOC", event.getEventLocation());
+        cv.put("EVENT_DESC", event.getEventDescription());
+        cv.put("EVENT_CAT", event.getEventCategory());
+        cv.put("EVENT_OWNER", event.getEventOwner());
+        cv.put("EVENT_COUNTRY", event.getEventCountry());
+        cv.put("EVENT_STAFFING", event.getEventStaffing());
+        cv.put("EVENT_CITY", event.getEventCity());
+        cv.put("EVENT_FACILITY", "UNSW Roundhouse");
+        cv.put("EVENT_PRED_ATTN_NUM", event.getEventPredAttn());
+        cv.put("EVENT_BUDGETED_COST", event.getEventCost());
+        cv.put("EVENT_TICKETED", event.getEventIsDeleted());
+        cv.put("EVENT_DATE", formatEpoch(event.getEventDate()));
+        cv.put("EVENT_START_TIME", event.getEventStartTime());
+        cv.put("EVENT_END_TIME", event.getEventEndTime());
+
+        db.insert("EVENTS", null, cv);
+
+        return true;
 
     }
 
