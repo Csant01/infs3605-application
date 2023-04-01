@@ -113,8 +113,8 @@
                 android:text="EVENT LOCATION:"
                 android:textColor="@color/darkest_grey"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/eventDescriptionTextBox"
-                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTextBox" />
+                app:layout_constraintStart_toStartOf="@+id/facultyDropdown"
+                app:layout_constraintTop_toBottomOf="@+id/facultyDropdown" />
 
             <EditText
                 android:id="@+id/eventLocationTextBox"
@@ -416,16 +416,18 @@
 
             <Button
                 android:id="@+id/eventFormSubmitButton"
+                style="@style/Widget.AppCompat.Button"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@color/yellow"
+                android:backgroundTint="@color/yellow"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="SUBMIT EVENT FOR APPROVAL"
                 android:textColor="@color/darkest_grey"
+                app:cornerRadius="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -473,6 +475,40 @@
                 app:layout_constraintStart_toStartOf="@+id/endTimeLabel"
                 app:layout_constraintTop_toBottomOf="@+id/endTimeLabel" />
 
+            <TextView
+                android:id="@+id/facultyLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="FACULTY:"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/eventDescriptionTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTextBox" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/facultyDropdown"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/facultyLabel"
+                app:layout_constraintTop_toBottomOf="@+id/facultyLabel">
+
+                <AutoCompleteTextView
+                    android:id="@+id/facultyDropdownSelector"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:hint="Please Select Your Faculty"
+                    android:inputType="none"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="14sp"
+                    tools:layout_editor_absoluteX="14dp"
+                    tools:layout_editor_absoluteY="440dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
