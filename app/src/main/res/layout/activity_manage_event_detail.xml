@@ -23,4 +23,459 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/staff_alumni_menu" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/editEventDateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="DATE:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+            <TextView
+                android:id="@+id/editEventNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="EVENT NAME:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editEventNameTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. Hospitality Networking Event"
+                android:inputType="textPersonName"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventNameLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEventNameLabel" />
+
+            <TextView
+                android:id="@+id/editEventDescriptionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="EVENT DESCRIPTION:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editEventNameTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editEventNameTextBox" />
+
+            <EditText
+                android:id="@+id/editEventDescriptionTextBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="eg. You are invited to UNSW's annual Hospitality Networking Evening ..."
+                android:inputType="textMultiLine"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEventDescriptionLabel" />
+
+            <TextView
+                android:id="@+id/editEventLocationLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="EVENT LOCATION:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editEventDescriptionTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editEventDescriptionTextBox" />
+
+            <EditText
+                android:id="@+id/editEventLocationTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. UNSW"
+                android:inputType="textPersonName"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventLocationLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEventLocationLabel" />
+
+            <TextView
+                android:id="@+id/editEventCityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="CITY:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editEventLocationTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editEventLocationTextBox" />
+
+            <EditText
+                android:id="@+id/editEventCityTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. Sydney"
+                android:inputType="textPersonName"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventCityLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEventCityLabel" />
+
+            <TextView
+                android:id="@+id/editEventCountryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="COUNTRY:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editEventCityTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editEventCityTextBox" />
+
+            <EditText
+                android:id="@+id/editEventCountryTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. Australia"
+                android:inputType="textPersonName"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventCountryLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEventCountryLabel" />
+
+            <TextView
+                android:id="@+id/editEventFacilityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="FACILITY:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editEventCountryTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editEventCountryTextBox" />
+
+            <EditText
+                android:id="@+id/editEventFacilityTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. Roundhouse"
+                android:inputType="textPersonName"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventFacilityLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEventFacilityLabel" />
+
+            <TextView
+                android:id="@+id/editEventCategoryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="CATEGORY:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editEventFacilityTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editEventFacilityTextBox" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/eventCategoryDropdown"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventCategoryLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEventCategoryLabel">
+
+
+                <AutoCompleteTextView
+                    android:id="@+id/editEventCategoryDropdownSelector"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:hint="Please Select Event Category"
+                    android:inputType="none"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="14sp"
+                    tools:layout_editor_absoluteX="14dp"
+                    tools:layout_editor_absoluteY="440dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/editEventAttendanceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="PREDICTED ATTENDANCE:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/eventCategoryDropdown"
+                app:layout_constraintTop_toBottomOf="@+id/eventCategoryDropdown" />
+
+            <EditText
+                android:id="@+id/editEventAttendanceTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. 200"
+                android:inputType="number"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventAttendanceLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEventAttendanceLabel" />
+
+            <TextView
+                android:id="@+id/editEstimatedCostLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="ESTIMATED COST (AUD):"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editEventAttendanceTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editEventAttendanceTextBox" />
+
+            <EditText
+                android:id="@+id/editEventCosting"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. 3500.00"
+                android:inputType="numberDecimal"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventAttendanceLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEstimatedCostLabel" />
+
+            <TextView
+                android:id="@+id/editTicketed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="TICKETED EVENT:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editEventCosting"
+                app:layout_constraintTop_toBottomOf="@+id/editEventCosting" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editTicketed"
+                app:layout_constraintTop_toBottomOf="@+id/editTicketed">
+
+                <Button
+                    android:id="@+id/editYesTicketedButton"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="YES"
+                    android:textColor="@color/darkest_grey" />
+
+                <Button
+                    android:id="@+id/editNoTicketedButton"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="NO"
+                    android:textColor="@color/darkest_grey" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/editStartTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="START TIME:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/editEventDateTextBox" />
+
+            <TextView
+                android:id="@+id/editEndTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="END TIME:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editStartTimeTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editStartTimeTextBox" />
+
+            <TextView
+                android:id="@+id/editCateringLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="CATERING AVAILABLE:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editEndTimeTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editEndTimeTextBox" />
+
+            <EditText
+                android:id="@+id/editCateringTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. Pizza and Drinks"
+                android:inputType="textPersonName"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editCateringLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editCateringLabel" />
+
+            <TextView
+                android:id="@+id/editStaffNumbersLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="STAFFING NUMBERS:"
+                android:textColor="@color/darkest_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/editCateringTextBox"
+                app:layout_constraintTop_toBottomOf="@+id/editCateringTextBox" />
+
+            <EditText
+                android:id="@+id/editEventStaffingTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. 8"
+                android:inputType="number"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editStaffNumbersLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editStaffNumbersLabel" />
+
+            <Button
+                android:id="@+id/updatedEventFormSubmitButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@color/yellow"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="UPDATE EVENT DETAILS"
+                android:textColor="@color/darkest_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editEventStaffingTextBox" />
+
+            <EditText
+                android:id="@+id/editEventDateTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. dd/mm/yyyy"
+                android:inputType="date"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEventDateLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEventDateLabel" />
+
+            <EditText
+                android:id="@+id/editStartTimeTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. 09:00"
+                android:inputType="time"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editStartTimeLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editStartTimeLabel" />
+
+            <EditText
+                android:id="@+id/editEndTimeTextBox"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="eg. 14:00"
+                android:inputType="time"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editEndTimeLabel"
+                app:layout_constraintTop_toBottomOf="@+id/editEndTimeLabel" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

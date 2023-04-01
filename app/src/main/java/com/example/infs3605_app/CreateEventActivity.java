@@ -37,22 +37,22 @@ public class CreateEventActivity extends AppCompatActivity {
         eventCategories.add("Social");
         eventCategories.add("Travel");
 
-        eventName = findViewById(R.id.eventNameTextBox);
-        eventDescription = findViewById(R.id.eventDescriptionTextBox);
-        eventLocation = findViewById(R.id.eventLocationTextBox);
-        eventCity = findViewById(R.id.eventCityTextBox);
-        eventCountry = findViewById(R.id.eventCountryTextBox);
-        eventFacility = findViewById(R.id.eventFacilityTextBox);
-        predictedAttn = findViewById(R.id.eventAttendanceTextBox);
-        eventCost = findViewById(R.id.eventCosting);
-        ticketedYes = findViewById(R.id.yesTicketedButton);
-        ticketedNo = findViewById(R.id.noTicketedButton);
-        eventStartTime = findViewById(R.id.startTimeTextBox);
-        eventEndTime = findViewById(R.id.endTimeTextBox);
-        eventCatering = findViewById(R.id.cateringTextBox);
-        eventStaffing = findViewById(R.id.eventStaffingTextBox);
-        submitEvent = findViewById(R.id.eventFormSubmitButton);
-        eventCategory = findViewById(R.id.eventCategoryDropdownSelector);
+        eventName = findViewById(R.id.editEventNameTextBox);
+        eventDescription = findViewById(R.id.editEventDescriptionTextBox);
+        eventLocation = findViewById(R.id.editEventLocationTextBox);
+        eventCity = findViewById(R.id.editEventCityTextBox);
+        eventCountry = findViewById(R.id.editEventCountryTextBox);
+        eventFacility = findViewById(R.id.editEventFacilityTextBox);
+        predictedAttn = findViewById(R.id.editEventAttendanceTextBox);
+        eventCost = findViewById(R.id.editEventCosting);
+        ticketedYes = findViewById(R.id.editYesTicketedButton);
+        ticketedNo = findViewById(R.id.editNoTicketedButton);
+        eventStartTime = findViewById(R.id.editStartTimeTextBox);
+        eventEndTime = findViewById(R.id.editEndTimeTextBox);
+        eventCatering = findViewById(R.id.editCateringTextBox);
+        eventStaffing = findViewById(R.id.editEventStaffingTextBox);
+        submitEvent = findViewById(R.id.updatedEventFormSubmitButton);
+        eventCategory = findViewById(R.id.editEventCategoryDropdownSelector);
 
         categoryAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, eventCategories);
         eventCategory.setAdapter(categoryAdapter);
