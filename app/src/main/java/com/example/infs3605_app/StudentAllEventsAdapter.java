@@ -150,10 +150,10 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
         ImageView eventImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            eventName = itemView.findViewById(R.id.eventNameTextStaff);
-            eventDate = itemView.findViewById(R.id.eventDateTextStaff);
+            eventName = itemView.findViewById(R.id.feedbackEventName);
+            eventDate = itemView.findViewById(R.id.feedbackQ1Response);
             eventOrg = itemView.findViewById(R.id.organisersEventTextStaff);
-            eventImage = itemView.findViewById(R.id.allEventsImageStaff);
+            eventImage = itemView.findViewById(R.id.feedbackEventImage);
         }
     }
 

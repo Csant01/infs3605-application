@@ -26,7 +26,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/allEventsImageStaff"
+                android:id="@+id/feedbackEventImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
@@ -36,23 +36,23 @@
                 app:srcCompat="@mipmap/ic_launcher_round" />
 
             <TextView
-                android:id="@+id/eventNameTextStaff"
+                android:id="@+id/feedbackEventName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/allEventsImageStaff"
-                app:layout_constraintTop_toTopOf="@+id/allEventsImageStaff" />
+                app:layout_constraintStart_toEndOf="@+id/feedbackEventImage"
+                app:layout_constraintTop_toTopOf="@+id/feedbackEventImage" />
 
             <TextView
-                android:id="@+id/eventDateTextStaff"
+                android:id="@+id/feedbackQ1Response"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/allEventsImageStaff"
-                app:layout_constraintStart_toEndOf="@+id/allEventsImageStaff" />
+                app:layout_constraintBottom_toBottomOf="@+id/feedbackEventImage"
+                app:layout_constraintStart_toEndOf="@+id/feedbackEventImage" />
 
             <TextView
                 android:id="@+id/organisersEventTextStaff"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/eventDateTextStaff" />
+                app:layout_constraintTop_toTopOf="@+id/feedbackQ1Response" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
