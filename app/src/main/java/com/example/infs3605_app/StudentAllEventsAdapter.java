@@ -1,7 +1,6 @@
 package com.example.infs3605_app;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -152,10 +150,10 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
         ImageView eventImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            eventName = itemView.findViewById(R.id.eventNameText);
-            eventDate = itemView.findViewById(R.id.eventDateText);
-            eventOrg = itemView.findViewById(R.id.organisersEventText);
-            eventImage = itemView.findViewById(R.id.allEventsImage);
+            eventName = itemView.findViewById(R.id.eventNameTextStaff);
+            eventDate = itemView.findViewById(R.id.eventDateTextStaff);
+            eventOrg = itemView.findViewById(R.id.organisersEventTextStaff);
+            eventImage = itemView.findViewById(R.id.allEventsImageStaff);
         }
     }
 

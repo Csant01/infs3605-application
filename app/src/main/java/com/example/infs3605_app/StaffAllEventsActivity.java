@@ -10,14 +10,14 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class EventsActivity extends AppCompatActivity {
+public class StaffAllEventsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events);
+        setContentView(R.layout.all_staff_events_list_row);
 
         // Bottom Navigation set for Events Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);

@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/allEventsImage"
+                android:id="@+id/allEventsImageStaff"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
@@ -33,31 +33,31 @@
                 app:srcCompat="@mipmap/ic_launcher_round" />
 
             <TextView
-                android:id="@+id/eventNameText"
+                android:id="@+id/eventNameTextStaff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/allEventsImage"
-                app:layout_constraintTop_toTopOf="@+id/allEventsImage" />
+                app:layout_constraintStart_toEndOf="@+id/allEventsImageStaff"
+                app:layout_constraintTop_toTopOf="@+id/allEventsImageStaff" />
 
             <TextView
-                android:id="@+id/eventDateText"
+                android:id="@+id/eventDateTextStaff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/allEventsImage"
-                app:layout_constraintStart_toEndOf="@+id/allEventsImage" />
+                app:layout_constraintBottom_toBottomOf="@+id/allEventsImageStaff"
+                app:layout_constraintStart_toEndOf="@+id/allEventsImageStaff" />
 
             <TextView
-                android:id="@+id/organisersEventText"
+                android:id="@+id/organisersEventTextStaff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/eventDateText" />
+                app:layout_constraintTop_toTopOf="@+id/eventDateTextStaff" />
 
             <View
                 android:id="@+id/view2"
@@ -67,7 +67,7 @@
                 android:background="@color/grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/allEventsImage" />
+                app:layout_constraintTop_toBottomOf="@+id/allEventsImageStaff" />
 
             <Button
                 android:id="@+id/unsaveButton"

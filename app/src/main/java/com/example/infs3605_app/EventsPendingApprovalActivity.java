@@ -40,7 +40,7 @@ public class EventsPendingApprovalActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.eventsNavButton:
-                        startActivity(new Intent(getApplicationContext(), EventsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StaffAllEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 

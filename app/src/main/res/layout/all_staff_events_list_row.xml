@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    tools:context=".StaffAllEventsActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="56dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="8dp"
         app:cardElevation="3dp"
@@ -15,8 +17,9 @@
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -60,5 +63,22 @@
                 app:layout_constraintTop_toTopOf="@+id/eventDateTextStaff" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@android:color/white"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/staff_alumni_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
