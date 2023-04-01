@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/savedNavButton"
-        android:title="Saved"
+        android:title="Saved Events"
         android:icon="@drawable/ic_bookmark"/>
     <item
         android:id="@+id/allEventsNavButton"

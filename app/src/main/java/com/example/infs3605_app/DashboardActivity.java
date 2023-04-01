@@ -2,6 +2,7 @@ package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,11 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        // Set Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setTitle("Dashboard");
+        setSupportActionBar(toolbar);
 
         // Bottom Navigation set for Dashboard Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);

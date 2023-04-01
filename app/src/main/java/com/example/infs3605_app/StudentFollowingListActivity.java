@@ -2,6 +2,7 @@ package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,11 @@ public class StudentFollowingListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_following_list);
+
+        // Set Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setTitle("Following List");
+        setSupportActionBar(toolbar);
 
         // Bottom Navigation set for Following List (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);

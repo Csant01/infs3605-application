@@ -2,6 +2,7 @@ package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,6 +58,10 @@ public class CreateEventActivity extends AppCompatActivity {
         categoryAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, eventCategories);
         eventCategory.setAdapter(categoryAdapter);
 
+        // Set Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setTitle("Create New Event");
+        setSupportActionBar(toolbar);
 
         // Bottom Navigation set for Create Event Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);

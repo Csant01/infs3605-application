@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class StudentAllEventsActivity extends AppCompatActivity {
@@ -102,7 +104,9 @@ public class StudentAllEventsActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
 
+        // Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
+        setTitle("All Events");
         setSupportActionBar(toolbar);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

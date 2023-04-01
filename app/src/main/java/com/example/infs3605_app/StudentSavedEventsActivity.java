@@ -2,6 +2,7 @@ package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -20,6 +21,11 @@ public class StudentSavedEventsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_saved_events);
+
+        // Set Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setTitle("Saved Events");
+        setSupportActionBar(toolbar);
 
         // Bottom Navigation set for Saved Events (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);
