@@ -26,7 +26,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/feedbackEventImage"
+                android:id="@+id/allEventsImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
@@ -36,31 +36,31 @@
                 app:srcCompat="@mipmap/ic_launcher_round" />
 
             <TextView
-                android:id="@+id/feedbackEventName"
+                android:id="@+id/eventNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/feedbackEventImage"
-                app:layout_constraintTop_toTopOf="@+id/feedbackEventImage" />
+                app:layout_constraintStart_toEndOf="@+id/allEventsImage"
+                app:layout_constraintTop_toTopOf="@+id/allEventsImage" />
 
             <TextView
-                android:id="@+id/feedbackQ1Response"
+                android:id="@+id/eventDateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/feedbackEventImage"
-                app:layout_constraintStart_toEndOf="@+id/feedbackEventImage" />
+                app:layout_constraintBottom_toBottomOf="@+id/allEventsImage"
+                app:layout_constraintStart_toEndOf="@+id/allEventsImage" />
 
             <TextView
-                android:id="@+id/organisersEventTextStaff"
+                android:id="@+id/organisersEventText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/feedbackQ1Response" />
+                app:layout_constraintTop_toTopOf="@+id/eventDateText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

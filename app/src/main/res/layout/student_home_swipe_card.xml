@@ -95,7 +95,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cityLabel" />
 
             <TextView
-                android:id="@+id/editTicketed"
+                android:id="@+id/dateLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -115,8 +115,8 @@
                 android:text="START TIME:"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/editTicketed"
-                app:layout_constraintTop_toBottomOf="@+id/editTicketed" />
+                app:layout_constraintEnd_toEndOf="@+id/dateLabel"
+                app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
 
             <TextView
                 android:id="@+id/endLabel"
@@ -177,8 +177,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editTicketed"
-                app:layout_constraintTop_toTopOf="@+id/editTicketed" />
+                app:layout_constraintStart_toEndOf="@+id/dateLabel"
+                app:layout_constraintTop_toTopOf="@+id/dateLabel" />
 
             <TextView
                 android:id="@+id/startTimePrint"
