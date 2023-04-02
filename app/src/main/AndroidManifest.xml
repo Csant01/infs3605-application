@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.INFS3605App"
-        tools:targetApi="31">
+        >
         <activity
             android:name=".OrganiserPublicProfileActivity"
             android:exported="false" />
