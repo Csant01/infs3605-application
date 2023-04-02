@@ -5,20 +5,64 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class EventDetailActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    TextView eventName, eventCat, eventDate, eventStartTime, eventEndTime, eventLoc,
+            eventCity, eventCountry, eventOrg, eventDesc;
+    ImageView eventImage;
+    DatabaseConnector db;
+    Event event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
+        db = new DatabaseConnector(this);
+        String eventId = getIntent().getStringExtra("EVENT_ID");
+        ArrayList<Event> allEvents = db.getEventInfo();
+        for (int i = 0; i < allEvents.size(); i++) {
+            if (allEvents.get(i).getEventId().equals(eventId)) {
+                event = allEvents.get(i);
+            }
+        }
+
+        // UI elements
+        eventName = findViewById(R.id.displayEventName);
+        eventCat = findViewById(R.id.displayEventCategory);
+        eventDate = findViewById(R.id.displayEventDate);
+        eventStartTime = findViewById(R.id.displayEventStartTime);
+        eventEndTime = findViewById(R.id.displayEventEndTime);
+        eventLoc = findViewById(R.id.displayEventLocation);
+        eventCity = findViewById(R.id.displayEventCity);
+        eventCountry = findViewById(R.id.displayEventCountry);
+        eventOrg = findViewById(R.id.displayEventOrganiser);
+        eventDesc = findViewById(R.id.displayEventDescription);
+        eventImage = findViewById(R.id.displayEventImage);
+
+        eventName.setText(event.getEventName());
+        eventCat.setText(event.getEventCategory());
+        eventDate.setText(formatEpoch(event.getEventDate()));
+        eventStartTime.setText(event.getEventStartTime());
+        eventEndTime.setText(event.getEventEndTime());
+        eventLoc.setText(event.getEventLocation());
+        eventCity.setText(event.getEventCity());
+        eventCountry.setText(event.getEventCountry());
+        eventOrg.setText(event.getEventOwner());
+        eventDesc.setText(event.getEventDescription());
 
         // Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -61,5 +105,10 @@ public class EventDetailActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public String formatEpoch (long value) {
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(value));
+        return date;
     }
 }

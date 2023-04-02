@@ -399,8 +399,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             cv.put("EVENT_ACTUAL_ATTN_NUM", 105);
             cv.put("EVENT_BUDGETED_COST", 55.55);
             cv.put("EVENT_TICKETED", 0);
-            cv.put("EVENT_START_DATE", 1600000000);
-            cv.put("EVENT_END_DATE", 1679660928);
+            cv.put("EVENT_STAFFING", 10);
+            cv.put("EVENT_DATE", 1679660928);
             cv.put("EVENT_START_TIME", 4);
             cv.put("EVENT_END_TIME", 6);
             cv.put("EVENT_ISAPPROVED", 1);
@@ -422,8 +422,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             cv.put("EVENT_ACTUAL_ATTN_NUM", 105);
             cv.put("EVENT_BUDGETED_COST", 55.55);
             cv.put("EVENT_TICKETED", 0);
-            cv.put("EVENT_START_DATE", 1600000000);
-            cv.put("EVENT_END_DATE", 1679660928);
+            cv.put("EVENT_STAFFING", 10);
+            cv.put("EVENT_DATE", 1679660928);
             cv.put("EVENT_START_TIME", 4);
             cv.put("EVENT_END_TIME", 6);
             cv.put("EVENT_ISAPPROVED", 1);
@@ -445,8 +445,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             cv.put("EVENT_ACTUAL_ATTN_NUM", 105);
             cv.put("EVENT_BUDGETED_COST", 55.55);
             cv.put("EVENT_TICKETED", 0);
-            cv.put("EVENT_START_DATE", 1600000000);
-            cv.put("EVENT_END_DATE", 1679660928);
+            cv.put("EVENT_STAFFING", 10);
+            cv.put("EVENT_DATE", 1679660928);
             cv.put("EVENT_START_TIME", 4);
             cv.put("EVENT_END_TIME", 6);
             cv.put("EVENT_ISAPPROVED", 1);

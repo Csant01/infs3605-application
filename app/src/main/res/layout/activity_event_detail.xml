@@ -80,7 +80,7 @@
         android:textColor="#444443"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventFacilityField" />
+        app:layout_constraintTop_toBottomOf="@+id/eventOrganiserField" />
 
     <TextView
         android:id="@+id/displayEventName"
@@ -125,7 +125,7 @@
         android:layout_marginStart="37dp"
         android:layout_marginTop="35dp"
         app:layout_constraintStart_toEndOf="@+id/eventDescriptionField"
-        app:layout_constraintTop_toBottomOf="@+id/displayEventFacility" />
+        app:layout_constraintTop_toBottomOf="@+id/displayEventOrganiser" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
@@ -145,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="207dp"
+        android:layout_marginTop="200dp"
         android:text="End Time:"
         android:textColor="#444443"
         android:textSize="16sp"
@@ -198,12 +198,12 @@
         app:layout_constraintTop_toBottomOf="@+id/eventEndTimeField" />
 
     <TextView
-        android:id="@+id/eventFacilityField"
+        android:id="@+id/eventOrganiserField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
-        android:text="Facility:"
+        android:text="Organiser:"
         android:textColor="#444443"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -237,12 +237,12 @@
         app:layout_constraintTop_toBottomOf="@+id/eventLocationField" />
 
     <TextView
-        android:id="@+id/displayEventFacility"
+        android:id="@+id/displayEventOrganiser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="35dp"
-        app:layout_constraintStart_toEndOf="@+id/eventFacilityField"
+        app:layout_constraintStart_toEndOf="@+id/eventOrganiserField"
         app:layout_constraintTop_toBottomOf="@+id/displayEventCity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

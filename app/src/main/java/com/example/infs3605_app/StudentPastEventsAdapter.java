@@ -25,18 +25,20 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
     private Context context;
     private List<Event> filteredEvents;
     private List<Event> allEvents;
+    private OnPastEventClickListener eventClickListener;
 
-    public StudentPastEventsAdapter(Context context, List<Event> allEvents) {
+    public StudentPastEventsAdapter(Context context, List<Event> allEvents, OnPastEventClickListener eventClickListener) {
         this.context = context;
         this.allEvents = allEvents;
         filteredEvents = allEvents;
+        this.eventClickListener = eventClickListener;
     }
 
     @NonNull
     @Override
     public StudentPastEventsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.student_past_events_list_row, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, eventClickListener);
     }
 
     @Override
@@ -92,17 +94,22 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
         return filteredEvents.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView eventImage;
         TextView eventName, eventDate, eventOrg;
         Button feedbackButton;
-        public ViewHolder(@NonNull View itemView) {
+        OnPastEventClickListener eventClickListener;
+        public ViewHolder(@NonNull View itemView, OnPastEventClickListener eventClickListener) {
             super(itemView);
             eventImage = itemView.findViewById(R.id.pastEventsImage);
             eventDate = itemView.findViewById(R.id.pastEventsDate);
             eventName = itemView.findViewById(R.id.pastEventsNameText);
             eventOrg = itemView.findViewById(R.id.pastOrganisersEventText);
             feedbackButton = itemView.findViewById(R.id.feedbackButton);
+            this.eventClickListener = eventClickListener;
+
+            itemView.setOnClickListener(this);
+
             feedbackButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -111,7 +118,18 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
                 }
             });
 
+
+
         }
+
+        @Override
+        public void onClick(View view) {
+            eventClickListener.onEventClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnPastEventClickListener {
+        void onEventClick (int position);
     }
 
     public String formatEpoch (long value) {

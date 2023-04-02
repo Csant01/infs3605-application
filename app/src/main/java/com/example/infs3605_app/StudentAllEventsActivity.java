@@ -24,7 +24,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class StudentAllEventsActivity extends AppCompatActivity {
+public class StudentAllEventsActivity extends AppCompatActivity implements StudentAllEventsAdapter.OnAllEventClickListener {
 
     RecyclerView allEventsRv;
     ArrayList<Event> eventList;
@@ -95,7 +95,7 @@ public class StudentAllEventsActivity extends AppCompatActivity {
         // RecyclerView setup
         eventList = new ArrayList<>();
         allEventsRv = findViewById(R.id.studentAllEventsRV);
-        adapter = new StudentAllEventsAdapter(this, eventList);
+        adapter = new StudentAllEventsAdapter(this, eventList, this);
         allEventsRv.setAdapter(adapter);
         allEventsRv.setLayoutManager(new LinearLayoutManager(this));
         if (!displayEventData()) {
@@ -196,6 +196,16 @@ public class StudentAllEventsActivity extends AppCompatActivity {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void onEventClick(int position) {
+        eventList.get(position);
+        Intent intent = new Intent(this, EventDetailActivity.class);
+        intent.putExtra("EVENT_ID", eventList.get(position).getEventId());
+        intent.putExtra("USER_TYPE", "student");
+        intent.putExtra("PAGE", "StudentAllEvents");
+        startActivity(intent);
     }
 
 //    @Override

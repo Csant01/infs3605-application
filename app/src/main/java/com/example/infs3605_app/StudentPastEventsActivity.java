@@ -20,7 +20,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class StudentPastEventsActivity extends AppCompatActivity {
+public class StudentPastEventsActivity extends AppCompatActivity implements StudentPastEventsAdapter.OnPastEventClickListener{
 
     BottomNavigationView bottomNavigationView;
     RecyclerView pastEventsRv;
@@ -49,7 +49,7 @@ public class StudentPastEventsActivity extends AppCompatActivity {
         eventList = new ArrayList<>();
         eventList = getEventDetails(userEvents);
         pastEventsRv = findViewById(R.id.pastEventsRv);
-        adapter = new StudentPastEventsAdapter(this, eventList);
+        adapter = new StudentPastEventsAdapter(this, eventList, this);
         pastEventsRv.setAdapter(adapter);
         pastEventsRv.setLayoutManager(new LinearLayoutManager(this) );
 
@@ -119,5 +119,14 @@ public class StudentPastEventsActivity extends AppCompatActivity {
         }
 
         return filteredEvents;
+    }
+
+    @Override
+    public void onEventClick(int position) {
+        Intent intent = new Intent(this, EventDetailActivity.class);
+        intent.putExtra("EVENT_ID", eventList.get(position).getEventId());
+        intent.putExtra("USER_TYPE", "student");
+        intent.putExtra("PAGE", "StudentPastEvents");
+        startActivity(intent);
     }
 }

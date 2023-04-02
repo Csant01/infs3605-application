@@ -24,18 +24,20 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
     private List<Event> allEvents;
     private List<Event> filteredEvents;
     DatabaseConnector db;
+    private OnSavedEventClickListener eventClickListener;
 
-    public StudentSavedEventsAdapter(Context context, List<Event> allEvents) {
+    public StudentSavedEventsAdapter(Context context, List<Event> allEvents, OnSavedEventClickListener eventClickListener) {
         this.context = context;
         this.allEvents = allEvents;
         filteredEvents = allEvents;
+        this.eventClickListener = eventClickListener;
     }
 
     @NonNull
     @Override
     public StudentSavedEventsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.student_saved_events_list_row, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, eventClickListener);
     }
 
     @Override
@@ -91,11 +93,12 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
         };
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView eventImage;
         TextView eventName, eventDate, eventOrg;
-        Button unsaveButton, rsvpButton, detailsButton;
-        public ViewHolder(@NonNull View itemView) {
+        Button unsaveButton, rsvpButton;
+        OnSavedEventClickListener eventClickListener;
+        public ViewHolder(@NonNull View itemView, OnSavedEventClickListener eventClickListener) {
             super(itemView);
             eventImage = itemView.findViewById(R.id.savedEventsImage);
             eventDate = itemView.findViewById(R.id.savedEventsDate);
@@ -103,7 +106,9 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
             eventOrg = itemView.findViewById(R.id.savedOrganisersEvent);
             unsaveButton = itemView.findViewById(R.id.unsaveButton);
             rsvpButton = itemView.findViewById(R.id.rsvpButton);
-            detailsButton = itemView.findViewById(R.id.eventDetailButton);
+            this.eventClickListener = eventClickListener;
+
+            itemView.setOnClickListener(this);
 
             unsaveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -126,13 +131,22 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
                 }
             });
 
-            detailsButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // code here to switch pages.
-                }
-            });
+//            detailsButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    // code here to switch pages.
+//                }
+//            });
         }
+
+        @Override
+        public void onClick(View view) {
+            eventClickListener.onEventClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnSavedEventClickListener {
+        void onEventClick (int position);
     }
 
     public String formatEpoch (long value) {

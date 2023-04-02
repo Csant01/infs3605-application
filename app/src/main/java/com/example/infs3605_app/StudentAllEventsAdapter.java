@@ -21,18 +21,20 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
     private Context context;
     private List<Event> filteredEvents;
     private List<Event> allEvents;
+    private OnAllEventClickListener eventClickListener;
 
-    public StudentAllEventsAdapter(Context context, List<Event> allEvents) {
+    public StudentAllEventsAdapter(Context context, List<Event> allEvents, OnAllEventClickListener eventClickListener) {
         this.context = context;
         this.allEvents = allEvents;
         filteredEvents = allEvents;
+        this.eventClickListener = eventClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.student_all_events_list_row, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, eventClickListener);
     }
 
     @Override
@@ -88,16 +90,29 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
         };
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView eventName, eventDate, eventOrg;
         ImageView eventImage;
-        public ViewHolder(@NonNull View itemView) {
+        OnAllEventClickListener eventClickListener;
+        public ViewHolder(@NonNull View itemView, OnAllEventClickListener eventClickListener) {
             super(itemView);
             eventName = itemView.findViewById(R.id.allEventsNameText);
             eventDate = itemView.findViewById(R.id.allEventsDate);
             eventOrg = itemView.findViewById(R.id.allOrganisersEventText);
             eventImage = itemView.findViewById(R.id.allEventsImage);
+            this.eventClickListener = eventClickListener;
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            eventClickListener.onEventClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnAllEventClickListener {
+        void onEventClick (int position);
     }
 
     public String formatEpoch (long value) {

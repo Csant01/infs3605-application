@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class StudentSavedEventsActivity extends AppCompatActivity {
+public class StudentSavedEventsActivity extends AppCompatActivity implements StudentSavedEventsAdapter.OnSavedEventClickListener{
 
     BottomNavigationView bottomNavigationView;
     DatabaseConnector db;
@@ -53,7 +53,7 @@ public class StudentSavedEventsActivity extends AppCompatActivity {
         eventList = new ArrayList<>();
         eventList = getEventDetails(userEvents);
         savedEventsRv = findViewById(R.id.savedEventsRV);
-        adapter = new StudentSavedEventsAdapter(this, eventList);
+        adapter = new StudentSavedEventsAdapter(this, eventList, this);
         savedEventsRv.setAdapter(adapter);
         savedEventsRv.setLayoutManager(new LinearLayoutManager(this));
 
@@ -118,5 +118,14 @@ public class StudentSavedEventsActivity extends AppCompatActivity {
         }
 
         return filteredEvents;
+    }
+
+    @Override
+    public void onEventClick(int position) {
+        Intent intent = new Intent(this, EventDetailActivity.class);
+        intent.putExtra("EVENT_ID", eventList.get(position).getEventId());
+        intent.putExtra("USER_TYPE", "student");
+        intent.putExtra("PAGE", "StudentSavedEvents");
+        startActivity(intent);
     }
 }
