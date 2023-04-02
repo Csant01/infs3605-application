@@ -34,6 +34,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
 
         db = new DatabaseConnector(this);
         eventList = new ArrayList<>();
+        //boooooing boing
         eventSwipeDeck = findViewById(R.id.homePageSwipeDeck);
         displayEventData();
 

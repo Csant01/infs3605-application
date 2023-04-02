@@ -4,10 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,12 +19,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEventsAdapter.ViewHolder> implements Filterable {
+public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSavedEventsAdapter.ViewHolder> implements Filterable {
     private Context context;
-    private List<Event> filteredEvents;
     private List<Event> allEvents;
+    private List<Event> filteredEvents;
+    DatabaseConnector db;
 
-    public StudentAllEventsAdapter(Context context, List<Event> allEvents) {
+    public StudentSavedEventsAdapter(Context context, List<Event> allEvents) {
         this.context = context;
         this.allEvents = allEvents;
         filteredEvents = allEvents;
@@ -30,13 +33,13 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.student_all_events_list_row, parent, false);
+    public StudentSavedEventsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.student_saved_events_list_row, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull StudentSavedEventsAdapter.ViewHolder holder, int position) {
         Event event = filteredEvents.get(position);
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
@@ -89,14 +92,46 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView eventName, eventDate, eventOrg;
         ImageView eventImage;
+        TextView eventName, eventDate, eventOrg;
+        Button unsaveButton, rsvpButton, detailsButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            eventName = itemView.findViewById(R.id.allEventsNameText);
-            eventDate = itemView.findViewById(R.id.allEventsDate);
-            eventOrg = itemView.findViewById(R.id.allOrganisersEventText);
-            eventImage = itemView.findViewById(R.id.allEventsImage);
+            eventImage = itemView.findViewById(R.id.savedEventsImage);
+            eventDate = itemView.findViewById(R.id.savedEventsDate);
+            eventName = itemView.findViewById(R.id.savedEventsName);
+            eventOrg = itemView.findViewById(R.id.savedOrganisersEvent);
+            unsaveButton = itemView.findViewById(R.id.unsaveButton);
+            rsvpButton = itemView.findViewById(R.id.rsvpButton);
+            detailsButton = itemView.findViewById(R.id.eventDetailButton);
+
+            unsaveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db = new DatabaseConnector(view.getContext());
+                    // method here to unsave an event;
+                    Toast.makeText(view.getContext(), eventName.getText().toString() + " unsaved.",
+                            Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+            rsvpButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db = new DatabaseConnector(view.getContext());
+                    // method here to rsvp an event;
+                    Toast.makeText(view.getContext(), eventName.getText().toString() + " rsvp.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            detailsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // code here to switch pages.
+                }
+            });
         }
     }
 

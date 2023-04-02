@@ -12,15 +12,22 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+
 public class StudentSavedEventsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    DatabaseConnector db;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_saved_events);
+        db = new DatabaseConnector(this);
+        String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
+
 
         // Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -63,5 +70,28 @@ public class StudentSavedEventsActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private ArrayList<String> getUserEvents (String user) {
+        ArrayList<String> events = new ArrayList<>();
+        ArrayList<UserEvent> userEvents = db.getUserEvents(user);
+        for (int i = 0; i < userEvents.size(); i++) {
+            events.add(userEvents.get(i).getEventId());
+        }
+
+        return events;
+    }
+
+    private ArrayList<Event> getEventDetails (ArrayList<String> userEvents) {
+        ArrayList<Event> allEvents = db.getEventInfo();
+        ArrayList<Event> filteredEvents = new ArrayList<>();
+
+        for (int i = 0; i < allEvents.size(); i++) {
+            if (userEvents.contains(allEvents.get(i).getEventId())) {
+                filteredEvents.add(allEvents.get(i));
+            }
+        }
+
+        return filteredEvents;
     }
 }

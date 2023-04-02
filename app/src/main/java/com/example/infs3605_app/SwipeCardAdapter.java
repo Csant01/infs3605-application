@@ -1,6 +1,7 @@
 package com.example.infs3605_app;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,7 @@ public class SwipeCardAdapter extends BaseAdapter {
     }
 
     public String formatEpoch (long value) {
-        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(value*1000));
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(value));
         return date;
 
     }

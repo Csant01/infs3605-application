@@ -89,7 +89,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "USER_ATTENDED INT DEFAULT 0, " +
                 "USER_ID TEXT NOT NULL, " +
                 "EVENT_ID TEXT NOT NULL, " +
-                "USER_FEEDBACK_ID TEXT NOT NULL, " +
+                "USER_FEEDBACK_ID TEXT, " +
                 "DONATION_AMOUNT REAL DEFAULT 0, " +
                 "FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID), " +
                 "FOREIGN KEY (EVENT_ID) REFERENCES EVENTS(EVENT_ID), " +
@@ -255,7 +255,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put("EVENT_PRED_ATTN_NUM", event.getEventPredAttn());
         cv.put("EVENT_BUDGETED_COST", event.getEventCost());
         cv.put("EVENT_TICKETED", event.getEventIsDeleted());
-        cv.put("EVENT_DATE", formatEpoch(event.getEventDate()));
+        cv.put("EVENT_DATE", event.getEventDate());
         cv.put("EVENT_START_TIME", event.getEventStartTime());
         cv.put("EVENT_END_TIME", event.getEventEndTime());
 
@@ -264,6 +264,42 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return true;
 
     }
+
+    public boolean addUserEventToDatabase (UserEvent userEvent) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("USER_EVENT_ID", userEvent.getUserEventId());
+        cv.put("USER_FAV", userEvent.getUserFavourited());
+        cv.put("USER_ATTENDED", userEvent.getUserAttended());
+        cv.put("USER_ID", userEvent.getUserId());
+        cv.put("EVENT_ID", userEvent.getEventId());
+        cv.put("USER_FEEDBACK_ID", userEvent.getUserFeedbackId());
+        cv.put("DONATION_AMOUNT", userEvent.getDonationAmt());
+
+        db.insert("USER_EVENTS", null, cv);
+        return true;
+    }
+
+
+    public ArrayList<UserEvent> getUserEvents (String user) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT * FROM EVENTS WHERE USER_ID = %s", user);
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList<UserEvent> userEvents = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                UserEvent userEvent = new UserEvent(cursor.getString(0), cursor.getInt(1), cursor.getInt(2),
+                        cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getDouble(6));
+                userEvents.add(userEvent);
+                cursor.moveToNext();
+            }
+        }
+
+        return userEvents;
+    }
+
 
     public void addSampleEventData () {
         SQLiteDatabase db = this.getWritableDatabase();

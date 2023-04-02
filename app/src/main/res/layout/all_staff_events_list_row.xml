@@ -36,7 +36,7 @@
                 app:srcCompat="@mipmap/ic_launcher_round" />
 
             <TextView
-                android:id="@+id/eventNameText"
+                android:id="@+id/allEventsNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="@+id/allEventsImage" />
 
             <TextView
-                android:id="@+id/eventDateText"
+                android:id="@+id/allEventsDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -55,12 +55,12 @@
                 app:layout_constraintStart_toEndOf="@+id/allEventsImage" />
 
             <TextView
-                android:id="@+id/organisersEventText"
+                android:id="@+id/allOrganisersEventText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/eventDateText" />
+                app:layout_constraintTop_toTopOf="@+id/allEventsDate" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

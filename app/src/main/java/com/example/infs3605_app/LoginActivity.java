@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 userEmail = emailInput.getText().toString();
                 userPass = passwordInput.getText().toString();
                 if (checkLogin(userEmail, userPass)) {
-                    startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
+                    startActivity(new Intent(getApplicationContext(), CreateEventActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Please ensure all details are correct.",
                             Toast.LENGTH_SHORT).show();

@@ -33,7 +33,7 @@
                 app:srcCompat="@mipmap/ic_launcher_round" />
 
             <TextView
-                android:id="@+id/eventNameText"
+                android:id="@+id/allEventsNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="@+id/allEventsImage" />
 
             <TextView
-                android:id="@+id/eventDateText"
+                android:id="@+id/allEventsDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -52,12 +52,12 @@
                 app:layout_constraintStart_toEndOf="@+id/allEventsImage" />
 
             <TextView
-                android:id="@+id/organisersEventText"
+                android:id="@+id/allOrganisersEventText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/eventDateText" />
+                app:layout_constraintTop_toTopOf="@+id/allEventsDate" />
 
             <Button
                 android:id="@+id/feedbackButton"
@@ -65,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:text="Button"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/organisersEventText"
-                app:layout_constraintTop_toBottomOf="@+id/organisersEventText" />
+                app:layout_constraintEnd_toEndOf="@+id/allOrganisersEventText"
+                app:layout_constraintTop_toBottomOf="@+id/allOrganisersEventText" />
 
             <TextView
                 android:id="@+id/feedbackStatusLabel"
@@ -75,7 +75,7 @@
                 android:text="Dynamic According To Whether Feedback is Pending/Completed"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/allEventsImage"
-                app:layout_constraintTop_toBottomOf="@+id/organisersEventText" />
+                app:layout_constraintTop_toBottomOf="@+id/allOrganisersEventText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
