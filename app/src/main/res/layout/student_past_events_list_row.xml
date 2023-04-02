@@ -23,7 +23,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/allEventsImage"
+                android:id="@+id/pastEventsImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
@@ -33,31 +33,31 @@
                 app:srcCompat="@mipmap/ic_launcher_round" />
 
             <TextView
-                android:id="@+id/allEventsNameText"
+                android:id="@+id/pastEventsNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/allEventsImage"
-                app:layout_constraintTop_toTopOf="@+id/allEventsImage" />
+                app:layout_constraintStart_toEndOf="@+id/pastEventsImage"
+                app:layout_constraintTop_toTopOf="@+id/pastEventsImage" />
 
             <TextView
-                android:id="@+id/allEventsDate"
+                android:id="@+id/pastEventsDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/allEventsImage"
-                app:layout_constraintStart_toEndOf="@+id/allEventsImage" />
+                app:layout_constraintBottom_toBottomOf="@+id/pastEventsImage"
+                app:layout_constraintStart_toEndOf="@+id/pastEventsImage" />
 
             <TextView
-                android:id="@+id/allOrganisersEventText"
+                android:id="@+id/pastOrganisersEventText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/allEventsDate" />
+                app:layout_constraintTop_toTopOf="@+id/pastEventsDate" />
 
             <Button
                 android:id="@+id/feedbackButton"
@@ -65,17 +65,16 @@
                 android:layout_height="wrap_content"
                 android:text="Button"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/allOrganisersEventText"
-                app:layout_constraintTop_toBottomOf="@+id/allOrganisersEventText" />
+                app:layout_constraintEnd_toEndOf="@+id/pastOrganisersEventText"
+                app:layout_constraintTop_toBottomOf="@+id/pastOrganisersEventText" />
 
             <TextView
                 android:id="@+id/feedbackStatusLabel"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Dynamic According To Whether Feedback is Pending/Completed"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/allEventsImage"
-                app:layout_constraintTop_toBottomOf="@+id/allOrganisersEventText" />
+                app:layout_constraintStart_toStartOf="@+id/pastEventsImage"
+                app:layout_constraintTop_toBottomOf="@+id/pastOrganisersEventText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

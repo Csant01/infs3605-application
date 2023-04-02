@@ -284,7 +284,15 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     public ArrayList<UserEvent> getUserEvents (String user) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = String.format("SELECT * FROM EVENTS WHERE USER_ID = %s", user);
+        ArrayList<User> allUsers = getUserInfo();
+        String userId = null;
+
+        for (int i = 0; i < allUsers.size(); i++) {
+            if (allUsers.get(i).getUserName().equals(user)) {
+                userId = allUsers.get(i).getUserID();
+            }
+        }
+        String query = String.format("SELECT * FROM USER_EVENTS WHERE USER_ID = '%s'", userId);
         Cursor cursor = db.rawQuery(query, null);
         ArrayList<UserEvent> userEvents = new ArrayList<>();
 
@@ -300,6 +308,79 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return userEvents;
     }
 
+    public boolean checkUserGoing (String user, String event) {
+        ArrayList<UserEvent> userEvents = getUserEvents(user);
+        ArrayList<Event> allEvents = getEventInfo();
+        String eventId = null;
+        for (int i = 0; i < allEvents.size(); i++) {
+            if (allEvents.get(i).getEventName().equals(event)) {
+                eventId = allEvents.get(i).getEventId();
+            }
+        }
+        for (int i = 0; i < userEvents.size(); i++) {
+            if (userEvents.get(i).getUserEventId().equals(eventId)) {
+                if (userEvents.get(i).getUserFavourited() == 1 && userEvents.get(i).getUserAttended() == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        return false;
+
+    }
+
+    public void addSampleUserFeedbackData () {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+//        "USER_FEEDBACK_ID TEXT PRIMARY KEY NOT NULL, " +
+//                "SATISFACTION_RATING INT NOT NULL, " +
+//                "USER_ID TEXT NOT NULL, " +
+//                "EVENT_ID TEXT NOT NULL, " +
+//                "FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID), " +
+//                "FOREIGN KEY (EVENT_ID) REFERENCES EVENTS(EVENT_ID)" +
+        cv.put("USER_FEEDBACK_ID", "uf1");
+        cv.put("SATISFACTION_RATING", 1);
+        cv.put("USER_ID", "s2856906");
+        cv.put("EVENT_ID", "e4352561");
+        db.insert("USER_FEEDBACK", null, cv);
+
+        ContentValues cv2 = new ContentValues();
+        cv2.put("USER_FEEDBACK_ID", "uf2");
+        cv2.put("SATISFACTION_RATING", 5);
+        cv2.put("USER_ID", "s2856906");
+        cv2.put("EVENT_ID", "e3084510");
+        db.insert("USER_FEEDBACK", null, cv2);
+
+    }
+
+    public void addSampleUserEventData () {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("USER_EVENT_ID", "ue1");
+        cv.put("USER_FAV", 1);
+        cv.put("USER_ATTENDED", 0);
+        cv.put("USER_ID", "s2856906");
+        cv.put("EVENT_ID", "e4352561");
+        cv.put("USER_FEEDBACK_ID", "uf1");
+        cv.put("DONATION_AMOUNT", 0);
+
+        ContentValues cv2 = new ContentValues();
+        cv2.put("USER_EVENT_ID", "ue2");
+        cv2.put("USER_FAV", 1);
+        cv2.put("USER_ATTENDED", 0);
+        cv2.put("USER_ID", "s2856906");
+        cv2.put("EVENT_ID", "e3084510");
+        cv2.put("USER_FEEDBACK_ID", "uf2");
+        cv2.put("DONATION_AMOUNT", 0);
+
+
+        db.insert("USER_EVENTS", null, cv);
+        db.insert("USER_EVENTS", null, cv2);
+
+    }
 
     public void addSampleEventData () {
         SQLiteDatabase db = this.getWritableDatabase();

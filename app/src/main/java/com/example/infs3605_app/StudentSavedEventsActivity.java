@@ -3,6 +3,8 @@ package com.example.infs3605_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,12 +14,21 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class StudentSavedEventsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     DatabaseConnector db;
+    StudentSavedEventsAdapter adapter;
+    RecyclerView savedEventsRv;
+    ArrayList<Event> eventList;
+    long epochSeconds;
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -27,12 +38,24 @@ public class StudentSavedEventsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_saved_events);
         db = new DatabaseConnector(this);
         String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
+        ArrayList<String> userEvents = getUserEvents(user);
+        Date currentDate = new Date();
+        long epochMillis = currentDate.getTime();
+        epochSeconds = epochMillis / 1000L;
 
 
         // Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("Saved Events");
         setSupportActionBar(toolbar);
+
+        //RV Setup
+        eventList = new ArrayList<>();
+        eventList = getEventDetails(userEvents);
+        savedEventsRv = findViewById(R.id.savedEventsRV);
+        adapter = new StudentSavedEventsAdapter(this, eventList);
+        savedEventsRv.setAdapter(adapter);
+        savedEventsRv.setLayoutManager(new LinearLayoutManager(this));
 
         // Bottom Navigation set for Saved Events (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);
@@ -88,7 +111,9 @@ public class StudentSavedEventsActivity extends AppCompatActivity {
 
         for (int i = 0; i < allEvents.size(); i++) {
             if (userEvents.contains(allEvents.get(i).getEventId())) {
-                filteredEvents.add(allEvents.get(i));
+                if (allEvents.get(i).getEventDate() > epochSeconds) {
+                    filteredEvents.add(allEvents.get(i));
+                }
             }
         }
 

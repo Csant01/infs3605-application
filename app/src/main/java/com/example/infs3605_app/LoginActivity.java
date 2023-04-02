@@ -26,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         db = new DatabaseConnector(this);
+//        db.addSampleUserFeedbackData();
+//        db.addSampleUserEventData();
 
         buttonAlumniSignUp = findViewById(R.id.buttonAlumniSignUp);
         emailInput = findViewById(R.id.emailInput);
@@ -38,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                 userEmail = emailInput.getText().toString();
                 userPass = passwordInput.getText().toString();
                 if (checkLogin(userEmail, userPass)) {
-                    startActivity(new Intent(getApplicationContext(), CreateEventActivity.class));
+                    startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Please ensure all details are correct.",
                             Toast.LENGTH_SHORT).show();

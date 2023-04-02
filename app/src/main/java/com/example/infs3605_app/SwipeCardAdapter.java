@@ -45,7 +45,7 @@ public class SwipeCardAdapter extends BaseAdapter {
 
         ((TextView) v.findViewById(R.id.namePrint)).setText(allEvents.get(position).getEventName());
         ((TextView) v.findViewById(R.id.organiserPrint)).setText(allEvents.get(position).getEventOwner());
-        ((TextView) v.findViewById(R.id.locationPrint)).setText(allEvents.get(position).getEventLocation());
+        ((TextView) v.findViewById(R.id.descriptionPrint)).setText(allEvents.get(position).getEventDescription());
         ((TextView) v.findViewById(R.id.cityPrint)).setText(allEvents.get(position).getEventCity());
         ((TextView) v.findViewById(R.id.categoryPrint)).setText(allEvents.get(position).getEventCategory());
         ((TextView) v.findViewById(R.id.datePrint)).setText(formatEpoch(allEvents.get(position).getEventDate()));
