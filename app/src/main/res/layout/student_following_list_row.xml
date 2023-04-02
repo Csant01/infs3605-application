@@ -18,11 +18,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageButton
+                android:id="@+id/viewProfileButton2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="Follow account"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/organiserNameLabel"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_view" />
+
             <TextView
-                android:id="@+id/fullNameLabel"
+                android:id="@+id/organiserNameLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/darkest_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -31,8 +44,10 @@
                 android:id="@+id/removeFollowingButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Remove"
+                android:textColor="@color/darkest_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
