@@ -9,8 +9,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.INFS3605App"
-        >
+        android:theme="@style/Theme.INFS3605App">
+        <activity
+            android:name=".AboutPageActivity"
+            android:exported="false" />
         <activity
             android:name=".OrganiserPublicProfileActivity"
             android:exported="false" />
