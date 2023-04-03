@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -16,9 +17,11 @@ public class SwipeCardAdapter extends BaseAdapter {
     private ArrayList<Event> allEvents;
     private Context context;
 
+
     public SwipeCardAdapter (ArrayList<Event> allEvents, Context context) {
         this.allEvents = allEvents;
         this.context = context;
+
     }
 
     @Override
@@ -51,6 +54,7 @@ public class SwipeCardAdapter extends BaseAdapter {
         ((TextView) v.findViewById(R.id.datePrint)).setText(formatEpoch(allEvents.get(position).getEventDate()));
         ((TextView) v.findViewById(R.id.startTimePrint)).setText(allEvents.get(position).getEventStartTime());
         ((TextView) v.findViewById(R.id.endTimePrint)).setText(allEvents.get(position).getEventEndTime());
+        ((ImageView) v.findViewById(R.id.cardImage)).setImageBitmap(ImageUtils.getImage(allEvents.get(position).getEventImage()));
         return v;
 
     }

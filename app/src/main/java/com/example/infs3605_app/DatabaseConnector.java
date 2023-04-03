@@ -3,11 +3,14 @@ package com.example.infs3605_app;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.*;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -21,6 +24,11 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class DatabaseConnector extends SQLiteOpenHelper {
+    private static final String TAG = "DatabaseConnector";
+    public static final String IMAGE_ID = "id";
+    public static final String IMAGE = "image";
+    private SQLiteDatabase mDb;
+    private DatabaseConnector mDbc;
 
     public DatabaseConnector(@Nullable Context context) {
         super(context, "database.db", null, 1);
@@ -62,7 +70,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "EVENT_BUDGETED_COST REAL DEFAULT 0, " +
                 "EVENT_COST_ID TEXT, " +
                 "EVENT_TICKETED INT DEFAULT 0," +
-                "EVENT_IMAGE TEXT, " +
+                "EVENT_IMAGE BLOB, " +
                 "EVENT_FACILITY TEXT, " +
                 "EVENT_STAFFING INT NOT NULL, " +
                 "EVENT_DATE INT NOT NULL, " +
@@ -134,6 +142,14 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "CAL_DATE INT NOT NULL" +
                 ")";
 
+        String createEventImagesTable = "CREATE TABLE IF NOT EXISTS EVENT_IMAGES " +
+                "(" +
+                "IMAGE_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "EVENT_IMAGE BLOB NOT NULL, " +
+                "EVENT_ID TEXT, " +
+                "FOREIGN KEY (EVENT_ID) REFERENCES EVENTS(EVENT_ID)" +
+                ")";
+
         db.execSQL(createUserTable);
         db.execSQL(createEventTable);
         db.execSQL(createUserFollowingTable);
@@ -142,6 +158,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         db.execSQL(createEventCostingTable);
         db.execSQL(createUserFeedbackTable);
         db.execSQL(createUnswReceiptsTable);
+        db.execSQL(createEventImagesTable);
 
     }
 
@@ -149,6 +166,60 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+    public void insertImage(byte[] imageBytes, @Nullable String eventId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("EVENT_ID", eventId);
+        cv.put("EVENT_IMAGE", imageBytes);
+        db.insert("EVENT_IMAGES", null, cv);
+
+    }
+
+    public byte[] retrieveImageFromDatabase () {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT EVENT_IMAGE FROM EVENT_IMAGES ORDER BY EVENT_ID DESC";
+        Cursor cursor = db.rawQuery(query,null);
+
+        if (cursor.moveToFirst()) {
+            byte[] blob = cursor.getBlob(0);
+            return blob;
+        }
+
+        return null;
+    }
+
+    public void assignIdToImage (String eventId, byte[] blob) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE EVENT_IMAGES SET EVENT_ID = ? WHERE EVENT_IMAGE = ?";
+        db.execSQL(query, new Object[] {eventId, blob});
+        assignImageToEvent(eventId, blob);
+    }
+
+    public void assignImageToEvent(String eventId, byte[] blob) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE EVENTS SET EVENT_IMAGE = ? WHERE EVENT_ID = ?";
+        db.execSQL(query, new Object[] {blob, eventId});
+    }
+
+    public byte[] retrieveImageFromDatabaseFiltered (String eventId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT EVENT_IMAGE FROM EVENT_IMAGES WHERE EVENT_ID = '%s'", eventId);
+        Cursor cursor = db.rawQuery(query,null);
+
+        if (cursor.moveToFirst()) {
+            byte[] blob = cursor.getBlob(0);
+            return blob;
+        }
+
+        return null;
+    }
+
+    public DatabaseConnector open() throws SQLException {
+        mDb = this.getWritableDatabase();
+        return this;
+    }
+
 
     public boolean addUserToDatabase(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -213,7 +284,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 Event event = new Event(cursor.getString(0), cursor.getString(1), cursor.getString(2),
                         cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6),
                         cursor.getString(7), cursor.getInt(8), cursor.getInt(9), cursor.getDouble(10),
-                        cursor.getInt(12), cursor.getString(13), cursor.getLong(16), cursor.getString(17),
+                        cursor.getInt(12), cursor.getBlob(13), cursor.getLong(16), cursor.getString(17),
                         cursor.getString(18), cursor.getInt(19), cursor.getInt(20), cursor.getInt(15), cursor.getString(14));
                 allEvents.add(event);
                 cursor.moveToNext();

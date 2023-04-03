@@ -1,41 +1,52 @@
 package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.snackbar.Snackbar;
 
-import org.w3c.dom.Text;
-
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-public class CreateEventActivity extends AppCompatActivity {
+public class CreateEventActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String TAG = "CreateEventActivity";
+    private static final int SELECT_PICTURE = 100;
 
     TextView eventName, eventDate, eventDescription, eventLocation, eventCity,
                 eventCountry, eventFacility, predictedAttn, eventCost, eventStartTime, eventEndTime,
                 eventCatering, eventStaffing;
+    String eventId;
     AutoCompleteTextView eventCategory;
     ArrayList<String> eventCategories;
     ArrayAdapter<String> categoryAdapter;
@@ -44,6 +55,9 @@ public class CreateEventActivity extends AppCompatActivity {
     int checkTicketed = 0;
     DatabaseConnector db;
     ArrayList<TextView> uiArrayList;
+    ImageView eventImage;
+    FloatingActionButton selectImage;
+    byte[] blob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +88,9 @@ public class CreateEventActivity extends AppCompatActivity {
         eventCategory = findViewById(R.id.eventCategoryDropdownSelector);
         eventDate = findViewById(R.id.eventDateTextBox);
 
+        eventImage = findViewById(R.id.createEventImage);
+        selectImage = findViewById(R.id.createImageButton);
+        selectImage.setOnClickListener(this);
         uiArrayList = new ArrayList<>();
 
         categoryAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, eventCategories);
@@ -136,14 +153,16 @@ public class CreateEventActivity extends AppCompatActivity {
                         int eventStaffingInt = Integer.parseInt(eventStaffing.getText().toString());
                         String eventCategoryString= eventCategory.getText().toString();
                         String eventDateString= eventDate.getText().toString();
+                        String eventId = createEventID();
 
 
-                            Event event = new Event(createEventID(), eventNameString, eventLocationString,
+                            Event event = new Event(eventId, eventNameString, eventLocationString,
                                     eventDescriptionString, User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1),
                                     eventCountryString, eventCityString, eventCategoryString, predictedAttnInt,
                                     0, eventCostString,checkTicketed,null,formatEpoch(eventDateString), eventStartTimeString,
                                     eventEndTimeString, 0, 0, eventStaffingInt, eventFacilityString);
                             db.addEventToDatabase(event);
+                            db.assignIdToImage(eventId, blob);
 
                             Toast.makeText(CreateEventActivity.this, "Event has been forwarded to staff for approval.",
                                     Toast.LENGTH_SHORT).show();
@@ -217,6 +236,10 @@ public class CreateEventActivity extends AppCompatActivity {
 
     }
 
+    public void showMessage (String message) {
+        Toast.makeText(CreateEventActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
     public String createEventID () {
         Random rand = new Random();
         int min = 1111111;
@@ -280,4 +303,81 @@ public class CreateEventActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        String[] permissions = {Manifest.permission.READ_MEDIA_IMAGES};
+        if(hasStoragePermission(CreateEventActivity.this)) {
+            openImageChooser();
+        } else {
+            ActivityCompat.requestPermissions(((AppCompatActivity) CreateEventActivity.this), permissions, 200);
+            Log.d(TAG, "Permission should open now.");
+        }
+    }
+
+    private void openImageChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Your Image"), SELECT_PICTURE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectImageUri = data.getData();
+                if (selectImageUri != null) {
+                    if (saveImageInDatabase(selectImageUri)) {
+                        showMessage("Image Saved.");
+                        eventImage.setImageURI(selectImageUri);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                eventImage.setVisibility(View.GONE);
+                            }
+                        }, 2000);
+                    }
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (loadImageFromDatabase()) {
+                                eventImage.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }, 3500);
+                }
+            }
+        }
+    }
+
+    private boolean loadImageFromDatabase() {
+        try {
+            db.open();
+            byte[] bytes = db.retrieveImageFromDatabase();
+            eventImage.setImageBitmap(ImageUtils.getImage(bytes));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean saveImageInDatabase(Uri selectImageUri) {
+        try {
+            db.open();
+            InputStream stream = getContentResolver().openInputStream(selectImageUri);
+            byte[] inputData = ImageUtils.getBytes(stream);
+            blob = inputData;
+            db.insertImage(inputData, null);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean hasStoragePermission(Context context) {
+        int read = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_IMAGES);
+        return read == PackageManager.PERMISSION_GRANTED;
+    }
 }

@@ -103,6 +103,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventDescriptionLabel"
                 app:layout_constraintTop_toBottomOf="@+id/eventDescriptionLabel" />
+            
+            <ImageView
+                android:id="@+id/createEventImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintStart_toStartOf="@+id/eventFormSubmitButton"
+                app:layout_constraintTop_toBottomOf="@+id/eventFormSubmitButton"
+                />
+            
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/createImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_image_search_24"
+                app:layout_constraintStart_toStartOf="@+id/eventFormSubmitButton"
+                app:layout_constraintTop_toBottomOf="@+id/createEventImage"/>
 
             <TextView
                 android:id="@+id/eventLocationLabel"

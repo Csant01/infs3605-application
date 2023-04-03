@@ -9,7 +9,7 @@ public class Event {
     private String eventCountry;
     private String eventCity;
     private String eventCategory;
-    private String eventImage;
+    private byte[] eventImage;
     private long eventDate;
     private String eventStartTime;
     private String eventEndTime;
@@ -28,7 +28,7 @@ public class Event {
     // Constructor
     public Event(String eventId, String eventName, String eventLocation, String eventDescription,
                  String eventOwner, String eventCountry, String eventCity, String eventCategory,
-                 int eventPredAttn, int eventActAttn, double eventCost, int eventTicketed, String eventImage,
+                 int eventPredAttn, int eventActAttn, double eventCost, int eventTicketed, byte[] eventImage,
                  long eventDate, String eventStartTime, String eventEndTime,
                  int eventIsDeleted, int eventIsApproved, int eventStaffing, String eventFacility) {
         this.eventId = eventId;
@@ -164,11 +164,11 @@ public class Event {
         this.eventActAttn = eventActAttn;
     }
 
-    public String getEventImage() {
+    public byte[] getEventImage() {
         return eventImage;
     }
 
-    public void setEventImage(String eventImage) {
+    public void setEventImage(byte[] eventImage) {
         this.eventImage = eventImage;
     }
 
