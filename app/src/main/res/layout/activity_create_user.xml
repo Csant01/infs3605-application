@@ -111,8 +111,8 @@
 
     <EditText
         android:id="@+id/createUserFirstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="265dp"
+        android:layout_height="45dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="72dp"
         android:ems="10"

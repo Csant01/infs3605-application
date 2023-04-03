@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutPageActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="414dp"
+        android:layout_height="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/AboutLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="ABOUT:"
+        android:textColor="@color/darkest_grey"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/aboutAppDescription"
+        android:layout_width="356dp"
+        android:layout_height="171dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="30dp"
+        android:text="UNSW Unite aims to facilitate international engagement activities at the prestigious University of New South Wales. This app provides a unified platform for UNSW Staff, external organisers and UNSW Alumni to connect and view, manage, track events and receive feedback. "
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AboutLabel" />
+
+    <TextView
+        android:id="@+id/aboutCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="CATEGORY:"
+        android:textColor="@color/darkest_grey"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutAppDescription" />
+
+    <TextView
+        android:id="@+id/aboutSeller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="SELLER:"
+        android:textColor="@color/darkest_grey"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutCategory" />
+
+    <TextView
+        android:id="@+id/aboutPurchases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="IN-APP  PURCHASES:"
+        android:textColor="@color/darkest_grey"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutSeller" />
+
+    <TextView
+        android:id="@+id/aboutCopyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="COPYRIGHT:"
+        android:textColor="@color/darkest_grey"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutPurchases" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Education"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/aboutCategory"
+        app:layout_constraintTop_toBottomOf="@+id/aboutAppDescription" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="UNSW Unite Corporation"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/aboutSeller"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="No"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/aboutPurchases"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="244dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="2023 UNSW Unite Corporation. All Rights Reserved."
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/aboutCopyright"
+        app:layout_constraintTop_toBottomOf="@+id/aboutPurchases" />
+</androidx.constraintlayout.widget.ConstraintLayout>
