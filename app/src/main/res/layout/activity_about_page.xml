@@ -31,10 +31,12 @@
         android:id="@+id/aboutAppDescription"
         android:layout_width="356dp"
         android:layout_height="171dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="30dp"
         android:text="UNSW Unite aims to facilitate international engagement activities at the prestigious University of New South Wales. This app provides a unified platform for UNSW Staff, external organisers & UNSW Alumni to connect and view, manage, track events and receive feedback. "
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AboutLabel" />
 

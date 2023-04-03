@@ -75,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:text="Unsave"
+                android:textColor="@color/darkest_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -84,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RSVP"
+                android:textColor="@color/darkest_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/eventDetailButton"
                 app:layout_constraintStart_toEndOf="@+id/unsaveButton"
@@ -96,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:text="Details"
+                android:textColor="@color/darkest_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
