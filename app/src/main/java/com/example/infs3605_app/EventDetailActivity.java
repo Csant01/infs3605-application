@@ -26,6 +26,7 @@ public class EventDetailActivity extends AppCompatActivity {
     ImageView eventImage;
     DatabaseConnector db;
     Event event;
+    byte[] bytes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +65,12 @@ public class EventDetailActivity extends AppCompatActivity {
         eventOrg.setText(event.getEventOwner());
         eventDesc.setText(event.getEventDescription());
 
+        bytes = db.retrieveImageFromDatabaseFiltered(eventId);
+        eventImage.setImageBitmap(ImageUtils.getImage(bytes));
+
         // Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle("CHANGE TO NAME OF EVENT?");
+        setTitle(event.getEventName());
         setSupportActionBar(toolbar);
 
         // Bottom Navigation set for Events Detail Page

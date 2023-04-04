@@ -86,7 +86,6 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
             @Override
             public void onClick(View v) {
                 displayFilteredEventData("Social");
-
             }
         });
 
