@@ -92,7 +92,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
         String createUserEventTable = "CREATE TABLE IF NOT EXISTS USER_EVENTS " +
                 "(" +
-                "USER_EVENT_ID TEXT PRIMARY KEY NOT NULL, " +
+                "USER_EVENT_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "USER_FAV INT DEFAULT 0, " +
                 "USER_ATTENDED INT DEFAULT 0, " +
                 "USER_ID TEXT NOT NULL, " +
@@ -165,6 +165,18 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    public String getUserId (String userName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT USER_ID FROM USERS WHERE USER_NAME = '%s'", userName);
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            String id = cursor.getString(0);
+            return id;
+        }
+
+        return null;
     }
 
     public void insertImage(byte[] imageBytes, @Nullable String eventId) {

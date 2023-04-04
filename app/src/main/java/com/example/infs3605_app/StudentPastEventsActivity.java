@@ -2,12 +2,14 @@ package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
     long epochSeconds;
     StudentPastEventsAdapter adapter;
     TextView feedbackCompleted;
+    SearchView searchView;
 
 
     @Override
@@ -45,6 +48,7 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
         Date currentDate = new Date();
         long epochMillis = currentDate.getTime();
         epochSeconds = epochMillis / 1000L;
+        searchView = findViewById(R.id.pastSearchView);
 
         eventList = new ArrayList<>();
         eventList = getEventDetails(userEvents);
@@ -52,6 +56,20 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
         adapter = new StudentPastEventsAdapter(this, eventList, this);
         pastEventsRv.setAdapter(adapter);
         pastEventsRv.setLayoutManager(new LinearLayoutManager(this) );
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                Log.d("PastEvents Filter", newText);
+                return false;
+            }
+        });
 
         // Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);

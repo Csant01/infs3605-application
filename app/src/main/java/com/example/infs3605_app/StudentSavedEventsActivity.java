@@ -2,6 +2,7 @@ package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,6 +30,7 @@ public class StudentSavedEventsActivity extends AppCompatActivity implements Stu
     RecyclerView savedEventsRv;
     ArrayList<Event> eventList;
     long epochSeconds;
+    SearchView searchView;
 
 
 
@@ -42,6 +45,20 @@ public class StudentSavedEventsActivity extends AppCompatActivity implements Stu
         Date currentDate = new Date();
         long epochMillis = currentDate.getTime();
         epochSeconds = epochMillis / 1000L;
+        searchView = findViewById(R.id.savedSearchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                Log.d("PastEvents Filter", newText);
+                return false;
+            }
+        });
 
 
         // Set Toolbar
