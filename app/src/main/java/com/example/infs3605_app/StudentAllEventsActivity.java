@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +18,6 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -47,7 +44,7 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
         travelBtn = findViewById(R.id.travelFilterButton);
         socialBtn = findViewById(R.id.socialFilterButton);
         clearFilter = findViewById(R.id.clearFilter);
-        searchView = findViewById(R.id.searchView);
+        searchView = findViewById(R.id.allSearchView);
         searchView.clearFocus();
 
         clearFilter.setOnClickListener(new View.OnClickListener() {
