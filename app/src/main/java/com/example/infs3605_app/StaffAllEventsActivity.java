@@ -18,7 +18,7 @@ public class StaffAllEventsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.all_staff_events_list_row);
+        setContentView(R.layout.activity_staff_all_events);
 
         // Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
