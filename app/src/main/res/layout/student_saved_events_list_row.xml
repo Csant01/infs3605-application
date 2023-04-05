@@ -7,8 +7,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="175dp"
-        app:cardBackgroundColor="@color/white"
+        android:layout_height="330dp"
+        app:cardBackgroundColor="@color/light_grey"
         app:cardCornerRadius="8dp"
         app:cardElevation="3dp"
         app:cardMaxElevation="5dp"
@@ -24,12 +24,11 @@
 
             <ImageView
                 android:id="@+id/savedEventsImage"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/savedOrganisersEvent"
                 app:srcCompat="@mipmap/ic_launcher_round" />
 
             <TextView
@@ -37,71 +36,56 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Industry Mentoring Night"
                 android:textColor="@color/darkest_grey"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/savedEventsImage"
-                app:layout_constraintTop_toTopOf="@+id/savedEventsImage" />
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/savedEventsDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/savedEventsImage"
-                app:layout_constraintStart_toEndOf="@+id/savedEventsImage" />
+                android:layout_marginTop="16dp"
+                android:text="24th April 2023"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/savedEventsImage" />
 
             <TextView
                 android:id="@+id/savedOrganisersEvent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/savedEventsDate" />
+                android:text="UNSW BITSA"
+                android:textColor="@color/darkest_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/savedEventsName"
+                app:layout_constraintTop_toBottomOf="@+id/savedEventsName" />
 
-            <View
-                android:id="@+id/view2"
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/grey"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/savedEventsImage" />
-
-            <Button
+            <ImageButton
                 android:id="@+id/unsaveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:text="Unsave"
-                android:textColor="@color/darkest_grey"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-            <Button
-                android:id="@+id/rsvpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RSVP"
-                android:textColor="@color/darkest_grey"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/eventDetailButton"
-                app:layout_constraintStart_toEndOf="@+id/unsaveButton"
-                app:layout_constraintTop_toTopOf="@+id/view2"
-                app:layout_constraintVertical_bias="0.533" />
-
-            <Button
-                android:id="@+id/eventDetailButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:text="Details"
-                android:textColor="@color/darkest_grey"
+                android:layout_marginEnd="16dp"
+                android:background="@color/light_grey"
+                android:contentDescription="to unsave event from user's saved events"
+                android:src="@drawable/ic_filled_bookmark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
+                app:layout_constraintTop_toBottomOf="@+id/savedEventsImage" />
+
+            <TextView
+                android:id="@+id/savedEventsCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sydney"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/savedEventsDate"
+                app:layout_constraintTop_toBottomOf="@+id/savedEventsDate" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -22,42 +22,50 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/allEventsImage"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher_round" />
-
             <TextView
                 android:id="@+id/allEventsNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_semibold"
+                android:text="Industry Mentoring Night"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/allEventsImage"
-                app:layout_constraintTop_toTopOf="@+id/allEventsImage" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/allEventsDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/allEventsImage"
-                app:layout_constraintStart_toEndOf="@+id/allEventsImage" />
+                android:layout_marginEnd="16dp"
+                android:text="24th April 2023"
+                android:textColor="@color/dark_grey"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/allOrganisersEventText"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/allOrganisersEventText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="UNSW BITSA"
+                android:textColor="@color/darkest_grey"
+                app:layout_constraintStart_toStartOf="@+id/allEventsNameText"
+                app:layout_constraintTop_toBottomOf="@+id/allEventsNameText" />
+
+            <ImageButton
+                android:id="@+id/allEventsSaveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:background="@color/light_grey"
+                android:contentDescription="to unsave event from user's saved events"
+                android:src="@drawable/ic_bookmark"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/allEventsDate" />
+                app:layout_constraintTop_toTopOf="@+id/allEventsNameText" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
