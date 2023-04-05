@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -73,9 +74,21 @@ public class EventDetailActivity extends AppCompatActivity {
         setTitle(event.getEventName());
         setSupportActionBar(toolbar);
 
+        eventOrg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), OrganiserPublicProfileActivity.class);
+                intent.putExtra("ORGANISER_NAME", event.getEventOwner());
+                intent.putExtra("USER_TYPE", "student");
+                intent.putExtra("PAGE", "EventDetail");
+                startActivity(intent);
+            }
+        });
+
         // Bottom Navigation set for Events Detail Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);
         bottomNavigationView.setSelectedItemId(R.id.eventsNavButton);
+
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
