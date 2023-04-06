@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/textView6"
         android:layout_width="0dp"
-        android:layout_height="170dp"
+        android:layout_height="200dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -32,13 +32,14 @@
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/student_menu" />
 
     <ImageView
         android:id="@+id/organiserImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="151dp"
+        android:layout_height="148dp"
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="@+id/textView6"
@@ -61,18 +62,18 @@
         android:id="@+id/organiserTypePrint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="TextView"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/organiserNamePrint"
-        app:layout_constraintTop_toBottomOf="@+id/organiserNamePrint" />
+        app:layout_constraintTop_toBottomOf="@id/organiserNamePrint" />
 
     <TextView
         android:id="@+id/facultyPrint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="TextView"
         android:textColor="@color/white"
@@ -110,7 +111,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/profileEventsLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/profileEventsLabel"
-        app:srcCompat="@drawable/ic_past" />
+        app:srcCompat="@drawable/ic_previous" />
 
     <TextView
         android:id="@+id/organiserClearFilter"
@@ -119,5 +120,15 @@
         android:text="Clear Filter"
         app:layout_constraintEnd_toStartOf="@+id/pastEventsButton"
         app:layout_constraintTop_toTopOf="@+id/profileEventsLabel" />
+
+    <Button
+        android:id="@+id/organiserProfileFollowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Follow"
+        android:textColor="@color/darkest_grey"
+        app:layout_constraintBottom_toBottomOf="@+id/organiserImageView"
+        app:layout_constraintEnd_toEndOf="@+id/textView6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

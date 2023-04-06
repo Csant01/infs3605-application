@@ -22,10 +22,11 @@
                 android:id="@+id/viewProfileButton2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_marginStart="16dp"
                 android:backgroundTint="@color/white"
                 android:contentDescription="Follow account"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/organiserNameLabel"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_view" />
 
@@ -33,11 +34,10 @@
                 android:id="@+id/organiserNameLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/darkest_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/viewProfileButton2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
