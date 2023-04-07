@@ -22,9 +22,7 @@ public class CreateUserActivity extends AppCompatActivity {
     TextView createUserPassCheck;
     TextView createUserEmail;
     TextView createUserFirstName;
-    TextView createUserLastName;
     AutoCompleteTextView createUserType;
-    AutoCompleteTextView createUserGender;
     Button createUserButton;
     String userName;
     String userEmail;
@@ -32,8 +30,6 @@ public class CreateUserActivity extends AppCompatActivity {
     String userPassCheck;
     String userType;
     String userFirstName;
-    String userLastName;
-    String userGender;
     ArrayList<String> userTypeArray = new ArrayList<>();
     ArrayAdapter<String> userTypeAdapter;
     ArrayList<String> userGenderArray = new ArrayList<>();
@@ -47,14 +43,10 @@ public class CreateUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_user);
         db = new DatabaseConnector(this);
 
-        userTypeArray.add("Student");
-        userTypeArray.add("UNSW Staff");
-        userTypeArray.add("Event Co-ordinator");
         userTypeArray.add("UNSW Alumni");
-        userGenderArray.add("Male");
-        userGenderArray.add("Female");
-        userGenderArray.add("Other");
-        userGenderArray.add("Wish to not specify");
+        userTypeArray.add("UNSW Student Society");
+        userTypeArray.add("Partner University");
+        userTypeArray.add("Other");
 
         createUserName = findViewById(R.id.createUserName);
         createUserPass = findViewById(R.id.createUserPass);
@@ -62,15 +54,10 @@ public class CreateUserActivity extends AppCompatActivity {
         createUserEmail = findViewById(R.id.createUserEmail);
         createUserType = findViewById(R.id.createUserTypeSub);
         createUserButton = findViewById(R.id.createUserButton);
-        createUserGender = findViewById(R.id.createUserGenderSub);
         createUserFirstName = findViewById(R.id.createUserFirstName);
-        createUserLastName = findViewById(R.id.createUserLastName);
 
         userTypeAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, userTypeArray);
         createUserType.setAdapter(userTypeAdapter);
-
-        userGenderAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, userGenderArray);
-        createUserGender.setAdapter(userGenderAdapter);
 
         createUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,9 +68,7 @@ public class CreateUserActivity extends AppCompatActivity {
                 userEmail = createUserEmail.getText().toString();
                 userType = createUserType.getText().toString();
                 userFirstName = createUserFirstName.getText().toString();
-                userLastName = createUserLastName.getText().toString();
-                userGender = createUserGender.getText().toString();
-                User user = new User(TMP_STRING, userFirstName, userLastName, userGender, userName,
+                User user = new User(TMP_STRING, userFirstName, null, null, userName,
                         userEmail, userPass, userType);
 
                 if (user.hasEmptyFields()) {

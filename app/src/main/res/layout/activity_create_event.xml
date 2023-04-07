@@ -103,24 +103,28 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventDescriptionLabel"
                 app:layout_constraintTop_toBottomOf="@+id/eventDescriptionLabel" />
-            
+
             <ImageView
                 android:id="@+id/createEventImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="160dp"
                 android:layout_margin="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_launcher_background"
-                app:layout_constraintStart_toStartOf="@+id/eventFormSubmitButton"
-                app:layout_constraintTop_toBottomOf="@+id/eventFormSubmitButton"
-                />
-            
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/eventStaffingTextBox" />
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/createImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/baseline_image_search_24"
-                app:layout_constraintStart_toStartOf="@+id/eventFormSubmitButton"
-                app:layout_constraintTop_toBottomOf="@+id/createEventImage"/>
+                app:layout_constraintEnd_toEndOf="@+id/createEventImage"
+                app:layout_constraintTop_toBottomOf="@+id/createEventImage" />
 
             <TextView
                 android:id="@+id/eventLocationLabel"
@@ -438,7 +442,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/yellow"
@@ -449,7 +453,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventStaffingTextBox" />
+                app:layout_constraintTop_toBottomOf="@+id/createImageButton" />
 
             <EditText
                 android:id="@+id/eventDateTextBox"
