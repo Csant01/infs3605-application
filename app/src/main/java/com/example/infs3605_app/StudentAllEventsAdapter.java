@@ -99,7 +99,6 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
             eventName = itemView.findViewById(R.id.allEventsNameText);
             eventDate = itemView.findViewById(R.id.allEventsDate);
             eventOrg = itemView.findViewById(R.id.allOrganisersEventText);
-            eventImage = itemView.findViewById(R.id.allEventsImage);
             this.eventClickListener = eventClickListener;
 
             itemView.setOnClickListener(this);

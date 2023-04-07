@@ -17,6 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +30,8 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
     private List<Event> filteredEvents;
     private List<Event> allEvents;
     private OnPastEventClickListener eventClickListener;
+    private DatabaseConnector db;
+
 
     public StudentPastEventsAdapter(Context context, List<Event> allEvents, OnPastEventClickListener eventClickListener) {
         this.context = context;
@@ -47,15 +53,29 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
         holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
-        if (event.getEventCategory().equals("Network")) {
-            holder.eventImage.setImageResource(R.drawable.ic_networking);
-        } else if (event.getEventCategory().equals("Careers")) {
-            holder.eventImage.setImageResource(R.drawable.ic_career);
-        } else if (event.getEventCategory().equals("Social")) {
-            holder.eventImage.setImageResource(R.drawable.ic_social);
-        } else if (event.getEventCategory().equals("Travel")) {
-            holder.eventImage.setImageResource(R.drawable.ic_travel);
+        if (event.getEventImage() != null) {
+            holder.eventImage.setImageBitmap(ImageUtils.getImage(event.getEventImage()));
+        } else {
+            holder.eventImage.setImageResource(R.drawable.unsw_unite_logo);
         }
+        holder.eventCity.setText(event.getEventCity());
+
+        db = new DatabaseConnector(context.getApplicationContext());
+        ArrayList<UserEvent> userEvents = db.getUserEvents(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1));
+        for (int i = 0; i < userEvents.size(); i++) {
+            if (userEvents.get(i).getEventId().equals(event.getEventId())) {
+                if (userEvents.get(i).getFeedbackCompleted() != 1) {
+                    holder.feedbackPending.setText("Feedback Pending");
+                    holder.feedbackButton.setText("Complete Feedback");
+                } else {
+                    holder.feedbackPending.setText("Feedback Completed");
+                    holder.feedbackButton.setText("Feedback Completed");
+                }
+            }
+        }
+
+
+
 
     }
 
@@ -96,7 +116,7 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView eventImage;
-        TextView eventName, eventDate, eventOrg;
+        TextView eventName, eventDate, eventOrg, eventCity, feedbackPending;
         Button feedbackButton;
         OnPastEventClickListener eventClickListener;
         public ViewHolder(@NonNull View itemView, OnPastEventClickListener eventClickListener) {
@@ -105,7 +125,9 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
             eventDate = itemView.findViewById(R.id.pastEventsDate);
             eventName = itemView.findViewById(R.id.pastEventsNameText);
             eventOrg = itemView.findViewById(R.id.pastOrganisersEventText);
+            eventCity = itemView.findViewById(R.id.pastEventCity);
             feedbackButton = itemView.findViewById(R.id.feedbackButton);
+            feedbackPending = itemView.findViewById(R.id.feedbackStatusLabel);
             this.eventClickListener = eventClickListener;
 
             itemView.setOnClickListener(this);
@@ -133,7 +155,34 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
     }
 
     public String formatEpoch (long value) {
-        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(value));
-        return date;
+        Instant instant = Instant.ofEpochMilli(value);
+        LocalDate date = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("d' 'MMM' 'uuuu"));
+        String daySuffix = getDaySuffix(date.getDayOfMonth());
+        String finalDate = formattedDate + daySuffix;
+        return finalDate;
+    }
+
+    public static String getDaySuffix(int day) {
+        switch (day % 10) {
+            case 1:
+                if (day != 11) {
+                    return "st";
+                }
+                break;
+            case 2:
+                if (day != 12) {
+                    return "nd";
+                }
+                break;
+            case 3:
+                if (day != 13) {
+                    return "rd";
+                }
+                break;
+            default:
+                break;
+        }
+        return "th";
     }
 }

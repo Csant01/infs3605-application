@@ -7,17 +7,17 @@ public class UserEvent {
     private String userId;
     private String eventId;
     private String userFeedbackId;
-    private double donationAmt;
+    private int feedbackCompleted;
 
     public UserEvent (String userEventId, int userFavourited, int userAttended, String userId,
-                     String eventId, String userFeedbackId, double donationAmt) {
+                     String eventId, String userFeedbackId, int feedbackCompleted) {
         this.userEventId = userEventId;
         this.userFavourited = userFavourited;
         this.userAttended = userAttended;
         this.userId = userId;
         this.eventId = eventId;
         this.userFeedbackId = userFeedbackId;
-        this.donationAmt = donationAmt;
+        this.feedbackCompleted = feedbackCompleted;
     }
 
     public String getUserEventId() {
@@ -68,11 +68,11 @@ public class UserEvent {
         this.userFeedbackId = userFeedbackId;
     }
 
-    public double getDonationAmt() {
-        return donationAmt;
+    public int getFeedbackCompleted() {
+        return feedbackCompleted;
     }
 
-    public void setDonationAmt(double donationAmt) {
-        this.donationAmt = donationAmt;
+    public void setFeedbackCompleted(int feedbackCompleted) {
+        this.feedbackCompleted = feedbackCompleted;
     }
 }

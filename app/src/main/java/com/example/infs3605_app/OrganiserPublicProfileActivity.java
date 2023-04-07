@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -127,6 +128,27 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
 
     @Override
     public void onEventClick(int position) {
+        eventList.get(position);
+        Intent intent = new Intent(this, EventDetailActivity.class);
+        intent.putExtra("EVENT_ID", eventList.get(position).getEventId());
+        intent.putExtra("USER_TYPE", "student");
+        intent.putExtra("PAGE", "OrganiserPublicProfile");
+        startActivity(intent);
+    }
+
+    @Override
+    public void onSaveClick(int position) {
+        eventList.get(position);
+        String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
+        // need method for saving and unsaving events.
+        if (db.setUserFavSav(user, eventList.get(position).getEventId(), 1) == 0) {
+            Toast.makeText(OrganiserPublicProfileActivity.this, eventList.get(position).getEventName() +
+                            " unsaved",
+                    Toast.LENGTH_SHORT).show();
+
+        }
+
+
 
     }
 }

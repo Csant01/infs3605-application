@@ -98,7 +98,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "USER_ID TEXT NOT NULL, " +
                 "EVENT_ID TEXT NOT NULL, " +
                 "USER_FEEDBACK_ID TEXT, " +
-                "DONATION_AMOUNT REAL DEFAULT 0, " +
+                "FEEDBACK_COMPLETED INT DEFAULT 0, " +
                 "FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID), " +
                 "FOREIGN KEY (EVENT_ID) REFERENCES EVENTS(EVENT_ID), " +
                 "FOREIGN KEY (USER_FEEDBACK_ID) REFERENCES USER_FEEDBACK(USER_FEEDBACK_ID) " +
@@ -358,7 +358,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put("USER_ID", userEvent.getUserId());
         cv.put("EVENT_ID", userEvent.getEventId());
         cv.put("USER_FEEDBACK_ID", userEvent.getUserFeedbackId());
-        cv.put("DONATION_AMOUNT", userEvent.getDonationAmt());
+        cv.put("FEEDBACK_COMPLETED", userEvent.getFeedbackCompleted());
 
         db.insert("USER_EVENTS", null, cv);
         return true;
@@ -382,13 +382,64 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 UserEvent userEvent = new UserEvent(cursor.getString(0), cursor.getInt(1), cursor.getInt(2),
-                        cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getDouble(6));
+                        cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getInt(6));
                 userEvents.add(userEvent);
                 cursor.moveToNext();
             }
         }
 
         return userEvents;
+    }
+
+    public int setUserFavSav (String user, String event, int type) {
+        String userId = getUserId(user);
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        int setValue = 99;
+        int returnValue = 99;
+        if (type == 0) {
+            int current = getUserFavSav(userId, event, 0);
+            if (current == 0) {
+                setValue = 1;
+                returnValue = 1;
+            } else {
+                setValue = 0;
+                returnValue = 0;
+            }
+            query = "UPDATE USER_EVENTS SET FEEDBACK_COMPLETED = ? WHERE USER_ID = ? AND EVENT_ID = ?";
+        } else {
+            int current = getUserFavSav(userId, event, 0);
+            if (current == 0) {
+                setValue = 1;
+                returnValue = 1;
+            } else {
+                setValue = 0;
+                returnValue = 0;
+            }
+            query = "UPDATE USER_EVENTS SET USER_FAV = ? WHERE USER_ID = ? AND EVENT_ID = ?";
+        }
+        db.execSQL(query, new Object[]{setValue, userId, event});
+        return returnValue;
+    }
+
+    public int getUserFavSav (String user, String event, int type) {
+        String userId = getUserId(user);
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query;
+        if (type == 0) {
+            query = String.format("SELECT FEEDBACK_COMPLETED WHERE USER_ID = '%s' AND EVENT_ID = '%s'", userId, event);
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(0);
+            }
+        } else {
+            query = String.format("SELECT FEEDBACK_COMPLETED WHERE USER_ID = '%s' AND EVENT_ID = '%s'", userId, event);
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(0);
+            }
+        }
+        return 99;
     }
 
     public boolean checkUserGoing (String user, String event) {

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,15 +51,12 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
         holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
-        if (event.getEventCategory().equals("Network")) {
-            holder.eventImage.setImageResource(R.drawable.ic_networking);
-        } else if (event.getEventCategory().equals("Careers")) {
-            holder.eventImage.setImageResource(R.drawable.ic_career);
-        } else if (event.getEventCategory().equals("Social")) {
-            holder.eventImage.setImageResource(R.drawable.ic_social);
-        } else if (event.getEventCategory().equals("Travel")) {
-            holder.eventImage.setImageResource(R.drawable.ic_travel);
+        if (event.getEventImage() != null) {
+            holder.eventImage.setImageBitmap(ImageUtils.getImage(event.getEventImage()));
+        } else {
+            holder.eventImage.setImageResource(R.drawable.unsw_unite_logo);
         }
+        holder.eventCity.setText(event.getEventCity());
 
     }
 
@@ -95,8 +97,8 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView eventImage;
-        TextView eventName, eventDate, eventOrg;
-        Button unsaveButton, rsvpButton;
+        TextView eventName, eventDate, eventOrg, eventCity;
+        ImageButton unsaveButton;
         OnSavedEventClickListener eventClickListener;
         public ViewHolder(@NonNull View itemView, OnSavedEventClickListener eventClickListener) {
             super(itemView);
@@ -104,8 +106,8 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
             eventDate = itemView.findViewById(R.id.savedEventsDate);
             eventName = itemView.findViewById(R.id.savedEventsName);
             eventOrg = itemView.findViewById(R.id.savedOrganisersEvent);
+            eventCity = itemView.findViewById(R.id.savedEventsCity);
             unsaveButton = itemView.findViewById(R.id.unsaveButton);
-            rsvpButton = itemView.findViewById(R.id.rsvpButton);
             this.eventClickListener = eventClickListener;
 
             itemView.setOnClickListener(this);
@@ -117,19 +119,11 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
                     // method here to unsave an event;
                     Toast.makeText(view.getContext(), eventName.getText().toString() + " unsaved.",
                             Toast.LENGTH_SHORT).show();
+                    unsaveButton.setImageResource(R.drawable.ic_bookmark);
 
                 }
             });
 
-            rsvpButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    db = new DatabaseConnector(view.getContext());
-                    // method here to rsvp an event;
-                    Toast.makeText(view.getContext(), eventName.getText().toString() + " rsvp.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
 
 //            detailsButton.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -150,7 +144,11 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
     }
 
     public String formatEpoch (long value) {
-        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(value));
-        return date;
+        Instant instant = Instant.ofEpochMilli(value);
+        LocalDate date = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("d' 'MMM' 'uuuu"));
+        String daySuffix = StudentPastEventsAdapter.getDaySuffix(date.getDayOfMonth());
+        String finalDate = formattedDate + daySuffix;
+        return finalDate;
     }
 }

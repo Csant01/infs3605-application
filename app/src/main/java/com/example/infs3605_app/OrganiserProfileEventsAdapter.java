@@ -3,6 +3,7 @@ package com.example.infs3605_app;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ public class OrganiserProfileEventsAdapter extends RecyclerView.Adapter<Organise
     List<Event> alLEvents;
     Context context;
     OnOrganiserEventClickListener eventClickListener;
+    ImageButton saveEvent;
 
     public OrganiserProfileEventsAdapter(Context context, List<Event> alLEvents, OnOrganiserEventClickListener eventClickListener) {
         this.alLEvents = alLEvents;
@@ -36,15 +38,6 @@ public class OrganiserProfileEventsAdapter extends RecyclerView.Adapter<Organise
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
         holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
-        if (event.getEventCategory().equals("Network")) {
-            holder.eventImage.setImageResource(R.drawable.ic_networking);
-        } else if (event.getEventCategory().equals("Careers")) {
-            holder.eventImage.setImageResource(R.drawable.ic_career);
-        } else if (event.getEventCategory().equals("Social")) {
-            holder.eventImage.setImageResource(R.drawable.ic_social);
-        } else if (event.getEventCategory().equals("Travel")) {
-            holder.eventImage.setImageResource(R.drawable.ic_travel);
-        }
     }
 
     @Override
@@ -54,29 +47,33 @@ public class OrganiserProfileEventsAdapter extends RecyclerView.Adapter<Organise
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView eventImage;
+        ImageView saveEvent;
         TextView eventName, eventDate, eventOrg;
         OnOrganiserEventClickListener eventClickListener;
         public ViewHolder(@NonNull View itemView, OnOrganiserEventClickListener eventClickListener) {
             super(itemView);
-            eventImage = itemView.findViewById(R.id.allEventsImage);
             eventName = itemView.findViewById(R.id.allEventsNameText);
             eventDate = itemView.findViewById(R.id.allEventsDate);
             eventOrg = itemView.findViewById(R.id.allOrganisersEventText);
+            saveEvent = itemView.findViewById(R.id.allEventsSaveButton);
             this.eventClickListener = eventClickListener;
 
             itemView.setOnClickListener(this);
+            saveEvent.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View view) {
             eventClickListener.onEventClick(getAdapterPosition());
+            eventClickListener.onSaveClick(getAdapterPosition());
         }
     }
 
     public interface OnOrganiserEventClickListener {
         void onEventClick (int position);
+        void onSaveClick (int position);
+
     }
 
     public String formatEpoch (long value) {
