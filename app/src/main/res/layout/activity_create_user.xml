@@ -4,133 +4,176 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/yellow"
     tools:context=".CreateUserActivity">
+
+    <ImageView
+        android:id="@+id/uniteLogo"
+        android:layout_width="98dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo_compact" />
+
+    <TextView
+        android:id="@+id/registerPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="REGISTER HERE!"
+        android:textColor="@color/darkest_grey"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uniteLogo" />
+
+    <EditText
+        android:id="@+id/createUserFirstName"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="   Enter First Name"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerPrompt" />
+
+    <EditText
+        android:id="@+id/createUserLastName"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="   Enter Last Name"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserFirstName" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createUserGender"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="265dp"
+        android:layout_height="45dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserLastName">
+
+        <AutoCompleteTextView
+            android:id="@+id/createUserGenderSub"
+            android:layout_width="265dp"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:hint="Please Select Gender"
+            android:inputType="none"
+            android:textSize="14sp"
+            tools:layout_editor_absoluteX="14dp"
+            tools:layout_editor_absoluteY="440dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
         android:id="@+id/createUserName"
-        android:layout_width="205dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="268dp"
-        android:layout_marginEnd="108dp"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
         android:ems="10"
         android:fontFamily="@font/poppins_regular"
-        android:hint="Enter Username"
+        android:hint="   Enter Username"
         android:inputType="textPersonName"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserGender" />
 
     <EditText
         android:id="@+id/createUserPass"
-        android:layout_width="209dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="105dp"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
         android:ems="10"
-        android:hint="Enter Password"
+        android:hint="   Enter Password"
         android:inputType="textPersonName"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createUserName" />
 
     <EditText
         android:id="@+id/createUserPassCheck"
-        android:layout_width="211dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="104dp"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
         android:ems="10"
-        android:hint="Re-enter Password"
+        android:hint="   Re-enter Password"
         android:inputType="textPersonName"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createUserPass" />
 
     <EditText
         android:id="@+id/createUserEmail"
-        android:layout_width="209dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="103dp"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
         android:ems="10"
-        android:hint="Enter Email"
+        android:hint="   Enter Email"
         android:inputType="textPersonName"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createUserPassCheck" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/createUserType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="265dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserEmail"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserEmail">
 
 
         <AutoCompleteTextView
             android:id="@+id/createUserTypeSub"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Please select user type"
+            android:layout_width="265dp"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:hint="   Please Select User Type"
             android:inputType="none"
+            android:textSize="14sp"
             tools:layout_editor_absoluteX="14dp"
             tools:layout_editor_absoluteY="440dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/createUserGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserLastName" >
-
-        <AutoCompleteTextView
-            android:id="@+id/createUserGenderSub"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Please select gender"
-            android:inputType="none"
-            tools:layout_editor_absoluteX="14dp"
-            tools:layout_editor_absoluteY="440dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
 
 
     <Button
         android:id="@+id/createUserButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/darkest_grey"
         android:text="Create User"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createUserType" />
-
-    <EditText
-        android:id="@+id/createUserFirstName"
-        android:layout_width="265dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="72dp"
-        android:ems="10"
-        android:hint="Enter First Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/createUserLastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="72dp"
-        android:ems="10"
-        android:hint="Enter Last Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserFirstName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
