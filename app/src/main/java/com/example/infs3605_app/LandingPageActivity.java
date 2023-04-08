@@ -24,7 +24,7 @@ public class LandingPageActivity extends AppCompatActivity {
         testBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), StudentFollowingListActivity.class));
+                startActivity(new Intent(getApplicationContext(), CreateEventActivity.class));
             }
         });
     }

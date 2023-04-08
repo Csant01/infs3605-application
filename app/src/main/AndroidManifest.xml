@@ -25,12 +25,6 @@
             android:name=".OrganiserPublicProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".StaffSettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".StudentSettingsActivity"
-            android:exported="false" />
-        <activity
             android:name=".StaffAllEventsActivity"
             android:exported="false" />
         <activity
