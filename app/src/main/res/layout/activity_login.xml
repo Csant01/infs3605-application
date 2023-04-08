@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/yellow"
     tools:context=".LoginActivity">
 
     <ImageView
@@ -35,7 +36,7 @@
             android:id="@+id/emailInput"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:background="#DADADA"
+            android:background="@color/white"
             android:hint="Email"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -56,6 +57,7 @@
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:hint="Password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -65,9 +67,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="#FBD22C"
+        android:background="@color/darkest_grey"
         android:text="Login"
-        android:textColor="#444443"
+        android:textColor="@color/yellow"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
@@ -76,9 +79,10 @@
         android:id="@+id/unswAlumniPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Are you an UNSW Alumni and need an account? "
-        android:textColor="#5A605C"
+        android:layout_marginTop="40dp"
+        android:text="Need an Account?"
+        android:textColor="@color/black"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,10 +93,11 @@
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:background="#FEF4C3"
+        android:layout_marginTop="20dp"
+        android:background="@color/darkest_grey"
+        android:backgroundTint="@color/darkest_grey"
         android:text="Register here!"
-        android:textColor="#444443"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
