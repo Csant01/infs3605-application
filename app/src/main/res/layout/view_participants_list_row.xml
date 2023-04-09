@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/participantProfilePicture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/participantProfilePicture"
+        app:layout_constraintStart_toEndOf="@+id/participantProfilePicture"
+        app:layout_constraintTop_toTopOf="@+id/participantProfilePicture">
+
+        <TextView
+            android:id="@+id/studentParticipantName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Student Name"
+            android:textColor="@color/darkest_grey"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/studentParticipantEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email@EMAIL.COM"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/studentParticipantLinkedIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lINKEDIN"
+            android:textColor="#2196F3" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
