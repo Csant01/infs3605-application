@@ -8,13 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +34,7 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organiser_public_profile);
         organiserName = findViewById(R.id.organiserNamePrint);
-        organiserFaculty = findViewById(R.id.facultyPrint);
+        organiserFaculty = findViewById(R.id.organiserCountry);
         organiserType = findViewById(R.id.organiserTypePrint);
         organiserPicture = findViewById(R.id.organiserImageView);
         pastEvents = findViewById(R.id.pastEventsButton);

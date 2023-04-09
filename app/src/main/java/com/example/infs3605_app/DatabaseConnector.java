@@ -43,9 +43,9 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "(" +
                 "USER_ID TEXT PRIMARY KEY NOT NULL, " +
                 "USER_NAME TEXT NOT NULL, " +
-                "USER_FNAME TEXT NOT NULL, " +
-                "USER_LNAME TEXT NOT NULL, " +
-                "USER_GENDER TEXT NOT NULL, " +
+                "USER_FNAME TEXT, " +
+                "USER_LNAME TEXT, " +
+                "USER_GENDER TEXT, " +
                 "USER_DOB INT, " +
                 "USER_COUNTRY TEXT, " +
                 "USER_CITY TEXT, " +
