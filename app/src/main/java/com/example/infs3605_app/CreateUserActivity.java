@@ -23,6 +23,7 @@ public class CreateUserActivity extends AppCompatActivity {
     TextView createUserEmail;
     TextView createUserFirstName;
     AutoCompleteTextView createUserType;
+    AutoCompleteTextView createUserGender;
     Button createUserButton;
     String userName;
     String userEmail;
@@ -48,6 +49,10 @@ public class CreateUserActivity extends AppCompatActivity {
         userTypeArray.add("Partner University");
         userTypeArray.add("Other");
 
+        userGenderArray.add("Male");
+        userGenderAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, userGenderArray);
+
+
         createUserName = findViewById(R.id.createUserName);
         createUserPass = findViewById(R.id.createUserPass);
         createUserPassCheck = findViewById(R.id.createUserPassCheck);
@@ -55,9 +60,11 @@ public class CreateUserActivity extends AppCompatActivity {
         createUserType = findViewById(R.id.createUserTypeSub);
         createUserButton = findViewById(R.id.createUserButton);
         createUserFirstName = findViewById(R.id.createUserFirstName);
+        createUserGender = findViewById(R.id.createUserGenderSub);
 
         userTypeAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, userTypeArray);
         createUserType.setAdapter(userTypeAdapter);
+        createUserGender.setAdapter(userTypeAdapter);
 
         createUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,12 +78,7 @@ public class CreateUserActivity extends AppCompatActivity {
                 User user = new User(TMP_STRING, userFirstName, null, null, userName,
                         userEmail, userPass, userType);
 
-                if (user.hasEmptyFields()) {
-                    Toast.makeText(CreateUserActivity.this, "Please ensure all fields" +
-                                    " are entered.",
-                            Toast.LENGTH_SHORT).show();
-
-                } else if (checkEmail(userEmail, userType)) {
+                if (checkEmail(userEmail, userType)) {
                     if (checkPass(userPass, userPassCheck)) {
                         user.setUserID(createUserID(userType));
                         user.setUserType(checkUserType(user));

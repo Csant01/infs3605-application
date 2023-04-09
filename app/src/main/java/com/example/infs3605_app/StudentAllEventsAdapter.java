@@ -43,15 +43,6 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
         holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
-        if (event.getEventCategory().equals("Network")) {
-            holder.eventImage.setImageResource(R.drawable.ic_networking);
-        } else if (event.getEventCategory().equals("Careers")) {
-            holder.eventImage.setImageResource(R.drawable.ic_career);
-        } else if (event.getEventCategory().equals("Social")) {
-            holder.eventImage.setImageResource(R.drawable.ic_social);
-        } else if (event.getEventCategory().equals("Travel")) {
-            holder.eventImage.setImageResource(R.drawable.ic_travel);
-        }
 
     }
 

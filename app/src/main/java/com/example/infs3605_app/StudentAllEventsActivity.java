@@ -165,10 +165,10 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
             eventList.clear();
             adapter.notifyDataSetChanged();
             for (int i = 0; i < allEvents.size(); i++) {
-                if (allEvents.get(i).getEventIsApproved() != 0) {
+//                if (allEvents.get(i).getEventIsApproved() != 0) {
                     eventList.add(allEvents.get(i));
                     adapter.notifyDataSetChanged();
-                }
+//                }
             }
             return true;
         } else {

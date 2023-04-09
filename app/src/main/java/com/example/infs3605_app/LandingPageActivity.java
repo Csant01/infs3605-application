@@ -20,11 +20,12 @@ public class LandingPageActivity extends AppCompatActivity {
         testBtn = findViewById(R.id.testBtn);
         db = new DatabaseConnector(this);
 //        db.addSampleEventData();
+//        db.createSampleUser();
 
         testBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), StudentFollowingListActivity.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
     }

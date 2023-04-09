@@ -167,6 +167,20 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
+    public void createSampleUser() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("USER_ID", "tmp123");
+        cv.put("USER_NAME", "fionaliu");
+        cv.put("USER_FNAME", "Fiona");
+        cv.put("USER_LNAME", "Liu");
+        cv.put("USER_GENDER", "Female");
+        cv.put("USER_EMAIL", "test2@ad.unsw.edu.au");
+        cv.put("USER_TYPE", "Student");
+        cv.put("USER_PASS", toHashCode("test"));
+        db.insert("USERS", null, cv);
+    }
+
     public String getUserId (String userName) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = String.format("SELECT USER_ID FROM USERS WHERE USER_NAME = '%s'", userName);
