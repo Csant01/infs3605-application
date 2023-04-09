@@ -33,5 +33,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+    <SearchView
+        android:layout_width="409dp"
+        android:layout_height="98dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="57dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
