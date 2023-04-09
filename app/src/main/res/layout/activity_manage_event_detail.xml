@@ -55,8 +55,8 @@
                 android:id="@+id/eventNameLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="EVENT NAME:"
                 android:textColor="@color/darkest_grey"
@@ -68,7 +68,7 @@
                 android:id="@+id/eventDescriptionLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="EVENT DESCRIPTION:"
@@ -79,9 +79,9 @@
 
             <TextView
                 android:id="@+id/eventLocationLabel"
-                android:layout_width="wrap_content"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="EVENT LOCATION:"
@@ -94,7 +94,7 @@
                 android:id="@+id/eventCityLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="CITY:"
@@ -107,7 +107,7 @@
                 android:id="@+id/eventCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="COUNTRY:"
@@ -120,7 +120,7 @@
                 android:id="@+id/eventFacilityLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="FACILITY:"
@@ -133,7 +133,7 @@
                 android:id="@+id/eventCategoryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="CATEGORY:"
@@ -188,6 +188,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -216,7 +217,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="START TIME:"
                 android:textColor="@color/darkest_grey"
@@ -228,7 +229,7 @@
                 android:id="@+id/facultyLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="FACULTY:"
@@ -239,11 +240,12 @@
 
             <EditText
                 android:id="@+id/editEventName"
-                android:layout_width="361dp"
-                android:layout_height="43dp"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -253,11 +255,12 @@
 
             <EditText
                 android:id="@+id/editEventDesc"
-                android:layout_width="361dp"
-                android:layout_height="39dp"
+                android:layout_width="350dp"
+                android:layout_height="72dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -272,24 +275,27 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/facultyLabel">
 
                 <AutoCompleteTextView
                     android:id="@+id/editFacultyDropdownSelector"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="350dp"
+                    android:layout_height="48dp"
+                    android:background="@color/light_grey"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <EditText
                 android:id="@+id/editEventLocation"
-                android:layout_width="353dp"
-                android:layout_height="40dp"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -299,11 +305,12 @@
 
             <EditText
                 android:id="@+id/editPredictedAttendance"
-                android:layout_width="359dp"
-                android:layout_height="42dp"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -313,11 +320,12 @@
 
             <EditText
                 android:id="@+id/editEventCity"
-                android:layout_width="352dp"
-                android:layout_height="40dp"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -327,14 +335,14 @@
 
             <EditText
                 android:id="@+id/editEventCountry"
-                android:layout_width="347dp"
-                android:layout_height="44dp"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -342,11 +350,12 @@
 
             <EditText
                 android:id="@+id/editEventFacility"
-                android:layout_width="344dp"
-                android:layout_height="42dp"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -356,10 +365,11 @@
             <EditText
                 android:id="@+id/editEstimatedCost"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -370,12 +380,12 @@
             <EditText
                 android:id="@+id/editEventDate"
                 android:layout_width="122dp"
-                android:layout_height="29dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/eventDateLabel"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -383,9 +393,10 @@
             <EditText
                 android:id="@+id/editEventStartTime"
                 android:layout_width="88dp"
-                android:layout_height="31dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -394,11 +405,12 @@
 
             <EditText
                 android:id="@+id/editStaffingNumbers"
-                android:layout_width="361dp"
-                android:layout_height="46dp"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -421,11 +433,12 @@
 
             <EditText
                 android:id="@+id/editEventCatering"
-                android:layout_width="361dp"
-                android:layout_height="44dp"
+                android:layout_width="350dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -444,7 +457,7 @@
                 android:textColor="@color/darkest_grey"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/endTimeLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/editEventEndTime" />
 
             <TextView
                 android:id="@+id/endTimeLabel"
@@ -462,9 +475,10 @@
             <EditText
                 android:id="@+id/editEventEndTime"
                 android:layout_width="89dp"
-                android:layout_height="24dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="15dp"
+                android:background="@color/light_grey"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
@@ -478,6 +492,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="24dp"
+                android:textColorHint="@color/light_grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/eventCategoryLabel">
@@ -485,7 +500,8 @@
                 <AutoCompleteTextView
                     android:id="@+id/editCategoryDropdownSelector"
                     android:layout_width="350dp"
-                    android:layout_height="46dp" />
+                    android:layout_height="48dp"
+                    android:background="@color/light_grey" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -496,6 +512,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="30dp"
+                android:background="@color/yellow"
+                android:backgroundTint="@color/yellow"
                 android:text="UPDATE EVENT DETAILS"
                 android:textColor="@color/darkest_grey"
                 app:layout_constraintBottom_toBottomOf="parent"
