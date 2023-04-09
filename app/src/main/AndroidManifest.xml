@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.INFS3605App">
         <activity
+            android:name=".ViewParticipantsActivity"
+            android:exported="false" />
+        <activity
             android:name=".StudentFeedbackFormActivity"
             android:exported="false" />
         <activity
