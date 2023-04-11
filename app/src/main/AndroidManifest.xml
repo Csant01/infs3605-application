@@ -46,9 +46,6 @@
             android:name=".EventDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterAlumni"
-            android:exported="false" />
-        <activity
             android:name=".CreateEventActivity"
             android:exported="false" />
         <activity
