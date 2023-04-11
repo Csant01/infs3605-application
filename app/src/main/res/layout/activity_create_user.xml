@@ -7,173 +7,214 @@
     android:background="@color/yellow"
     tools:context=".CreateUserActivity">
 
-    <ImageView
-        android:id="@+id/uniteLogo"
-        android:layout_width="98dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_logo_compact" />
-
     <TextView
         android:id="@+id/registerPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="REGISTER HERE!"
-        android:textColor="@color/darkest_grey"
-        android:textSize="20sp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="110dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Hello,"
+        android:textColor="@color/white"
+        android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uniteLogo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/createUserFirstName"
-        android:layout_width="265dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="   Enter First Name"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerPrompt" />
-
-    <EditText
-        android:id="@+id/createUserLastName"
-        android:layout_width="265dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="   Enter Last Name"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserFirstName" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/createUserGender"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="265dp"
-        android:layout_height="45dp"
-        android:layout_margin="16dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserLastName">
-
-        <AutoCompleteTextView
-            android:id="@+id/createUserGenderSub"
-            android:layout_width="265dp"
-            android:layout_height="48dp"
-            android:background="@color/white"
-            android:hint="Please Select Gender"
-            android:inputType="none"
-            android:textSize="14sp"
-            tools:layout_editor_absoluteX="14dp"
-            tools:layout_editor_absoluteY="440dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/createUserName"
-        android:layout_width="265dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:fontFamily="@font/poppins_regular"
-        android:hint="   Enter Username"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserGender" />
-
-    <EditText
-        android:id="@+id/createUserPass"
-        android:layout_width="265dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="   Enter Password"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserName" />
-
-    <EditText
-        android:id="@+id/createUserPassCheck"
-        android:layout_width="265dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="   Re-enter Password"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserPass" />
-
-    <EditText
-        android:id="@+id/createUserEmail"
-        android:layout_width="265dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="   Enter Email"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserPassCheck" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/createUserType"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="265dp"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserEmail">
-
-
-        <AutoCompleteTextView
-            android:id="@+id/createUserTypeSub"
-            android:layout_width="265dp"
-            android:layout_height="48dp"
-            android:background="@color/white"
-            android:hint="   Please Select User Type"
-            android:inputType="none"
-            android:textSize="14sp"
-            tools:layout_editor_absoluteX="14dp"
-            tools:layout_editor_absoluteY="440dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <Button
-        android:id="@+id/createUserButton"
+    <TextView
+        android:id="@+id/registerPromptTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/darkest_grey"
-        android:text="Create User"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Register Now!"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="@+id/registerPrompt"
+        app:layout_constraintTop_toBottomOf="@+id/registerPrompt" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="-250dp"
+        android:layout_marginEnd="-20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createUserType" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_background_circles" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp"
+        app:cardMaxElevation="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerPromptTwo">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/createUserFirstName"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/edit_text_border"
+                    android:ems="10"
+                    android:hint="    Enter Name"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/createUserEmail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/createUserEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/edit_text_border"
+                    android:ems="10"
+                    android:hint="   Enter Email"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/createUserFirstName"
+                    app:layout_constraintStart_toStartOf="@+id/createUserFirstName"
+                    app:layout_constraintTop_toBottomOf="@+id/createUserFirstName" />
+
+                <EditText
+                    android:id="@+id/createUserName"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/edit_text_border"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="   Enter Username"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/createUserEmail"
+                    app:layout_constraintStart_toStartOf="@+id/createUserEmail"
+                    app:layout_constraintTop_toBottomOf="@+id/createUserEmail" />
+
+                <EditText
+                    android:id="@+id/createUserPass"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/edit_text_border"
+                    android:ems="10"
+                    android:hint="   Enter Password"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/createUserName"
+                    app:layout_constraintStart_toStartOf="@+id/createUserName"
+                    app:layout_constraintTop_toBottomOf="@+id/createUserName" />
+
+                <EditText
+                    android:id="@+id/createUserPassCheck"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/edit_text_border"
+                    android:ems="10"
+                    android:hint="   Re-enter Password"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/createUserPass"
+                    app:layout_constraintStart_toStartOf="@+id/createUserPass"
+                    app:layout_constraintTop_toBottomOf="@+id/createUserPass" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/createUserType"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/createUserPassCheck"
+                    app:layout_constraintStart_toStartOf="@+id/createUserPassCheck"
+                    app:layout_constraintTop_toBottomOf="@+id/createUserPassCheck">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/createUserTypeSub"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textColor="@color/dark_grey"
+                        tools:layout_editor_absoluteX="14dp"
+                        tools:layout_editor_absoluteY="440dp"
+                        android:hint="Please Select User Type"
+                        android:inputType="none"
+                        android:textSize="14sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Add a Profile Picture:"
+                    app:layout_constraintStart_toStartOf="@+id/createUserType"
+                    app:layout_constraintTop_toBottomOf="@+id/createUserType" />
+
+                <ImageView
+                    android:id="@+id/uploadProfilePictureImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="@+id/createUserType"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addProfilePictureButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:contentDescription="to select image for profile picture"
+                    app:layout_constraintBottom_toBottomOf="@+id/uploadProfilePictureImageView"
+                    app:layout_constraintEnd_toEndOf="@+id/createUserType"
+                    app:srcCompat="@drawable/ic_add" />
+
+                <Button
+                    android:id="@+id/createUserButton"
+                    android:layout_width="280dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="@color/light_yellow"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Register"
+                    android:textColor="@color/darkest_grey"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/uploadProfilePictureImageView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

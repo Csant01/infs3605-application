@@ -256,7 +256,7 @@
                 <AutoCompleteTextView
                     android:id="@+id/eventCategoryDropdownSelector"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:hint="Please Select Event Category"
                     android:inputType="none"
@@ -522,7 +522,7 @@
                 <AutoCompleteTextView
                     android:id="@+id/facultyDropdownSelector"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:hint="Please Select Your Faculty"
                     android:inputType="none"
