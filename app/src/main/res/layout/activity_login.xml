@@ -25,11 +25,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="200dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Hello,"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="38sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="Welcome Back!"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="38sp"
         app:layout_constraintStart_toStartOf="@+id/loginPrompt"
         app:layout_constraintTop_toBottomOf="@+id/loginPrompt" />
 
