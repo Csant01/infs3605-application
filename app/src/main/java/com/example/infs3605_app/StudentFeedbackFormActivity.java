@@ -56,8 +56,5 @@ public class StudentFeedbackFormActivity extends AppCompatActivity {
             }
         });
     }
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 }

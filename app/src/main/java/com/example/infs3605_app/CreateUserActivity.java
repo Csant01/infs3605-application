@@ -60,7 +60,6 @@ public class CreateUserActivity extends AppCompatActivity {
         createUserType = findViewById(R.id.createUserTypeSub);
         createUserButton = findViewById(R.id.createUserButton);
         createUserFirstName = findViewById(R.id.createUserFirstName);
-        createUserGender = findViewById(R.id.createUserGenderSub);
 
         userTypeAdapter = new ArrayAdapter<>(this, R.layout.dropdown_list, userTypeArray);
         createUserType.setAdapter(userTypeAdapter);
