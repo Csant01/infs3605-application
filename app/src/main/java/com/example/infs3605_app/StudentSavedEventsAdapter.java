@@ -1,6 +1,7 @@
 package com.example.infs3605_app;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,12 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
             holder.eventImage.setImageResource(R.drawable.unsw_unite_logo);
         }
         holder.eventCity.setText(event.getEventCity());
+        db = new DatabaseConnector(context);
+        if (db.checkUserGoing(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1), filteredEvents.get(position).getEventId())) {
+            holder.unsaveButton.setImageResource(R.drawable.ic_filled_bookmark);
+        } else {
+            holder.unsaveButton.setImageResource(R.drawable.ic_bookmark);
+        }
 
     }
 
@@ -114,23 +121,26 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
 
             unsaveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    db = new DatabaseConnector(view.getContext());
-                    // method here to unsave an event;
-                    Toast.makeText(view.getContext(), eventName.getText().toString() + " unsaved.",
-                            Toast.LENGTH_SHORT).show();
-                    unsaveButton.setImageResource(R.drawable.ic_bookmark);
+                public void onClick(View v) {
+                    db = new DatabaseConnector(context);
+                    int userGoing = db.setUserGoing(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1),
+                            filteredEvents.get(getAdapterPosition()).getEventId());
+                    if (userGoing == 0) {
+                        Toast.makeText(context, "You are now RSVP'ed for " + filteredEvents.get(getAdapterPosition()).getEventName(),
+                                Toast.LENGTH_SHORT).show();
+                        unsaveButton.setImageResource(R.drawable.ic_filled_bookmark);
+                    } else if (userGoing == 1) {
+                        Toast.makeText(context, "The date has already passed for " + filteredEvents.get(getAdapterPosition()).getEventName(),
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        unsaveButton.setImageResource(R.drawable.ic_bookmark);
+                        Toast.makeText(context, "You are no longer RSVP'ed for " + filteredEvents.get(getAdapterPosition()).getEventName(),
+                                Toast.LENGTH_SHORT).show();
+                    }
 
                 }
             });
 
-
-//            detailsButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // code here to switch pages.
-//                }
-//            });
         }
 
         @Override

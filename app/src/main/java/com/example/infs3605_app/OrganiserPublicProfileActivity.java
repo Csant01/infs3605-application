@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -27,7 +28,12 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
     DatabaseConnector db;
     List<Event> eventList;
     long epochSeconds;
+    String eventId;
     String eventOwner;
+    byte[] bytes;
+    String eventOwnerId;
+    User user;
+    private static final String TAG = "OrganiserPublicProfile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +44,34 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
         organiserType = findViewById(R.id.organiserTypePrint);
         organiserPicture = findViewById(R.id.organiserImageView);
         pastEvents = findViewById(R.id.pastEventsButton);
+        clearFilter = findViewById(R.id.organiserClearFilter);
         Date currentDate = new Date();
         long epochMillis = currentDate.getTime();
         epochSeconds = epochMillis / 1000L;
         db = new DatabaseConnector(this);
-        eventOwner = getIntent().getStringExtra("ORGANISER_NAME");
+        eventId = getIntent().getStringExtra("EVENT_ID");
+        ArrayList<Event> allEvents = db.getEventInfo();
+        for (int i = 0; i < allEvents.size(); i++) {
+            if (allEvents.get(i).getEventId().equals(eventId)) {
+                eventOwner = allEvents.get(i).getEventOwner();
+            }
+        }
+        Log.d(TAG, "owner: " + eventOwner);
+        Log.d(TAG, "event id: " + eventId);
+        ArrayList<User> allUsers = db.getUserInfo();
+        for (int i = 0; i < allUsers.size(); i++) {
+            if (allUsers.get(i).getUserName().equals(eventOwner)) {
+                eventOwnerId = allUsers.get(i).getUserID();
+                user = allUsers.get(i);
+            }
+        }
+
+
+        bytes = db.retrieveOrganiserImageFromDatabaseFiltered(eventOwnerId);
+        organiserPicture.setImageBitmap(ImageUtils.getImage(bytes));
+        organiserName.setText(eventOwner);
+        organiserType.setText(convertTypeToString(Integer.parseInt(user.getUserType())));
+        organiserFaculty.setText(user.getUserFaculty());
 
         // Need Ariane to finalise form for Alumni/Organiser signup to assign fields.
         eventList = new ArrayList<>();
@@ -50,11 +79,7 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
         adapter = new OrganiserProfileEventsAdapter(this, eventList, this);
         organiserRv.setAdapter(adapter);
         organiserRv.setLayoutManager(new LinearLayoutManager(this));
-        if (!displayPastEventData(eventOwner)) {
-            Toast.makeText(OrganiserPublicProfileActivity.this, "No events " +
-                            " for this organiser.",
-                    Toast.LENGTH_SHORT).show();
-        }
+        displayFutureEventData(eventOwner);
 
         pastEvents.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,12 +112,16 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
             eventList.clear();
             adapter.notifyDataSetChanged();
             for (int i = 0; i < allEvents.size(); i++) {
-                if (allEvents.get(i).getEventIsApproved() != 0
-                        && allEvents.get(i).getEventOwner().equals(organiser)
+                if (//allEvents.get(i).getEventIsApproved() != 0
+                        /*&&*/ allEvents.get(i).getEventOwner().equals(organiser)
                         && allEvents.get(i).getEventDate() >= epochSeconds
-                        && allEvents.get(i).getEventIsApproved() != 0
                         && allEvents.get(i).getEventIsDeleted() != 1) {
                     eventList.add(allEvents.get(i));
+                    Log.d(TAG, "Event Owner: " + allEvents.get(i).getEventOwner());
+                    Log.d(TAG, "Organiser: " + organiser);
+                    Log.d(TAG, "Event Date: " + allEvents.get(i).getEventDate());
+                    Log.d(TAG, "Epoch: " + epochSeconds);
+                    Log.d(TAG, "Event Owner: " + allEvents.get(i).getEventOwner());
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -133,19 +162,16 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
-    @Override
-    public void onSaveClick(int position) {
-        eventList.get(position);
-        String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
-        // need method for saving and unsaving events.
-        if (db.setUserFavSav(user, eventList.get(position).getEventId(), 1) == 0) {
-            Toast.makeText(OrganiserPublicProfileActivity.this, eventList.get(position).getEventName() +
-                            " unsaved",
-                    Toast.LENGTH_SHORT).show();
-
+    public String convertTypeToString (int type) {
+        if (type == 1) {
+            return "UNSW Student Society";
+        } else if (type == 2) {
+            return "Partner University";
+        } else if (type == 3) {
+            return "Other";
+        } else {
+            return "UNSW Alumni";
         }
-
-
-
     }
+
 }

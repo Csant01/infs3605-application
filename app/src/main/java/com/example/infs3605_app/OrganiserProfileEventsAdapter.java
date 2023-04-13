@@ -1,11 +1,14 @@
 package com.example.infs3605_app;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +22,8 @@ public class OrganiserProfileEventsAdapter extends RecyclerView.Adapter<Organise
     Context context;
     OnOrganiserEventClickListener eventClickListener;
     ImageButton saveEvent;
+    DatabaseConnector db;
+    private static final String TAG = "OrganiserProfileEventsAdapter";
 
     public OrganiserProfileEventsAdapter(Context context, List<Event> alLEvents, OnOrganiserEventClickListener eventClickListener) {
         this.alLEvents = alLEvents;
@@ -29,7 +34,8 @@ public class OrganiserProfileEventsAdapter extends RecyclerView.Adapter<Organise
     @NonNull
     @Override
     public OrganiserProfileEventsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(context).inflate(R.layout.student_all_events_list_row, parent, false);
+        return new ViewHolder(view, eventClickListener);
     }
 
     @Override
@@ -38,6 +44,12 @@ public class OrganiserProfileEventsAdapter extends RecyclerView.Adapter<Organise
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
         holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
+        db = new DatabaseConnector(context);
+        if (db.checkUserGoing(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1), alLEvents.get(position).getEventId())) {
+            holder.saveEvent.setImageResource(R.drawable.ic_filled_bookmark);
+        } else {
+            holder.saveEvent.setImageResource(R.drawable.ic_bookmark);
+        }
     }
 
     @Override
@@ -47,7 +59,7 @@ public class OrganiserProfileEventsAdapter extends RecyclerView.Adapter<Organise
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView saveEvent;
+        ImageButton saveEvent;
         TextView eventName, eventDate, eventOrg;
         OnOrganiserEventClickListener eventClickListener;
         public ViewHolder(@NonNull View itemView, OnOrganiserEventClickListener eventClickListener) {
@@ -59,20 +71,39 @@ public class OrganiserProfileEventsAdapter extends RecyclerView.Adapter<Organise
             this.eventClickListener = eventClickListener;
 
             itemView.setOnClickListener(this);
-            saveEvent.setOnClickListener(this);
+            saveEvent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    db = new DatabaseConnector(context);
+                    int userGoing = db.setUserGoing(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1),
+                            alLEvents.get(getAdapterPosition()).getEventId());
+                    if (userGoing == 0) {
+                        Toast.makeText(context, "You are now RSVP'ed for " + alLEvents.get(getAdapterPosition()).getEventName(),
+                                Toast.LENGTH_SHORT).show();
+                        saveEvent.setImageResource(R.drawable.ic_filled_bookmark);
+                    } else if (userGoing == 1) {
+                        Toast.makeText(context, "The date has already passed for " + alLEvents.get(getAdapterPosition()).getEventName(),
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        saveEvent.setImageResource(R.drawable.ic_bookmark);
+                        Toast.makeText(context, "You are no longer RSVP'ed for " + alLEvents.get(getAdapterPosition()).getEventName(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    Log.d(TAG, "onClick:" + userGoing);
+                }
+            });
 
         }
 
         @Override
         public void onClick(View view) {
             eventClickListener.onEventClick(getAdapterPosition());
-            eventClickListener.onSaveClick(getAdapterPosition());
         }
     }
 
     public interface OnOrganiserEventClickListener {
         void onEventClick (int position);
-        void onSaveClick (int position);
 
     }
 

@@ -66,7 +66,7 @@ public class EventDetailActivity extends AppCompatActivity {
         eventOrg.setText(event.getEventOwner());
         eventDesc.setText(event.getEventDescription());
 
-        bytes = db.retrieveImageFromDatabaseFiltered(eventId);
+        bytes = db.retrieveEventImageFromDatabaseFiltered(eventId);
         eventImage.setImageBitmap(ImageUtils.getImage(bytes));
 
         // Set Toolbar
@@ -79,6 +79,7 @@ public class EventDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), OrganiserPublicProfileActivity.class);
                 intent.putExtra("ORGANISER_NAME", event.getEventOwner());
+                intent.putExtra("EVENT_ID", event.getEventId());
                 intent.putExtra("USER_TYPE", "student");
                 intent.putExtra("PAGE", "EventDetail");
                 startActivity(intent);

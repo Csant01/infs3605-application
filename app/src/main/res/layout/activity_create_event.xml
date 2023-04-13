@@ -30,8 +30,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
@@ -130,13 +132,12 @@
                 android:id="@+id/eventLocationLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="EVENT LOCATION:"
                 android:textColor="@color/darkest_grey"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/facultyDropdown"
-                app:layout_constraintTop_toBottomOf="@+id/facultyDropdown" />
+                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTextBox"
+                tools:layout_editor_absoluteX="24dp" />
 
             <EditText
                 android:id="@+id/eventLocationTextBox"
@@ -245,8 +246,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/eventCategoryDropdown"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_width="391dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventCategoryLabel"
@@ -496,41 +497,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/endTimeLabel"
                 app:layout_constraintTop_toBottomOf="@+id/endTimeLabel" />
-
-            <TextView
-                android:id="@+id/facultyLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="FACULTY:"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/darkest_grey"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/eventDescriptionTextBox"
-                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionTextBox" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/facultyDropdown"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/facultyLabel"
-                app:layout_constraintTop_toBottomOf="@+id/facultyLabel">
-
-                <AutoCompleteTextView
-                    android:id="@+id/facultyDropdownSelector"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:hint="Please Select Your Faculty"
-                    android:inputType="none"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="14sp"
-                    tools:layout_editor_absoluteX="14dp"
-                    tools:layout_editor_absoluteY="440dp" />
-            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

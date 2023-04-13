@@ -22,6 +22,7 @@ public class LandingPageActivity extends AppCompatActivity {
 //        db.addSampleEventData();
 //        db.createSampleUser();
 
+
         testBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

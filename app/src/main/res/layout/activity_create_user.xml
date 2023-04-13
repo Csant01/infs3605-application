@@ -70,6 +70,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/createUserFaculty"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="349dp"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/createUserType"
+                    app:layout_constraintStart_toStartOf="@+id/createUserType"
+                    app:layout_constraintTop_toBottomOf="@+id/createUserType">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/createUserFacultySub"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="Please Select User Faculty"
+                        android:inputType="none"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14sp"
+                        tools:layout_editor_absoluteX="14dp"
+                        tools:layout_editor_absoluteY="440dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <EditText
                     android:id="@+id/createUserFirstName"
                     android:layout_width="0dp"
@@ -148,8 +173,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/createUserType"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_width="349dp"
+                    android:layout_height="49dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="@+id/createUserPassCheck"
                     app:layout_constraintStart_toStartOf="@+id/createUserPassCheck"
@@ -161,12 +186,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:textColor="@color/dark_grey"
-                        tools:layout_editor_absoluteX="14dp"
-                        tools:layout_editor_absoluteY="440dp"
                         android:hint="Please Select User Type"
                         android:inputType="none"
-                        android:textSize="14sp" />
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14sp"
+                        tools:layout_editor_absoluteX="14dp"
+                        tools:layout_editor_absoluteY="440dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,8 +201,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Add a Profile Picture:"
-                    app:layout_constraintStart_toStartOf="@+id/createUserType"
-                    app:layout_constraintTop_toBottomOf="@+id/createUserType" />
+                    app:layout_constraintStart_toStartOf="@+id/createUserFaculty"
+                    app:layout_constraintTop_toBottomOf="@+id/createUserFaculty" />
 
                 <ImageView
                     android:id="@+id/uploadProfilePictureImageView"
@@ -195,7 +220,7 @@
                     android:clickable="true"
                     android:contentDescription="to select image for profile picture"
                     app:layout_constraintBottom_toBottomOf="@+id/uploadProfilePictureImageView"
-                    app:layout_constraintEnd_toEndOf="@+id/createUserType"
+                    app:layout_constraintEnd_toEndOf="@+id/createUserFaculty"
                     app:srcCompat="@drawable/ic_add" />
 
                 <Button

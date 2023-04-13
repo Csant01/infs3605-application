@@ -21,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class DatabaseConnector extends SQLiteOpenHelper {
@@ -29,6 +30,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public static final String IMAGE = "image";
     private SQLiteDatabase mDb;
     private DatabaseConnector mDbc;
+    long epochSeconds;
 
     public DatabaseConnector(@Nullable Context context) {
         super(context, "database.db", null, 1);
@@ -52,7 +54,9 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "USER_PROF_IMAGE TEXT, " +
                 "USER_EMAIL TEXT NOT NULL, " +
                 "USER_TYPE INT NOT NULL, " +
-                "USER_PASS INT NOT NULL" +
+                "USER_PASS INT NOT NULL, " +
+                "USER_IMAGE BLOB, " +
+                "USER_FACULTY TEXT" +
                 ")";
 
         String createEventTable = "CREATE TABLE IF NOT EXISTS EVENTS " +
@@ -150,6 +154,14 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "FOREIGN KEY (EVENT_ID) REFERENCES EVENTS(EVENT_ID)" +
                 ")";
 
+        String createOrganiserImagesTable = "CREATE TABLE IF NOT EXISTS ORGANISER_IMAGES " +
+                "(" +
+                "ORG_IMAGE_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "ORG_IMAGE BLOB NOT NULL, " +
+                "USER_ID TEXT, " +
+                "FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID)" +
+                ")";
+
         db.execSQL(createUserTable);
         db.execSQL(createEventTable);
         db.execSQL(createUserFollowingTable);
@@ -159,6 +171,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         db.execSQL(createUserFeedbackTable);
         db.execSQL(createUnswReceiptsTable);
         db.execSQL(createEventImagesTable);
+        db.execSQL(createOrganiserImagesTable);
 
     }
 
@@ -193,7 +206,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return null;
     }
 
-    public void insertImage(byte[] imageBytes, @Nullable String eventId) {
+    public void insertEventImage(byte[] imageBytes, @Nullable String eventId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("EVENT_ID", eventId);
@@ -202,7 +215,16 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
-    public byte[] retrieveImageFromDatabase () {
+    public void insertOrganiserImage(byte[] imageBytes, @Nullable String eventOwner) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("USER_ID", eventOwner);
+        cv.put("ORG_IMAGE", imageBytes);
+        db.insert("ORGANISER_IMAGES", null, cv);
+
+    }
+
+    public byte[] retrieveEventImageFromDatabase () {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT EVENT_IMAGE FROM EVENT_IMAGES ORDER BY EVENT_ID DESC";
         Cursor cursor = db.rawQuery(query,null);
@@ -215,11 +237,31 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return null;
     }
 
-    public void assignIdToImage (String eventId, byte[] blob) {
+    public byte[] retrieveOrganiserImageFromDatabase () {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT ORG_IMAGE FROM ORGANISER_IMAGES ORDER BY ORG_IMAGE_ID DESC";
+        Cursor cursor = db.rawQuery(query,null);
+
+        if (cursor.moveToFirst()) {
+            byte[] blob = cursor.getBlob(0);
+            return blob;
+        }
+
+        return null;
+    }
+
+    public void assignEventIdToImage (String eventId, byte[] blob) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE EVENT_IMAGES SET EVENT_ID = ? WHERE EVENT_IMAGE = ?";
         db.execSQL(query, new Object[] {eventId, blob});
         assignImageToEvent(eventId, blob);
+    }
+
+    public void assignOrgIdToImage (String eventOwner, byte[] blob) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE ORGANISER_IMAGES SET USER_ID = ? WHERE ORG_IMAGE = ?";
+        db.execSQL(query, new Object[] {eventOwner, blob});
+        assignImageToOrganiser(eventOwner, blob);
     }
 
     public void assignImageToEvent(String eventId, byte[] blob) {
@@ -228,9 +270,29 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         db.execSQL(query, new Object[] {blob, eventId});
     }
 
-    public byte[] retrieveImageFromDatabaseFiltered (String eventId) {
+    public void assignImageToOrganiser(String eventOwner, byte[] blob) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE USERS SET USER_IMAGE = ? WHERE USER_ID = ?";
+        db.execSQL(query, new Object[] {blob, eventOwner});
+    }
+
+    public byte[] retrieveEventImageFromDatabaseFiltered (String eventId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = String.format("SELECT EVENT_IMAGE FROM EVENT_IMAGES WHERE EVENT_ID = '%s'", eventId);
+        Cursor cursor = db.rawQuery(query,null);
+
+        if (cursor.moveToFirst()) {
+            byte[] blob = cursor.getBlob(0);
+            return blob;
+        }
+
+        return null;
+    }
+
+    public byte[] retrieveOrganiserImageFromDatabaseFiltered (String eventOwner) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT ORG_IMAGE FROM ORGANISER_IMAGES WHERE USER_ID = '%s'", eventOwner);
+
         Cursor cursor = db.rawQuery(query,null);
 
         if (cursor.moveToFirst()) {
@@ -259,6 +321,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put("USER_LNAME", user.getUserLastName());
         cv.put("USER_GENDER", user.getUserGender());
         cv.put("USER_TYPE", Integer.parseInt(user.getUserType()));
+        cv.put("USER_FACULTY", user.getUserFaculty());
 
         db.insert("USERS", null, cv);
 
@@ -289,7 +352,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             while (!cursor.isAfterLast()) {
                 User user = new User(cursor.getString(0), cursor.getString(2), cursor.getString(3),
                         cursor.getString(4), cursor.getString(1), cursor.getString(9), String.valueOf(cursor.getInt(11)),
-                        String.valueOf(cursor.getInt(10)));
+                        String.valueOf(cursor.getInt(10)), cursor.getString(13), cursor.getBlob(12));
                 allUsers.add(user);
                 cursor.moveToNext();
             }
@@ -381,14 +444,9 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     public ArrayList<UserEvent> getUserEvents (String user) {
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<User> allUsers = getUserInfo();
-        String userId = null;
+        String userId = getUserId(user);
 
-        for (int i = 0; i < allUsers.size(); i++) {
-            if (allUsers.get(i).getUserName().equals(user)) {
-                userId = allUsers.get(i).getUserID();
-            }
-        }
+
         String query = String.format("SELECT * FROM USER_EVENTS WHERE USER_ID = '%s'", userId);
         Cursor cursor = db.rawQuery(query, null);
         ArrayList<UserEvent> userEvents = new ArrayList<>();
@@ -405,68 +463,112 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return userEvents;
     }
 
-    public int setUserFavSav (String user, String event, int type) {
-        String userId = getUserId(user);
+//    public int setUserFavSav (String user, String event, int type) {
+//        String userId = getUserId(user);
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String query;
+//        int setValue = 99;
+//        int returnValue = 99;
+//        if (type == 0) {
+//            int current = getUserFavSav(userId, event, 0);
+//            if (current == 0) {
+//                setValue = 1;
+//                returnValue = 1;
+//            } else {
+//                setValue = 0;
+//                returnValue = 0;
+//            }
+//            query = "UPDATE USER_EVENTS SET FEEDBACK_COMPLETED = ? WHERE USER_ID = ? AND EVENT_ID = ?";
+//        } else {
+//            int current = getUserFavSav(userId, event, 0);
+//            if (current == 0) {
+//                setValue = 1;
+//                returnValue = 1;
+//            } else {
+//                setValue = 0;
+//                returnValue = 0;
+//            }
+//            query = "UPDATE USER_EVENTS SET USER_FAV = ? WHERE USER_ID = ? AND EVENT_ID = ?";
+//        }
+//        db.execSQL(query, new Object[]{setValue, userId, event});
+//        return returnValue;
+//    }
+//
+//    public int getUserFavSav (String user, String event, int type) {
+//        String userId = getUserId(user);
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        String query;
+//        if (type == 0) {
+//            query = String.format("SELECT FEEDBACK_COMPLETED WHERE USER_ID = '%s' AND EVENT_ID = '%s'", userId, event);
+//            Cursor cursor = db.rawQuery(query, null);
+//            if (cursor.moveToFirst()) {
+//                return cursor.getInt(0);
+//            }
+//        } else {
+//            query = String.format("SELECT FEEDBACK_COMPLETED WHERE USER_ID = '%s' AND EVENT_ID = '%s'", userId, event);
+//            Cursor cursor = db.rawQuery(query, null);
+//            if (cursor.moveToFirst()) {
+//                return cursor.getInt(0);
+//            }
+//        }
+//        return 99;
+//    }
+
+
+    public int setUserGoing (String userName, String eventId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query;
-        int setValue = 99;
-        int returnValue = 99;
-        if (type == 0) {
-            int current = getUserFavSav(userId, event, 0);
-            if (current == 0) {
-                setValue = 1;
-                returnValue = 1;
-            } else {
-                setValue = 0;
-                returnValue = 0;
-            }
-            query = "UPDATE USER_EVENTS SET FEEDBACK_COMPLETED = ? WHERE USER_ID = ? AND EVENT_ID = ?";
+        ContentValues cv = new ContentValues();
+        String userId = getUserId(userName);
+
+        if (!checkUserGoing(userName, eventId) && checkEventDate(eventId)) {
+            cv.put("USER_FAV", 1);
+            cv.put("USER_ATTENDED", 0);
+            cv.put("USER_ID", userId);
+            cv.put("EVENT_ID", eventId);
+            db.insert("USER_EVENTS", null, cv);
+            return 0;
+        } else if (!checkEventDate(eventId)) {
+            return 1;
         } else {
-            int current = getUserFavSav(userId, event, 0);
-            if (current == 0) {
-                setValue = 1;
-                returnValue = 1;
-            } else {
-                setValue = 0;
-                returnValue = 0;
-            }
-            query = "UPDATE USER_EVENTS SET USER_FAV = ? WHERE USER_ID = ? AND EVENT_ID = ?";
+            String query = String.format("DELETE FROM USER_EVENTS WHERE USER_ID = '%s' AND EVENT_ID = '%s'", userId, eventId);
+            db.execSQL(query);
+            return 2;
         }
-        db.execSQL(query, new Object[]{setValue, userId, event});
-        return returnValue;
+
     }
 
-    public int getUserFavSav (String user, String event, int type) {
-        String userId = getUserId(user);
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query;
-        if (type == 0) {
-            query = String.format("SELECT FEEDBACK_COMPLETED WHERE USER_ID = '%s' AND EVENT_ID = '%s'", userId, event);
-            Cursor cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) {
-                return cursor.getInt(0);
-            }
-        } else {
-            query = String.format("SELECT FEEDBACK_COMPLETED WHERE USER_ID = '%s' AND EVENT_ID = '%s'", userId, event);
-            Cursor cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) {
-                return cursor.getInt(0);
-            }
-        }
-        return 99;
+    public void tmpQuery (String userName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String userId = getUserId(userName);
+        String query = String.format("DELETE FROM USER_EVENTS WHERE USER_ID = '%s'", userId);
+        db.execSQL(query);
     }
 
-    public boolean checkUserGoing (String user, String event) {
-        ArrayList<UserEvent> userEvents = getUserEvents(user);
-        ArrayList<Event> allEvents = getEventInfo();
-        String eventId = null;
+    public boolean checkEventDate (String eventId) {
+        Date currentDate = new Date();
+        long epochMillis = currentDate.getTime();
+        epochSeconds = epochMillis / 1000L;
+        List<Event> allEvents = getEventInfo();
+
+
         for (int i = 0; i < allEvents.size(); i++) {
-            if (allEvents.get(i).getEventName().equals(event)) {
-                eventId = allEvents.get(i).getEventId();
+            if (allEvents.get(i).getEventId().equals(eventId)) {
+                if (allEvents.get(i).getEventDate() > epochSeconds) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
+
+        return false;
+    }
+
+    public boolean checkUserGoing (String userName, String eventId) {
+        ArrayList<UserEvent> userEvents = getUserEvents(userName);
+
         for (int i = 0; i < userEvents.size(); i++) {
-            if (userEvents.get(i).getUserEventId().equals(eventId)) {
+            if (userEvents.get(i).getEventId().equals(eventId)) {
                 if (userEvents.get(i).getUserFavourited() == 1 && userEvents.get(i).getUserAttended() == 0) {
                     return true;
                 } else {
@@ -478,6 +580,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return false;
 
     }
+
 
     public void addSampleUserFeedbackData () {
         SQLiteDatabase db = this.getWritableDatabase();

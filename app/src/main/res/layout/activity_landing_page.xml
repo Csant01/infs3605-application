@@ -17,13 +17,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="521dp"
-        android:layout_height="529dp"
-        android:layout_marginTop="-50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_landing_background_foreground" />
 </androidx.constraintlayout.widget.ConstraintLayout>

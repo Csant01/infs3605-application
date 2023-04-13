@@ -14,11 +14,15 @@ public class User {
     private String userFirstName;
     private String userLastName;
     private String userGender;
+    private String userFaculty;
+    private byte[] userImage;
     public static ArrayList<String> currentlyLoggedIn = new ArrayList<>();
+
+
 
     public User (String userID, String userFirstName, String userLastName, String userGender,
                  String userName, String userEmail,
-                 String userPass, String userType) {
+                 String userPass, String userType, String userFaculty, byte[] userImage) {
         this.userID = userID;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -27,8 +31,25 @@ public class User {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userGender = userGender;
+        this.userFaculty = userFaculty;
+        this.userImage = userImage;
     }
 
+    public byte[] getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(byte[] userImage) {
+        this.userImage = userImage;
+    }
+
+    public String getUserFaculty() {
+        return userFaculty;
+    }
+
+    public void setUserFaculty(String userFaculty) {
+        this.userFaculty = userFaculty;
+    }
     public String getUserID() {
         return userID;
     }

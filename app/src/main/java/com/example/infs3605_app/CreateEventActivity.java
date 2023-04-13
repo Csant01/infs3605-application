@@ -156,16 +156,16 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
                         String eventId = createEventID();
 
 
-                            Event event = new Event(eventId, eventNameString, eventLocationString,
-                                    eventDescriptionString, User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1),
-                                    eventCountryString, eventCityString, eventCategoryString, predictedAttnInt,
-                                    0, eventCostString,checkTicketed,null,formatEpoch(eventDateString), eventStartTimeString,
-                                    eventEndTimeString, 0, 0, eventStaffingInt, eventFacilityString);
-                            db.addEventToDatabase(event);
-                            db.assignIdToImage(eventId, blob);
+                        Event event = new Event(eventId, eventNameString, eventLocationString,
+                                eventDescriptionString, User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1),
+                                eventCountryString, eventCityString, eventCategoryString, predictedAttnInt,
+                                0, eventCostString,checkTicketed,null,formatEpoch(eventDateString), eventStartTimeString,
+                                eventEndTimeString, 0, 0, eventStaffingInt, eventFacilityString);
+                        db.addEventToDatabase(event);
+                        db.assignEventIdToImage(eventId, blob);
 
-                            Toast.makeText(CreateEventActivity.this, "Event has been forwarded to staff for approval.",
-                                    Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateEventActivity.this, "Event has been forwarded to staff for approval.",
+                                Toast.LENGTH_SHORT).show();
 
                     } else if (!emptyFields.isEmpty()){
                         for (int i = 0; i < emptyFields.size(); i++) {
@@ -355,7 +355,7 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
     private boolean loadImageFromDatabase() {
         try {
             db.open();
-            byte[] bytes = db.retrieveImageFromDatabase();
+            byte[] bytes = db.retrieveEventImageFromDatabase();
             eventImage.setImageBitmap(ImageUtils.getImage(bytes));
             return true;
         } catch (Exception e) {
@@ -369,7 +369,7 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
             InputStream stream = getContentResolver().openInputStream(selectImageUri);
             byte[] inputData = ImageUtils.getBytes(stream);
             blob = inputData;
-            db.insertImage(inputData, null);
+            db.insertEventImage(inputData, null);
             return true;
         } catch (Exception e) {
             return false;
