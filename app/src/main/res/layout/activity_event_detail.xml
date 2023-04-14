@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-medium"
         android:text="CATEGORY:"
         android:textColor="#444443"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-medium"
         android:text="DATE:"
         android:textColor="#444443"
@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-medium"
         android:text="START TIME:"
         android:textColor="#444443"
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-medium"
         android:text="DESCRIPTION:"
         android:textColor="#444443"
@@ -88,44 +88,40 @@
         android:id="@+id/displayEventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/eventNameField"
-        app:layout_constraintTop_toBottomOf="@+id/displayEventImage" />
+        app:layout_constraintTop_toTopOf="@+id/eventNameField" />
 
     <TextView
         android:id="@+id/displayEventCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/eventCategoryField"
-        app:layout_constraintTop_toBottomOf="@+id/displayEventName" />
+        app:layout_constraintTop_toTopOf="@+id/eventCategoryField" />
 
     <TextView
         android:id="@+id/displayEventDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/eventDateField"
-        app:layout_constraintTop_toBottomOf="@+id/eventCategoryField" />
+        app:layout_constraintTop_toTopOf="@+id/eventDateField" />
 
     <TextView
         android:id="@+id/displayEventStartTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/eventStartTimeField"
-        app:layout_constraintTop_toBottomOf="@+id/displayEventDate" />
+        app:layout_constraintTop_toTopOf="@+id/eventStartTimeField" />
 
     <TextView
         android:id="@+id/displayEventDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventDescriptionField" />
 
@@ -147,29 +143,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="184dp"
         android:fontFamily="sans-serif-medium"
         android:text="END TIME:"
         android:textColor="#444443"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/displayEventStartTime"
-        app:layout_constraintTop_toBottomOf="@+id/displayEventImage" />
+        app:layout_constraintTop_toTopOf="@+id/eventStartTimeField" />
 
     <TextView
         android:id="@+id/displayEventEndTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="182dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/eventEndTimeField"
-        app:layout_constraintTop_toBottomOf="@+id/displayEventImage" />
+        app:layout_constraintTop_toTopOf="@+id/eventEndTimeField" />
 
     <TextView
         android:id="@+id/eventLocationField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-medium"
         android:text="LOCATION:"
         android:textColor="#444443"
@@ -182,7 +176,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-medium"
         android:text="CITY:"
         android:textColor="#444443"
@@ -195,20 +189,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-medium"
         android:text="COUNTRY:"
         android:textColor="#444443"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/displayEventCity"
-        app:layout_constraintTop_toBottomOf="@+id/eventEndTimeField" />
+        app:layout_constraintTop_toTopOf="@+id/eventCityField" />
 
     <TextView
         android:id="@+id/eventOrganiserField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-medium"
         android:text="ORGANISER:"
         android:textColor="#444443"
@@ -220,36 +213,35 @@
         android:id="@+id/displayEventLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/eventLocationField"
-        app:layout_constraintTop_toBottomOf="@+id/displayEventStartTime" />
+        app:layout_constraintTop_toTopOf="@+id/eventLocationField" />
 
     <TextView
         android:id="@+id/displayEventCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/eventCountryField"
-        app:layout_constraintTop_toBottomOf="@+id/eventEndTimeField" />
+        app:layout_constraintTop_toTopOf="@+id/eventCountryField" />
 
     <TextView
         android:id="@+id/displayEventCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/eventCityField"
-        app:layout_constraintTop_toBottomOf="@+id/eventLocationField" />
+        app:layout_constraintTop_toTopOf="@+id/eventCityField" />
 
     <TextView
         android:id="@+id/displayEventOrganiser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="8dp"
+        android:text="Organiser Name"
+        android:textColor="#EDC700"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/eventOrganiserField"
-        app:layout_constraintTop_toBottomOf="@+id/displayEventCity" />
+        app:layout_constraintTop_toTopOf="@+id/eventOrganiserField" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

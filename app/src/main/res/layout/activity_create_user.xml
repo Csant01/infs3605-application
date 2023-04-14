@@ -47,10 +47,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="40dp"
         app:cardCornerRadius="25dp"
         app:cardElevation="3dp"
         app:cardMaxElevation="5dp"
@@ -63,7 +61,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="595dp">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout5"
@@ -74,7 +72,7 @@
                     android:id="@+id/createUserFaculty"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="349dp"
-                    android:layout_height="49dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="@+id/createUserType"
                     app:layout_constraintStart_toStartOf="@+id/createUserType"
@@ -99,9 +97,9 @@
                     android:id="@+id/createUserFirstName"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/edit_text_border"
                     android:ems="10"
@@ -175,7 +173,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
 
                     android:layout_width="349dp"
-                    android:layout_height="49dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="@+id/createUserPassCheck"
                     app:layout_constraintStart_toStartOf="@+id/createUserPassCheck"
