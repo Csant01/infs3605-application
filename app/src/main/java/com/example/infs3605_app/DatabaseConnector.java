@@ -180,6 +180,102 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<User> getNonStudents () {
+        ArrayList<User> allUsers = getUserInfo();
+        ArrayList<User> nonStudents = new ArrayList<>();
+        for (int i = 0; i < allUsers.size(); i++) {
+            if (Integer.parseInt(allUsers.get(i).getUserType()) != 0) {
+                nonStudents.add(allUsers.get(i));
+            }
+        }
+        return nonStudents;
+    }
+
+    public ArrayList<String> getUserFollowingString (String userName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String userId = getUserId(userName);
+        ArrayList<String> followingList = new ArrayList<>();
+        String query = String.format("SELECT FOLLOWING_ID FROM USER_FOLLOWING WHERE USER_ID = '%s'", userId);
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                followingList.add(cursor.getString(0));
+                cursor.moveToNext();
+            }
+        }
+
+        return followingList;
+    }
+
+    public ArrayList<User> getUserFollowingUser(String userName) {
+        ArrayList<String> followingString = getUserFollowingString(userName);
+        ArrayList<User> allUsers = getUserInfo();
+        ArrayList<User> followingUser = new ArrayList<>();
+
+        for (int i = 0; i < allUsers.size(); i++) {
+            for (String followingName : followingString) {
+                if (allUsers.get(i).getUserID().equals(followingName)) {
+                    followingUser.add(allUsers.get(i));
+                    Log.d(TAG, "getUserFollowingUser: " + allUsers.get(i).getUserName());
+                    break;
+                }
+            }
+        }
+        return followingUser;
+    }
+    public boolean checkFollowing (String userName, String followingId) {
+        String userId = getUserId(userName);
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT FOLLOWING_ID FROM USER_FOLLOWING WHERE USER_ID = '%s'", userId);
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                if (cursor.getString(0).equals(followingId)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public void unsetUserFollowing (String userName, String followingId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String userId = getUserId(userName);
+        String query = String.format("DELETE FROM USER_FOLLOWING WHERE USER_ID = '%s' AND FOLLOWING_ID = '%s'", userId, followingId);
+        Log.d(TAG, "unsetUserFollowing: " + followingId + " unfollowed");
+        db.execSQL(query);
+
+    }
+
+    public boolean setUserFollowing (String userName, String followingId) {
+        ArrayList<String> followingList = getUserFollowingString(userName);
+        if (followingList.contains(followingId)) {
+            return false;
+        } else {
+            SQLiteDatabase db = this.getWritableDatabase();
+            String userId = getUserId(userName);
+            Date currentDate = new Date();
+            long epochMillis = currentDate.getTime();
+            epochSeconds = epochMillis / 1000L;
+            ContentValues cv = new ContentValues();
+
+            cv.put("USER_ID", userId);
+            cv.put("FOLLOWING_ID", followingId);
+            cv.put("FOLLOW_DATE", epochSeconds);
+            db.insert("USER_FOLLOWING", null, cv);
+            Log.d(TAG, "setUserFollowing: " + followingId + " followed");
+
+
+            return true;
+        }
+
+    }
+
     public void createSampleUser() {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -462,58 +558,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
         return userEvents;
     }
-
-//    public int setUserFavSav (String user, String event, int type) {
-//        String userId = getUserId(user);
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        String query;
-//        int setValue = 99;
-//        int returnValue = 99;
-//        if (type == 0) {
-//            int current = getUserFavSav(userId, event, 0);
-//            if (current == 0) {
-//                setValue = 1;
-//                returnValue = 1;
-//            } else {
-//                setValue = 0;
-//                returnValue = 0;
-//            }
-//            query = "UPDATE USER_EVENTS SET FEEDBACK_COMPLETED = ? WHERE USER_ID = ? AND EVENT_ID = ?";
-//        } else {
-//            int current = getUserFavSav(userId, event, 0);
-//            if (current == 0) {
-//                setValue = 1;
-//                returnValue = 1;
-//            } else {
-//                setValue = 0;
-//                returnValue = 0;
-//            }
-//            query = "UPDATE USER_EVENTS SET USER_FAV = ? WHERE USER_ID = ? AND EVENT_ID = ?";
-//        }
-//        db.execSQL(query, new Object[]{setValue, userId, event});
-//        return returnValue;
-//    }
-//
-//    public int getUserFavSav (String user, String event, int type) {
-//        String userId = getUserId(user);
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String query;
-//        if (type == 0) {
-//            query = String.format("SELECT FEEDBACK_COMPLETED WHERE USER_ID = '%s' AND EVENT_ID = '%s'", userId, event);
-//            Cursor cursor = db.rawQuery(query, null);
-//            if (cursor.moveToFirst()) {
-//                return cursor.getInt(0);
-//            }
-//        } else {
-//            query = String.format("SELECT FEEDBACK_COMPLETED WHERE USER_ID = '%s' AND EVENT_ID = '%s'", userId, event);
-//            Cursor cursor = db.rawQuery(query, null);
-//            if (cursor.moveToFirst()) {
-//                return cursor.getInt(0);
-//            }
-//        }
-//        return 99;
-//    }
-
 
     public int setUserGoing (String userName, String eventId) {
         SQLiteDatabase db = this.getWritableDatabase();

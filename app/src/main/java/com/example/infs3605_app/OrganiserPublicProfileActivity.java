@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
     RecyclerView organiserRv;
     ImageView organiserPicture;
     ImageButton pastEvents;
+    Button followButton;
     OrganiserProfileEventsAdapter adapter;
     DatabaseConnector db;
     List<Event> eventList;
@@ -32,40 +34,58 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
     String eventOwner;
     byte[] bytes;
     String eventOwnerId;
+    String intentOrgName;
     User user;
+    String followingCheck;
+    boolean bool;
     private static final String TAG = "OrganiserPublicProfile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organiser_public_profile);
+
+        String loggedIn = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
         organiserName = findViewById(R.id.organiserNamePrint);
         organiserFaculty = findViewById(R.id.organiserCountry);
         organiserType = findViewById(R.id.organiserTypePrint);
         organiserPicture = findViewById(R.id.organiserImageView);
         pastEvents = findViewById(R.id.pastEventsButton);
         clearFilter = findViewById(R.id.organiserClearFilter);
+        followButton = findViewById(R.id.organiserProfileFollowButton);
         Date currentDate = new Date();
         long epochMillis = currentDate.getTime();
         epochSeconds = epochMillis / 1000L;
         db = new DatabaseConnector(this);
         eventId = getIntent().getStringExtra("EVENT_ID");
+        intentOrgName = getIntent().getStringExtra("ORGANISER_ID");
+        followingCheck = getIntent().getStringExtra("FOLLOWING_CHECK");
         ArrayList<Event> allEvents = db.getEventInfo();
-        for (int i = 0; i < allEvents.size(); i++) {
-            if (allEvents.get(i).getEventId().equals(eventId)) {
-                eventOwner = allEvents.get(i).getEventOwner();
-            }
-        }
-        Log.d(TAG, "owner: " + eventOwner);
-        Log.d(TAG, "event id: " + eventId);
         ArrayList<User> allUsers = db.getUserInfo();
-        for (int i = 0; i < allUsers.size(); i++) {
-            if (allUsers.get(i).getUserName().equals(eventOwner)) {
-                eventOwnerId = allUsers.get(i).getUserID();
-                user = allUsers.get(i);
+
+        if (eventId != null) {
+            for (int i = 0; i < allEvents.size(); i++) {
+                if (allEvents.get(i).getEventId().equals(eventId)) {
+                    eventOwner = allEvents.get(i).getEventOwner();
+                }
+            }
+
+
+            for (int i = 0; i < allUsers.size(); i++) {
+                if (allUsers.get(i).getUserName().equals(eventOwner)) {
+                    eventOwnerId = allUsers.get(i).getUserID();
+                    user = allUsers.get(i);
+                }
+            }
+        } else {
+            for (int i = 0; i < allUsers.size(); i++) {
+                if (allUsers.get(i).getUserName().equals(intentOrgName)) {
+                    eventOwnerId = allUsers.get(i).getUserID();
+                    eventOwner = intentOrgName;
+                    user = allUsers.get(i);
+                }
             }
         }
-
 
         bytes = db.retrieveOrganiserImageFromDatabaseFiltered(eventOwnerId);
         organiserPicture.setImageBitmap(ImageUtils.getImage(bytes));
@@ -95,7 +115,36 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
             }
         });
 
+        bool = db.checkFollowing(loggedIn, eventOwnerId);
 
+        if (bool) {
+            followButton.setText("UNFOLLOW");
+        } else {
+            followButton.setText("FOLLOW");
+        }
+        followButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: Button clicked");
+                bool = db.checkFollowing(loggedIn, eventOwnerId);
+                Log.d(TAG, "onClick: Current value of bool: " + bool);
+                if (bool) {
+                    db.unsetUserFollowing(loggedIn, eventOwnerId);
+                    followButton.setText("FOLLOW");
+                    Log.d(TAG, "unsetUserFollowing: " + bool);
+                    Toast.makeText(getApplicationContext(), "Unfollowed " + eventOwner,
+                            Toast.LENGTH_SHORT).show();
+                    bool = false; // Update the value of bool
+                } else {
+                    db.setUserFollowing(loggedIn, eventOwnerId);
+                    followButton.setText("UNFOLLOW");
+                    Toast.makeText(getApplicationContext(), "Followed " + eventOwner,
+                            Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "setUserFollowing: " + bool);
+                    bool = true;
+                }
+            }
+        });
 
 
         // Set Toolbar
@@ -117,11 +166,6 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
                         && allEvents.get(i).getEventDate() >= epochSeconds
                         && allEvents.get(i).getEventIsDeleted() != 1) {
                     eventList.add(allEvents.get(i));
-                    Log.d(TAG, "Event Owner: " + allEvents.get(i).getEventOwner());
-                    Log.d(TAG, "Organiser: " + organiser);
-                    Log.d(TAG, "Event Date: " + allEvents.get(i).getEventDate());
-                    Log.d(TAG, "Epoch: " + epochSeconds);
-                    Log.d(TAG, "Event Owner: " + allEvents.get(i).getEventOwner());
                     adapter.notifyDataSetChanged();
                 }
             }

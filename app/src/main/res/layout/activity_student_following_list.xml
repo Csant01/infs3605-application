@@ -7,6 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".StudentFollowingListActivity">
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/followingTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="#ffffff"
+        app:tabTextColor="#ffffff"
+        app:tabSelectedTextColor="#ffffff"
+        app:tabMode="fixed">
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/leaderboardViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="623dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
+        app:layout_constraintTop_toBottomOf="@+id/followingTabLayout"
+        tools:layout_editor_absoluteX="0dp">
+
+    </androidx.viewpager.widget.ViewPager>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
         android:layout_width="wrap_content"

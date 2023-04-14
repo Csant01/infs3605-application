@@ -18,39 +18,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/viewProfileButton2"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+            <ImageView
+                android:id="@+id/followingImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="16dp"
-                android:backgroundTint="@color/white"
-                android:contentDescription="Follow account"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_view" />
+                app:srcCompat="@drawable/ic_category" />
 
             <TextView
-                android:id="@+id/organiserNameLabel"
+                android:id="@+id/followingName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/darkest_grey"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/viewProfileButton2"
+                android:layout_marginStart="63dp"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/followingImage"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/removeFollowingButton"
+            <ImageButton
+                android:id="@+id/followingImageButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="300dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toEndOf="@+id/followingImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_add" />
+
+            <TextView
+                android:id="@+id/followingFaculty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Remove"
-                android:textColor="@color/darkest_grey"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginStart="63dp"
+                android:text="TextView"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/followingImage"
+                app:layout_constraintTop_toBottomOf="@+id/followingName" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
