@@ -82,6 +82,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         createUserType = findViewById(R.id.createUserTypeSub);
         createUserButton = findViewById(R.id.createUserButton);
         createUserFirstName = findViewById(R.id.createUserFirstName);
+
         userImage = findViewById(R.id.uploadProfilePictureImageView);
         selectImage = findViewById(R.id.addProfilePictureButton);
         createUserFaculty = findViewById(R.id.createUserFacultySub);

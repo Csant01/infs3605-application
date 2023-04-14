@@ -4,19 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:background="@color/white"
     tools:context=".CreateUserActivity">
+
+    <ImageView
+        android:id="@+id/createUserBackground"
+        android:layout_width="0dp"
+        android:layout_height="1171dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="-400dp"
+        android:layout_marginEnd="-50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_background_circles" />
 
     <TextView
         android:id="@+id/registerPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Hello,"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="38sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,21 +40,9 @@
         android:fontFamily="@font/poppins_bold"
         android:text="Register Now!"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="38sp"
         app:layout_constraintStart_toStartOf="@+id/registerPrompt"
         app:layout_constraintTop_toBottomOf="@+id/registerPrompt" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-20dp"
-        android:layout_marginTop="-250dp"
-        android:layout_marginEnd="-20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_background_circles" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -50,8 +50,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        app:cardCornerRadius="8dp"
+        android:layout_marginBottom="60dp"
+        app:cardCornerRadius="25dp"
         app:cardElevation="3dp"
         app:cardMaxElevation="5dp"
         app:cardPreventCornerOverlap="true"
@@ -63,7 +63,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="595dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout5"
@@ -173,6 +173,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/createUserType"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
                     android:layout_width="349dp"
                     android:layout_height="49dp"
                     android:layout_marginTop="16dp"
@@ -184,7 +185,7 @@
                     <AutoCompleteTextView
                         android:id="@+id/createUserTypeSub"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="48dp"
                         android:layout_weight="1"
                         android:hint="Please Select User Type"
                         android:inputType="none"
@@ -225,16 +226,19 @@
 
                 <Button
                     android:id="@+id/createUserButton"
-                    android:layout_width="280dp"
-                    android:layout_height="48dp"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
                     android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
                     android:backgroundTint="@color/light_yellow"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Register"
                     android:textColor="@color/darkest_grey"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:cornerRadius="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/addProfilePictureButton"
+                    app:layout_constraintStart_toStartOf="@+id/uploadProfilePictureImageView"
                     app:layout_constraintTop_toBottomOf="@+id/uploadProfilePictureImageView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
