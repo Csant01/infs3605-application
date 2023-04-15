@@ -8,10 +8,10 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_back" />
+        layout="@layout/toolbar_back_log_out" />
 
     <ImageView
-        android:id="@+id/displayEventImage"
+        android:id="@+id/displayEventImageApprovals"
         android:layout_width="0dp"
         android:layout_height="160dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:itemBackground="@android:color/white"
@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/organiser_menu" />
+        app:menu="@menu/admin_menu" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/displayEventImage"
+        app:layout_constraintTop_toBottomOf="@+id/displayEventImageApprovals"
         app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +48,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/eventNameField"
+                android:id="@+id/eventNameFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -61,18 +61,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/displayEventName"
+                android:id="@+id/displayEventNameApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_name_tag"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/darkest_grey"
-                app:layout_constraintStart_toStartOf="@+id/eventNameField"
-                app:layout_constraintTop_toBottomOf="@+id/eventNameField" />
+                app:layout_constraintStart_toStartOf="@+id/eventNameFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventNameFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventOrganiserField"
+                android:id="@+id/eventOrganiserFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -80,23 +80,22 @@
                 android:text="ORGANISER:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventName"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventName" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventNameApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventNameApprovals" />
 
             <TextView
-                android:id="@+id/displayEventOrganiser"
+                android:id="@+id/displayEventOrganiserApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_conference_foreground_selected"
                 android:drawablePadding="8dp"
-                android:text="Organiser Name"
-                android:textColor="#EDC700"
+                android:textColor="@color/darkest_grey"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/eventOrganiserField"
-                app:layout_constraintTop_toBottomOf="@+id/eventOrganiserField" />
+                app:layout_constraintStart_toStartOf="@+id/eventOrganiserFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventOrganiserFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventCategoryField"
+                android:id="@+id/eventCategoryFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -104,20 +103,20 @@
                 android:text="CATEGORY:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventOrganiser"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventOrganiser" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventOrganiserApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventOrganiserApprovals" />
 
             <TextView
-                android:id="@+id/displayEventCategory"
+                android:id="@+id/displayEventCategoryApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_tag"
                 android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventCategoryField"
-                app:layout_constraintTop_toBottomOf="@+id/eventCategoryField" />
+                app:layout_constraintStart_toStartOf="@+id/eventCategoryFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventCategoryFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventLocationField"
+                android:id="@+id/eventLocationFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -125,20 +124,20 @@
                 android:text="LOCATION:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventCategory"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventCategory" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventCategoryApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventCategoryApprovals" />
 
             <TextView
-                android:id="@+id/displayEventLocation"
+                android:id="@+id/displayEventLocationApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_location"
                 android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventLocationField"
-                app:layout_constraintTop_toBottomOf="@+id/eventLocationField" />
+                app:layout_constraintStart_toStartOf="@+id/eventLocationFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventLocationFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventCityField"
+                android:id="@+id/eventCityFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -146,20 +145,20 @@
                 android:text="CITY:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventLocation"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventLocation" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventLocationApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventLocationApprovals" />
 
             <TextView
-                android:id="@+id/displayEventCity"
+                android:id="@+id/displayEventCityApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_country"
                 android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventCityField"
-                app:layout_constraintTop_toBottomOf="@+id/eventCityField" />
+                app:layout_constraintStart_toStartOf="@+id/eventCityFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventCityFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventCountryField"
+                android:id="@+id/eventCountryFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -167,20 +166,20 @@
                 android:text="COUNTRY:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventCity"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventCity" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventCityApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventCityApprovals" />
 
             <TextView
-                android:id="@+id/displayEventCountry"
+                android:id="@+id/displayEventCountryApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_location_24"
                 android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventCountryField"
-                app:layout_constraintTop_toBottomOf="@+id/eventCountryField" />
+                app:layout_constraintStart_toStartOf="@+id/eventCountryFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventCountryFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventDateField"
+                android:id="@+id/eventDateFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -188,20 +187,20 @@
                 android:text="DATE:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventCountry"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventCountry" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventCountryApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventCountryApprovals" />
 
             <TextView
-                android:id="@+id/displayEventDate"
+                android:id="@+id/displayEventDateApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_calendar"
                 android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventDateField"
-                app:layout_constraintTop_toBottomOf="@+id/eventDateField" />
+                app:layout_constraintStart_toStartOf="@+id/eventDateFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventDateFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventStartTimeField"
+                android:id="@+id/eventStartTimeFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -209,20 +208,20 @@
                 android:text="START TIME:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventDate"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventDate" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventDateApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventDateApprovals" />
 
             <TextView
-                android:id="@+id/displayEventStartTime"
+                android:id="@+id/displayEventStartTimeApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_clock"
                 android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventStartTimeField"
-                app:layout_constraintTop_toBottomOf="@+id/eventStartTimeField" />
+                app:layout_constraintStart_toStartOf="@+id/eventStartTimeFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventStartTimeFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventEndTimeField"
+                android:id="@+id/eventEndTimeFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -230,31 +229,31 @@
                 android:text="END TIME:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventStartTime"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventStartTime" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventStartTimeApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventStartTimeApprovals" />
 
             <TextView
-                android:id="@+id/displayEventEndTime"
+                android:id="@+id/displayEventEndTimeApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_clock"
                 android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventEndTimeField"
-                app:layout_constraintTop_toBottomOf="@+id/eventEndTimeField" />
+                app:layout_constraintStart_toStartOf="@+id/eventEndTimeFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventEndTimeFieldApprovals" />
 
             <TextView
-                android:id="@+id/displayEventDescription"
+                android:id="@+id/displayEventDescriptionApprovals"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:drawableStart="@drawable/icons8_rename"
+                android:drawablePadding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/eventDescriptionField"
-                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionField"
-                android:drawablePadding="8dp" />
+                app:layout_constraintStart_toStartOf="@+id/eventDescriptionFieldApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventDescriptionField"
+                android:id="@+id/eventDescriptionFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -262,20 +261,63 @@
                 android:text="DESCRIPTION:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventEndTime"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventEndTime" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventEndTimeApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventEndTimeApprovals" />
 
-            <Button
-                android:id="@+id/saveButtonEventDetail"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Button"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/displayEventDescriptionApprovals">
+
+                <ImageButton
+                    android:id="@+id/adminApproveEventButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    app:srcCompat="@drawable/icons8_checkmark" />
+
+                <TextView
+                    android:id="@+id/adminApproveEventText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Approve Event"
+                    android:textColor="@color/dark_grey" />
+
+                <TextView
+                    android:id="@+id/spacing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="   " />
+
+                <ImageButton
+                    android:id="@+id/adminRejectEventButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    app:srcCompat="@drawable/icons8_cancel" />
+
+                <TextView
+                    android:id="@+id/adminRejectEventText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Reject Event"
+                    android:textColor="@color/dark_grey" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
