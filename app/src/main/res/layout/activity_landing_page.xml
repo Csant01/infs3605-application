@@ -9,12 +9,79 @@
 
     <Button
         android:id="@+id/testBtn"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Sign In"
+        android:textColor="@color/yellow"
+        android:textSize="24sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/toSignUpPageButton"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/toSignUpPageButton"
+        app:layout_constraintTop_toBottomOf="@+id/toSignUpPageButton" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="459dp"
+        android:layout_height="856dp"
+        android:layout_marginTop="-200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/asset_2" />
+
+    <TextView
+        android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="704dp"
-        android:layout_marginEnd="168dp"
-        android:text="Button"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="-140dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Welcome to"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/appNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="UNSW Unite"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        app:layout_constraintStart_toStartOf="@+id/welcomeText"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="59dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/welcomeText"
+        app:layout_constraintStart_toStartOf="@+id/welcomeText"
+        app:srcCompat="@drawable/ic_logo_icon" />
+
+    <Button
+        android:id="@+id/toSignUpPageButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/appNameText"
+        app:layout_constraintTop_toBottomOf="@+id/appNameText"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
