@@ -16,6 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.INFS3605App">
         <activity
+            android:name=".AdminEventApprovalsDetail"
+            android:exported="false" />
+        <activity
+            android:name=".AdminEventApprovals"
+            android:exported="false" />
+        <activity
+            android:name=".AdminUserApprovals"
+            android:exported="false" />
+        <activity
             android:name=".ViewParticipantsActivity"
             android:exported="false" />
         <activity
