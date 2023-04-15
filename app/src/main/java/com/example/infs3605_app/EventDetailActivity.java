@@ -63,11 +63,17 @@ public class EventDetailActivity extends AppCompatActivity {
         eventLoc.setText(event.getEventLocation());
         eventCity.setText(event.getEventCity());
         eventCountry.setText(event.getEventCountry());
-        eventOrg.setText(event.getEventOwner());
+        eventOrg.setText(db.getUserName(event.getEventOwner()));
         eventDesc.setText(event.getEventDescription());
 
         bytes = db.retrieveEventImageFromDatabaseFiltered(eventId);
-        eventImage.setImageBitmap(ImageUtils.getImage(bytes));
+        if (bytes == null) {
+            bytes = db.retrieveEventImageDirect(eventId);
+            eventImage.setImageBitmap(ImageUtils.getImage(bytes));
+        }  else {
+            eventImage.setImageBitmap(ImageUtils.getImage(bytes));
+        }
+
 
         // Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);

@@ -56,7 +56,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 "USER_TYPE INT NOT NULL, " +
                 "USER_PASS INT NOT NULL, " +
                 "USER_IMAGE BLOB, " +
-                "USER_FACULTY TEXT" +
+                "USER_FACULTY TEXT, " +
+                "USER_ISAPPROVED INT DEFAULT 0" +
                 ")";
 
         String createEventTable = "CREATE TABLE IF NOT EXISTS EVENTS " +
@@ -180,6 +181,42 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
+    public String getUserName (String userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT USER_NAME FROM USERS WHERE USER_ID = '%s'", userId);
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            String name = cursor.getString(0);
+            return name;
+        }
+
+        return null;
+    }
+
+    public void setEventApproval (String eventId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = String.format("UPDATE EVENTS SET EVENT_ISAPPROVED = 1 WHERE EVENT_ID = '%s'", eventId);
+        db.execSQL(query);
+    }
+
+    public void rejectEvent (String eventId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = String.format("UPDATE EVENTS SET EVENT_ISAPPROVED = -1 WHERE EVENT_ID = '%s'", eventId);
+        db.execSQL(query);
+    }
+
+    public void rejectUser (String userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = String.format("UPDATE USERS SET USER_ISAPPROVED = -1 WHERE EVENT_ID = '%s'", userId);
+        db.execSQL(query);
+    }
+
+    public void setUserApproval (String userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = String.format("UPDATE USERS SET USER_ISAPPROVED = 1 WHERE EVENT_ID = '%s'", userId);
+        db.execSQL(query);
+    }
+
     public ArrayList<User> getNonStudents () {
         ArrayList<User> allUsers = getUserInfo();
         ArrayList<User> nonStudents = new ArrayList<>();
@@ -276,18 +313,39 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
-    public void createSampleUser() {
+    public void createSampleUsers() {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("USER_ID", "tmp123");
-        cv.put("USER_NAME", "fionaliu");
-        cv.put("USER_FNAME", "Fiona");
-        cv.put("USER_LNAME", "Liu");
-        cv.put("USER_GENDER", "Female");
-        cv.put("USER_EMAIL", "test2@ad.unsw.edu.au");
-        cv.put("USER_TYPE", "Student");
-        cv.put("USER_PASS", toHashCode("test"));
-        db.insert("USERS", null, cv);
+        String query = "INSERT INTO USERS (USER_ID, USER_NAME, USER_FNAME, USER_LNAME, USER_GENDER, USER_DOB, USER_COUNTRY, USER_CITY, USER_PROF_IMAGE, USER_EMAIL, USER_TYPE, USER_PASS, USER_IMAGE, USER_FACULTY)\n" +
+                "VALUES\n" +
+                "('user001', 'UNSW Engineering Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'engsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Engineering'),\n" +
+                "('user002', 'John Doe', 'John', 'Doe', 'Male', 316012800, 'Australia', 'Melbourne', '#IMAGE', 'johndoe@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Business'),\n" +
+                "('user003', 'UNSW Law Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'lawsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Law'),\n" +
+                "('user004', 'UNSW Computing Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'compsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Computer Science'),\n" +
+                "('user005', 'UNSW Medical Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'medsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Medicine'),\n" +
+                "('user006', 'Jane Smith', 'Jane', 'Smith', 'Female', 416515200, 'Australia', 'Perth', '#IMAGE', 'janesmith@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Arts & Literature'),\n" +
+                "('user007', 'UNSW Accounting Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'accsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Business'),\n" +
+                "('user008', 'David Lee', 'David', 'Lee', 'Male', 220924800, 'Australia', 'Sydney', '#IMAGE', 'davidlee@ad.unsw.edu.au', 2, 369939368, '#IMAGE', 'Engineering'),\n" +
+                "('user009', 'UNSW Marketing Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'marketsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Business'),\n" +
+                "('user010', 'UNSW Psychology Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'psychsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Other'),\n" +
+                "('user011', 'Sarah Brown', 'Sarah', 'Brown', 'Female', 289708800, 'Australia', 'Brisbane', '#IMAGE', 'sarahbrown@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Law'),\n" +
+                "('user026', 'Alice Green', 'Alice', 'Green', 'Female', 352723200, 'Australia', 'Sydney', '#IMAGE', 'alicegreen@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL),\n" +
+                "('user027', 'David Johnson', 'David', 'Johnson', 'Male', 364131200, 'Australia', 'Melbourne', '#IMAGE', 'davidjohnson@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL),\n" +
+                "('user028', 'Sophie Williams', 'Sophie', 'Williams', 'Female', 377123200, 'Australia', 'Perth', '#IMAGE', 'sophiewilliams@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL),\n" +
+                "('user029', 'Mark Lee', 'Mark', 'Lee', 'Male', 385344000, 'Australia', 'Sydney', '#IMAGE', 'marklee@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL),\n" +
+                "('user030', 'Lucy Wilson', 'Lucy', 'Wilson', 'Female', 404236800, 'Australia', 'Brisbane', '#IMAGE', 'lucywilson@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL), " +
+                "('user016', 'UNSW Music Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'musicsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Arts & Literature'),\n" +
+                "('user017', 'Emily Jones', 'Emily', 'Jones', 'Female', 219148800, 'Australia', 'Sydney', '#IMAGE', 'emilyjones@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Medicine'),\n" +
+                "('user018', 'UNSW Drama Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'dramasoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Arts & Literature'),\n" +
+                "('user019', 'UNSW Physics Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'physocsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Other'),\n" +
+                "('user020', 'Andrew Chen', 'Andrew', 'Chen', 'Male', 386755200, 'Australia', 'Melbourne', '#IMAGE', 'andrewchen@ad.unsw.edu.au', 2, 369939368, '#IMAGE', 'Engineering'),\n" +
+                "('user021', 'UNSW Environmental Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'envsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Other'),\n" +
+                "('user022', 'Mary Brown', 'Mary', 'Brown', 'Female', 428236800, 'Australia', 'Perth', '#IMAGE', 'marybrown@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Computer Science'),\n" +
+                "('user023', 'UNSW Debate Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'debsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Arts & Literature'),\n" +
+                "('user024', 'UNSW Astronomy Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'astronsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Other'),\n" +
+                "('user030', 'UNSW Unite Admin', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'astronsoc@ad.unsw.edu.au', 999, 369939368, '#IMAGE', 'Other'),\n" +
+                "('user025', 'Tom Smith', 'Tom', 'Smith', 'Male', 152275200, 'Australia', 'Melbourne', '#IMAGE', 'tomsmith@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Business');";
+
     }
 
     public String getUserId (String userName) {
@@ -385,10 +443,36 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return null;
     }
 
+    public byte[] retrieveEventImageDirect (String eventId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT EVENT_IMAGE FROM EVENTS WHERE EVENT_ID = '%s'", eventId);
+        Cursor cursor = db.rawQuery(query,null);
+
+        if (cursor.moveToFirst()) {
+            byte[] blob = cursor.getBlob(0);
+            return blob;
+        }
+
+        return null;
+    }
+
     public byte[] retrieveOrganiserImageFromDatabaseFiltered (String eventOwner) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = String.format("SELECT ORG_IMAGE FROM ORGANISER_IMAGES WHERE USER_ID = '%s'", eventOwner);
 
+        Cursor cursor = db.rawQuery(query,null);
+
+        if (cursor.moveToFirst()) {
+            byte[] blob = cursor.getBlob(0);
+            return blob;
+        }
+
+        return null;
+    }
+
+    public byte[] retrieveOrganiserImageDirect (String eventOwner) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT USER_IMAGE FROM USERS WHERE USER_ID = '%s'", eventOwner);
         Cursor cursor = db.rawQuery(query,null);
 
         if (cursor.moveToFirst()) {

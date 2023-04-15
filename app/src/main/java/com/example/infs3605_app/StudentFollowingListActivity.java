@@ -36,9 +36,8 @@ public class StudentFollowingListActivity extends AppCompatActivity {
         followingViewPager = findViewById(R.id.leaderboardViewPager);
         adapter = new StudentFollowingViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new FragmentFollowing(), "FOLLOWING");
         adapter.addFragment(new FragmentGlobal(), "GLOBAL");
-
+        adapter.addFragment(new FragmentFollowing(), "FOLLOWING");
 
         followingViewPager.setAdapter(adapter);
         followingTabLayout.setupWithViewPager(followingViewPager);

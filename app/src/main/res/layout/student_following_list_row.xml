@@ -22,7 +22,7 @@
                 android:id="@+id/followingImage"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -40,10 +40,11 @@
 
             <ImageButton
                 android:id="@+id/followingImageButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="300dp"
+                android:layout_width="49dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="280dp"
                 android:layout_marginTop="8dp"
+                android:background="#FFFFFF"
                 app:layout_constraintStart_toEndOf="@+id/followingImage"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_add" />

@@ -31,10 +31,10 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
     List<Event> eventList;
     long epochSeconds;
     String eventId;
-    String eventOwner;
     byte[] bytes;
     String eventOwnerId;
     String intentOrgName;
+    String intentOrgNamefromEventDetail;
     User user;
     String followingCheck;
     boolean bool;
@@ -59,6 +59,7 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
         db = new DatabaseConnector(this);
         eventId = getIntent().getStringExtra("EVENT_ID");
         intentOrgName = getIntent().getStringExtra("ORGANISER_ID");
+        intentOrgNamefromEventDetail = getIntent().getStringExtra("ORGANISER_NAME");
         followingCheck = getIntent().getStringExtra("FOLLOWING_CHECK");
         ArrayList<Event> allEvents = db.getEventInfo();
         ArrayList<User> allUsers = db.getUserInfo();
@@ -66,14 +67,13 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
         if (eventId != null) {
             for (int i = 0; i < allEvents.size(); i++) {
                 if (allEvents.get(i).getEventId().equals(eventId)) {
-                    eventOwner = allEvents.get(i).getEventOwner();
+                    eventOwnerId = allEvents.get(i).getEventOwner();
                 }
             }
 
 
             for (int i = 0; i < allUsers.size(); i++) {
-                if (allUsers.get(i).getUserName().equals(eventOwner)) {
-                    eventOwnerId = allUsers.get(i).getUserID();
+                if (allUsers.get(i).getUserID().equals(eventOwnerId)) {
                     user = allUsers.get(i);
                 }
             }
@@ -81,15 +81,23 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
             for (int i = 0; i < allUsers.size(); i++) {
                 if (allUsers.get(i).getUserName().equals(intentOrgName)) {
                     eventOwnerId = allUsers.get(i).getUserID();
-                    eventOwner = intentOrgName;
                     user = allUsers.get(i);
                 }
             }
         }
 
         bytes = db.retrieveOrganiserImageFromDatabaseFiltered(eventOwnerId);
-        organiserPicture.setImageBitmap(ImageUtils.getImage(bytes));
-        organiserName.setText(eventOwner);
+        if (bytes == null) {
+            Log.d(TAG, "eventOwnerId: " + eventOwnerId);
+            Log.d(TAG, "intentOrgName: " + intentOrgName);
+            Log.d(TAG, "Organiser name: " + intentOrgNamefromEventDetail);
+            bytes = db.retrieveOrganiserImageDirect(eventOwnerId);
+            organiserPicture.setImageBitmap(ImageUtils.getImage(bytes));
+        } else {
+            organiserPicture.setImageBitmap(ImageUtils.getImage(bytes));
+        }
+
+        organiserName.setText(user.getUserName());
         organiserType.setText(convertTypeToString(Integer.parseInt(user.getUserType())));
         organiserFaculty.setText(user.getUserFaculty());
 
@@ -99,19 +107,19 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
         adapter = new OrganiserProfileEventsAdapter(this, eventList, this);
         organiserRv.setAdapter(adapter);
         organiserRv.setLayoutManager(new LinearLayoutManager(this));
-        displayFutureEventData(eventOwner);
+        displayFutureEventData(eventOwnerId);
 
         pastEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayPastEventData(eventOwner);
+                displayPastEventData(eventOwnerId);
             }
         });
 
         clearFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayFutureEventData(eventOwner);
+                displayFutureEventData(eventOwnerId);
             }
         });
 
@@ -132,13 +140,13 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
                     db.unsetUserFollowing(loggedIn, eventOwnerId);
                     followButton.setText("FOLLOW");
                     Log.d(TAG, "unsetUserFollowing: " + bool);
-                    Toast.makeText(getApplicationContext(), "Unfollowed " + eventOwner,
+                    Toast.makeText(getApplicationContext(), "Unfollowed " + user.getUserName(),
                             Toast.LENGTH_SHORT).show();
                     bool = false; // Update the value of bool
                 } else {
                     db.setUserFollowing(loggedIn, eventOwnerId);
                     followButton.setText("UNFOLLOW");
-                    Toast.makeText(getApplicationContext(), "Followed " + eventOwner,
+                    Toast.makeText(getApplicationContext(), "Followed " + user.getUserName(),
                             Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "setUserFollowing: " + bool);
                     bool = true;

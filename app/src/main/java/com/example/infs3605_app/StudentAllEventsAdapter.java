@@ -45,10 +45,11 @@ public class StudentAllEventsAdapter extends RecyclerView.Adapter<StudentAllEven
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Event event = filteredEvents.get(position);
+        db = new DatabaseConnector(context);
+
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
-        holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
-        db = new DatabaseConnector(context);
+        holder.eventOrg.setText(db.getUserName(event.getEventOwner()));
         if (db.checkUserGoing(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1), filteredEvents.get(position).getEventId())) {
             holder.saveEvent.setImageResource(R.drawable.ic_filled_bookmark);
         } else {

@@ -49,16 +49,16 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
     @Override
     public void onBindViewHolder(@NonNull StudentSavedEventsAdapter.ViewHolder holder, int position) {
         Event event = filteredEvents.get(position);
+        db = new DatabaseConnector(context);
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
-        holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
+        holder.eventOrg.setText(db.getUserName(event.getEventOwner()));
         if (event.getEventImage() != null) {
             holder.eventImage.setImageBitmap(ImageUtils.getImage(event.getEventImage()));
         } else {
             holder.eventImage.setImageResource(R.drawable.unsw_unite_logo);
         }
         holder.eventCity.setText(event.getEventCity());
-        db = new DatabaseConnector(context);
         if (db.checkUserGoing(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1), filteredEvents.get(position).getEventId())) {
             holder.unsaveButton.setImageResource(R.drawable.ic_filled_bookmark);
         } else {
@@ -157,8 +157,7 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
         Instant instant = Instant.ofEpochMilli(value);
         LocalDate date = instant.atZone(ZoneId.systemDefault()).toLocalDate();
         String formattedDate = date.format(DateTimeFormatter.ofPattern("d' 'MMM' 'uuuu"));
-        String daySuffix = StudentPastEventsAdapter.getDaySuffix(date.getDayOfMonth());
-        String finalDate = formattedDate + daySuffix;
+        String finalDate = formattedDate;
         return finalDate;
     }
 }

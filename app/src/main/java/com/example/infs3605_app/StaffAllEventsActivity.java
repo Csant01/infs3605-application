@@ -3,6 +3,7 @@ package com.example.infs3605_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +11,14 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.tabs.TabLayout;
 
 public class StaffAllEventsActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    TabLayout staffEventsTabLayout;
+    ViewPager staffEventsViewPager;
+    StaffEventsViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,16 @@ public class StaffAllEventsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("All Events");
         setSupportActionBar(toolbar);
+
+        staffEventsTabLayout = findViewById(R.id.staffEventsTabLayout);
+        staffEventsViewPager = findViewById(R.id.staffEventsViewPager);
+        adapter = new StaffEventsViewPagerAdapter(getSupportFragmentManager());
+
+        adapter.addFragment(new FragmentStaffAll(), "ALL EVENTS");
+        adapter.addFragment(new FragmentStaffOwn(), "YOUR EVENTS");
+
+        staffEventsViewPager.setAdapter(adapter);
+        staffEventsTabLayout.setupWithViewPager(staffEventsViewPager);
 
         // Bottom Navigation set for Events Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);

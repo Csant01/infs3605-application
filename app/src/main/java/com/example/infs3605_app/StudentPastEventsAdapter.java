@@ -50,9 +50,11 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
     @Override
     public void onBindViewHolder(@NonNull StudentPastEventsAdapter.ViewHolder holder, int position) {
         Event event = filteredEvents.get(position);
+        db = new DatabaseConnector(context);
+
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
-        holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
+        holder.eventOrg.setText(db.getUserName(event.getEventOwner()));
         if (event.getEventImage() != null) {
             holder.eventImage.setImageBitmap(ImageUtils.getImage(event.getEventImage()));
         } else {
@@ -60,7 +62,6 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
         }
         holder.eventCity.setText(event.getEventCity());
 
-        db = new DatabaseConnector(context.getApplicationContext());
         ArrayList<UserEvent> userEvents = db.getUserEvents(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1));
         for (int i = 0; i < userEvents.size(); i++) {
             if (userEvents.get(i).getEventId().equals(event.getEventId())) {

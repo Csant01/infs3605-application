@@ -41,10 +41,10 @@ public class OrganiserProfileEventsAdapter extends RecyclerView.Adapter<Organise
     @Override
     public void onBindViewHolder(@NonNull OrganiserProfileEventsAdapter.ViewHolder holder, int position) {
         Event event = alLEvents.get(position);
+        db = new DatabaseConnector(context);
         holder.eventName.setText(String.valueOf(event.getEventName()));
         holder.eventDate.setText(formatEpoch(event.getEventDate()));
-        holder.eventOrg.setText(String.valueOf(event.getEventOwner()));
-        db = new DatabaseConnector(context);
+        holder.eventOrg.setText(db.getUserName(event.getEventOwner()));
         if (db.checkUserGoing(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1), alLEvents.get(position).getEventId())) {
             holder.saveEvent.setImageResource(R.drawable.ic_filled_bookmark);
         } else {
