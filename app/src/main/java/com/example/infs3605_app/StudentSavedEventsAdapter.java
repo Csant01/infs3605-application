@@ -55,7 +55,7 @@ public class StudentSavedEventsAdapter extends RecyclerView.Adapter<StudentSaved
         if (event.getEventImage() != null) {
             holder.eventImage.setImageBitmap(ImageUtils.getImage(event.getEventImage()));
         } else {
-            holder.eventImage.setImageResource(R.drawable.unsw_unite_logo);
+            holder.eventImage.setImageResource(R.drawable.ic_logo_compact);
         }
         holder.eventCity.setText(event.getEventCity());
         db = new DatabaseConnector(context);
