@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +29,8 @@ public class EventDetailActivity extends AppCompatActivity {
     DatabaseConnector db;
     Event event;
     byte[] bytes;
+    String fromLocation;
+    private static final String TAG = "EventDetailActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +96,23 @@ public class EventDetailActivity extends AppCompatActivity {
         });
 
         // Bottom Navigation set for Events Detail Page
+        fromLocation = getIntent().getStringExtra("PAGE");
+        Log.d(TAG, "fromLocation: " + fromLocation);
         bottomNavigationView = findViewById(R.id.bottomNavigator);
         bottomNavigationView.setSelectedItemId(R.id.eventsNavButton);
+        if (fromLocation.equals("StudentHomePage")) {
+            bottomNavigationView.setSelectedItemId(R.id.homeNavButton);
+        } else if (fromLocation.equals("StudentPastEvents")) {
+            bottomNavigationView.setSelectedItemId(R.id.pastEventsNavButton);
+        } else if (fromLocation.equals("StudentSavedEvents")) {
+            bottomNavigationView.setSelectedItemId(R.id.savedNavButton);
+        } else if (fromLocation.equals("OrganiserPublicProfile")) {
+            bottomNavigationView.setSelectedItemId(R.id.homeNavButton);
+        } else if (fromLocation.equals("StudentAllEvents")) {
+            bottomNavigationView.setSelectedItemId(R.id.allEventsNavButton);
+        } else {
+            bottomNavigationView.setSelectedItemId(R.id.homeNavButton);
+        }
 
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -103,27 +121,27 @@ public class EventDetailActivity extends AppCompatActivity {
 
                 switch (item.getItemId())
                 {
-                    case R.id.dashboardNavButton:
-                        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                    case R.id.homeNavButton:
+                        startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.addEventNavButton:
-                        startActivity(new Intent(getApplicationContext(), CreateEventActivity.class));
+                    case R.id.savedNavButton:
+                        startActivity(new Intent(getApplicationContext(), StudentSavedEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.approvalsNavButton:
-                        startActivity(new Intent(getApplicationContext(), EventsPendingApprovalActivity.class));
+                    case R.id.allEventsNavButton:
+                        startActivity(new Intent(getApplicationContext(), StudentAllEventsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.feedbackNavButton:
-                        startActivity(new Intent(getApplicationContext(), EventFeedbackActivity.class));
+                    case R.id.followingNavButton:
+                        startActivity(new Intent(getApplicationContext(), StudentFollowingListActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.eventsNavButton:
+                    case R.id.pastEventsNavButton:
                         return true;
                 }
                 return false;

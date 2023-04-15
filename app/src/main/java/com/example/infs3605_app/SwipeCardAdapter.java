@@ -1,6 +1,7 @@
 package com.example.infs3605_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import java.util.Date;
 public class SwipeCardAdapter extends BaseAdapter {
     private ArrayList<Event> allEvents;
     private Context context;
+
 
 
     public SwipeCardAdapter (ArrayList<Event> allEvents, Context context) {
@@ -40,7 +42,7 @@ public class SwipeCardAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent)  {
         View v = convertView;
         if (v == null) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_home_swipe_card, parent, false);
@@ -55,6 +57,17 @@ public class SwipeCardAdapter extends BaseAdapter {
         ((TextView) v.findViewById(R.id.startTimePrint)).setText(allEvents.get(position).getEventStartTime());
         ((TextView) v.findViewById(R.id.endTimePrint)).setText(allEvents.get(position).getEventEndTime());
         ((ImageView) v.findViewById(R.id.cardImage)).setImageBitmap(ImageUtils.getImage(allEvents.get(position).getEventImage()));
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EventDetailActivity.class);
+                intent.putExtra("EVENT_ID", allEvents.get(position).getEventId());
+                intent.putExtra("USER_TYPE", "student");
+                intent.putExtra("PAGE", "StudentHomePage");
+                context.startActivity(intent);
+            }
+        });
         return v;
 
     }
@@ -64,4 +77,5 @@ public class SwipeCardAdapter extends BaseAdapter {
         return date;
 
     }
+
 }
