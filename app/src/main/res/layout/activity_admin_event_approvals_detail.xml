@@ -89,7 +89,8 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_conference_foreground_selected"
                 android:drawablePadding="8dp"
-                android:textColor="@color/darkest_grey"
+                android:text="Organiser Name"
+                android:textColor="#EDC700"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/eventOrganiserFieldApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/eventOrganiserFieldApprovals" />
@@ -124,8 +125,8 @@
                 android:text="LOCATION:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventCategoryApprovals"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventCategoryApprovals" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventDescriptionApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventDescriptionApprovals" />
 
             <TextView
                 android:id="@+id/displayEventLocationApprovals"
@@ -137,46 +138,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/eventLocationFieldApprovals" />
 
             <TextView
-                android:id="@+id/eventCityFieldApprovals"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="CITY:"
-                android:textColor="#444443"
-                android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventLocationApprovals"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventLocationApprovals" />
-
-            <TextView
                 android:id="@+id/displayEventCityApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/icons8_country"
-                android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventCityFieldApprovals"
-                app:layout_constraintTop_toBottomOf="@+id/eventCityFieldApprovals" />
-
-            <TextView
-                android:id="@+id/eventCountryFieldApprovals"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="COUNTRY:"
-                android:textColor="#444443"
-                android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventCityApprovals"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventCityApprovals" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/displayEventLocationApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventLocationApprovals" />
 
             <TextView
                 android:id="@+id/displayEventCountryApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/icons8_location_24"
-                android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventCountryFieldApprovals"
-                app:layout_constraintTop_toBottomOf="@+id/eventCountryFieldApprovals" />
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/displayEventCityApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventCityApprovals" />
 
             <TextView
                 android:id="@+id/eventDateFieldApprovals"
@@ -187,7 +163,7 @@
                 android:text="DATE:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventCountryApprovals"
+                app:layout_constraintStart_toStartOf="@+id/displayEventLocationApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/displayEventCountryApprovals" />
 
             <TextView
@@ -224,13 +200,13 @@
                 android:id="@+id/eventEndTimeFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="40dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="END TIME:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventStartTimeApprovals"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventStartTimeApprovals" />
+                app:layout_constraintStart_toEndOf="@+id/displayEventStartTimeApprovals"
+                app:layout_constraintTop_toTopOf="@+id/eventStartTimeFieldApprovals" />
 
             <TextView
                 android:id="@+id/displayEventEndTimeApprovals"
@@ -247,10 +223,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:drawableStart="@drawable/icons8_rename"
-                android:drawablePadding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventDescriptionFieldApprovals"
-                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionFieldApprovals" />
+                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionFieldApprovals"
+                android:drawablePadding="8dp" />
 
             <TextView
                 android:id="@+id/eventDescriptionFieldApprovals"
@@ -261,62 +237,64 @@
                 android:text="DESCRIPTION:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventEndTimeApprovals"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventEndTimeApprovals" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventCategoryApprovals"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventCategoryApprovals" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventDescriptionApprovals">
+                app:layout_constraintTop_toBottomOf="@+id/displayEventEndTimeApprovals"
+                app:layout_constraintVertical_bias="0.0">
 
                 <ImageButton
-                    android:id="@+id/adminApproveEventButton"
+                    android:id="@+id/adminEventApproveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="@color/white"
+                    android:contentDescription="if the administrator approves the event to be listed"
                     app:srcCompat="@drawable/icons8_checkmark" />
 
                 <TextView
-                    android:id="@+id/adminApproveEventText"
+                    android:id="@+id/approveButtonText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
-                    android:text="Approve Event"
-                    android:textColor="@color/dark_grey" />
+                    android:text="Approve Event" />
 
                 <TextView
-                    android:id="@+id/spacing"
+                    android:id="@+id/spacer"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="   " />
+                    android:text="     " />
 
                 <ImageButton
-                    android:id="@+id/adminRejectEventButton"
+                    android:id="@+id/adminEventRejectButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="@color/white"
+                    android:contentDescription="if the administrator rejects the event from being listed"
                     app:srcCompat="@drawable/icons8_cancel" />
 
                 <TextView
-                    android:id="@+id/adminRejectEventText"
+                    android:id="@+id/rejectButtonText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
-                    android:text="Reject Event"
-                    android:textColor="@color/dark_grey" />
+                    android:text="Reject Event" />
+
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

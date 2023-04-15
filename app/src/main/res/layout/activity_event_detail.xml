@@ -125,8 +125,8 @@
                 android:text="LOCATION:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventCategory"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventCategory" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventDescription"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventDescription" />
 
             <TextView
                 android:id="@+id/displayEventLocation"
@@ -138,46 +138,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/eventLocationField" />
 
             <TextView
-                android:id="@+id/eventCityField"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="CITY:"
-                android:textColor="#444443"
-                android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventLocation"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventLocation" />
-
-            <TextView
                 android:id="@+id/displayEventCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/icons8_country"
-                android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventCityField"
-                app:layout_constraintTop_toBottomOf="@+id/eventCityField" />
-
-            <TextView
-                android:id="@+id/eventCountryField"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="COUNTRY:"
-                android:textColor="#444443"
-                android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventCity"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventCity" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/displayEventLocation"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventLocation" />
 
             <TextView
                 android:id="@+id/displayEventCountry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/icons8_location_24"
-                android:drawablePadding="8dp"
-                app:layout_constraintStart_toStartOf="@+id/eventCountryField"
-                app:layout_constraintTop_toBottomOf="@+id/eventCountryField" />
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/displayEventCity"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventCity" />
 
             <TextView
                 android:id="@+id/eventDateField"
@@ -188,7 +163,7 @@
                 android:text="DATE:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventCountry"
+                app:layout_constraintStart_toStartOf="@+id/displayEventLocation"
                 app:layout_constraintTop_toBottomOf="@+id/displayEventCountry" />
 
             <TextView
@@ -225,13 +200,13 @@
                 android:id="@+id/eventEndTimeField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="40dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="END TIME:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventStartTime"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventStartTime" />
+                app:layout_constraintStart_toEndOf="@+id/displayEventStartTime"
+                app:layout_constraintTop_toTopOf="@+id/eventStartTimeField" />
 
             <TextView
                 android:id="@+id/displayEventEndTime"
@@ -262,20 +237,27 @@
                 android:text="DESCRIPTION:"
                 android:textColor="#444443"
                 android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="@+id/displayEventEndTime"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventEndTime" />
+                app:layout_constraintStart_toStartOf="@+id/displayEventCategory"
+                app:layout_constraintTop_toBottomOf="@+id/displayEventCategory" />
 
             <Button
                 android:id="@+id/saveButtonEventDetail"
-                android:layout_width="wrap_content"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
-                android:text="Button"
+                android:backgroundTint="@color/yellow"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="SAVE EVENT"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayEventDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/displayEventEndTime"
+                app:strokeColor="@color/yellow" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

@@ -7,26 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".StudentFollowingListActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/followingTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorSecondary"
+        android:contentDescription="to switch between who the user is following and accounts they are not following"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:tabIndicatorColor="#ffffff"
-        app:tabTextColor="#ffffff"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="#ffffff"
-        app:tabMode="fixed">
-    </com.google.android.material.tabs.TabLayout>
+        app:tabTextColor="#ffffff"></com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/leaderboardViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="623dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="who the user is following and accounts they are not following"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
-        app:layout_constraintTop_toBottomOf="@+id/followingTabLayout"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/followingTabLayout">
 
     </androidx.viewpager.widget.ViewPager>
 
