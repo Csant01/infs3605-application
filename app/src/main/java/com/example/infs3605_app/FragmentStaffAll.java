@@ -2,6 +2,7 @@ package com.example.infs3605_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class FragmentStaffAll extends Fragment implements StaffEventsAdapter.Sta
     RecyclerView staffEventsRv;
     List<Event> allEvents;
     DatabaseConnector db;
+    private static final String TAG = "FragmentStaffAll";
 
     public FragmentStaffAll() {
     }
@@ -39,11 +41,13 @@ public class FragmentStaffAll extends Fragment implements StaffEventsAdapter.Sta
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = new DatabaseConnector(getContext());
-        ArrayList<Event> tmpAllEvents = db.getEventInfo();
         allEvents = new ArrayList<>();
-        for (int i = 0; i < tmpAllEvents.size(); i++) {
-            if (tmpAllEvents.get(i).getEventIsApproved() > 0) {
-                allEvents.add(tmpAllEvents.get(i));
+        ArrayList<Event> tmpEvents  = db.getEventInfo();
+        Log.d(TAG, "allEventsSize: " + allEvents.size());
+        allEvents = new ArrayList<>();
+        for (int i = 0; i < tmpEvents.size(); i++) {
+            if (tmpEvents.get(i).getEventIsApproved() > 0) {
+                allEvents.add(tmpEvents.get(i));
             }
         }
     }

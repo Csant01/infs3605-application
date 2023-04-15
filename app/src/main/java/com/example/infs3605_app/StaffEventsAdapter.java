@@ -37,15 +37,16 @@ public class StaffEventsAdapter extends RecyclerView.Adapter<StaffEventsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull StaffEventsAdapter.ViewHolder holder, int position) {
+        db = new DatabaseConnector(context);
         holder.eventName.setText(allEvents.get(position).getEventName());
         holder.eventDate.setText(formatEpoch(allEvents.get(position).getEventDate()));
-        holder.eventOrg.setText(allEvents.get(position).getEventOwner());
+        holder.eventOrg.setText(db.getUserName(allEvents.get(position).getEventOwner()));
         holder.saveEvent.setVisibility(View.GONE);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return allEvents.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

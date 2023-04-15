@@ -11,6 +11,13 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/dashboardPieChart"
+        android:layout_width="match_parent"
+        android:layout_height="618dp"
+        app:layout_constraintBottom_toBottomOf="@id/bottomNavigator"
+        app:layout_constraintTop_toTopOf="@id/toolbar" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
         android:layout_width="wrap_content"
