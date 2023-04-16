@@ -17,7 +17,10 @@ import java.util.Date;
 public class SwipeCardAdapter extends BaseAdapter {
     private ArrayList<Event> allEvents;
     private Context context;
-
+    DatabaseConnector db;
+    User organiser;
+    byte[] orgBytes;
+    private static final String TAG = "SwipeCardAdapter";
 
 
     public SwipeCardAdapter (ArrayList<Event> allEvents, Context context) {
@@ -47,9 +50,22 @@ public class SwipeCardAdapter extends BaseAdapter {
         if (v == null) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_home_swipe_card, parent, false);
         }
+        db = new DatabaseConnector(context);
+        ArrayList<User> allUsers = db.getUserInfo();
+
+        for (int i = 0; i < allUsers.size(); i++) {
+            if (allUsers.get(i).getUserID().equals(allEvents.get(position).getEventOwner())) {
+                organiser = allUsers.get(i);
+            }
+        }
+
+
+        orgBytes = db.retrieveOrganiserImageDirect(allEvents.get(position).getEventOwner());
+        Log.d(TAG, "Event Owner: " + allEvents.get(position).getEventOwner());
+        
 
         ((TextView) v.findViewById(R.id.namePrint)).setText(allEvents.get(position).getEventName());
-        ((TextView) v.findViewById(R.id.organiserPrint)).setText(allEvents.get(position).getEventOwner());
+        ((TextView) v.findViewById(R.id.organiserPrint)).setText(db.getUserName(allEvents.get(position).getEventOwner()));
         ((TextView) v.findViewById(R.id.descriptionPrint)).setText(allEvents.get(position).getEventDescription());
         ((TextView) v.findViewById(R.id.cityPrint)).setText(allEvents.get(position).getEventCity());
         ((TextView) v.findViewById(R.id.categoryPrint)).setText(allEvents.get(position).getEventCategory());
@@ -57,6 +73,12 @@ public class SwipeCardAdapter extends BaseAdapter {
         ((TextView) v.findViewById(R.id.startTimePrint)).setText(allEvents.get(position).getEventStartTime());
         ((TextView) v.findViewById(R.id.endTimePrint)).setText(allEvents.get(position).getEventEndTime());
         ((ImageView) v.findViewById(R.id.cardImage)).setImageBitmap(ImageUtils.getImage(allEvents.get(position).getEventImage()));
+        ((ImageView) v.findViewById(R.id.homePageProfPic)).setImageBitmap(ImageUtils.getImage(orgBytes));
+        ((TextView) v.findViewById(R.id.homePageFaculty)).setText(organiser.getUserFaculty());
+        ((TextView) v.findViewById(R.id.homePageEmail)).setText(organiser.getUserEmail());
+        ((TextView) v.findViewById(R.id.homePageFacility)).setText(allEvents.get(position).getEventFacility());
+
+
 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,5 +99,7 @@ public class SwipeCardAdapter extends BaseAdapter {
         return date;
 
     }
+
+
 
 }

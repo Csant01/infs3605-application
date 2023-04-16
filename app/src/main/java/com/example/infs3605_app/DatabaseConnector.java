@@ -236,12 +236,12 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
             int usefulnessSum = 0;
             for (int i : usefulness) {
-                likelinessSum += i;
+                usefulnessSum += i;
             }
 
             int ratingSum = 0;
             for (int i : rating) {
-                likelinessSum += i;
+                ratingSum += i;
             }
 
             double satisfactionAvg = (double) satisfactionSum / satisfaction.size();

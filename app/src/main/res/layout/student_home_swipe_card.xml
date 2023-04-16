@@ -13,8 +13,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="@color/light_yellow"
-        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/light_grey"
+        app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,14 +29,14 @@
                 android:id="@+id/namePrint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:drawableStart="@drawable/icons8_name_tag"
+                android:drawablePadding="8dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Testing"
                 android:textColor="@color/darkest_grey"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardImage" />
 
@@ -44,63 +44,119 @@
                 android:id="@+id/organiserPrint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="testing"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/namePrint" />
+                app:layout_constraintStart_toEndOf="@+id/homePageProfPic"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/cityPrint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="5dp"
                 android:text="testing"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/organiserPrint" />
+                app:layout_constraintEnd_toEndOf="@+id/homePageFacility"
+                app:layout_constraintTop_toBottomOf="@+id/homePageFacility" />
 
             <TextView
                 android:id="@+id/categoryPrint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:drawableStart="@drawable/icons8_tag"
                 android:text="testing"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cityPrint" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/homePageFacility"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/homePageFacility" />
 
             <ImageView
                 android:id="@+id/cardImage"
-                android:layout_width="380dp"
-                android:layout_height="220dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="-40dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="-40dp"
+                android:layout_marginBottom="300dp"
                 android:contentDescription="Event picture"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/descriptionPrint"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/icons8_rename"
+                android:textColor="@color/darkest_grey"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/namePrint"
+                app:layout_constraintTop_toBottomOf="@+id/namePrint" />
+
+            <ImageView
+                android:id="@+id/homePageProfPic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/homePageFaculty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/organiserPrint"
+                app:layout_constraintTop_toBottomOf="@+id/organiserPrint" />
+
+            <TextView
+                android:id="@+id/homePageEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/homePageFaculty"
+                app:layout_constraintTop_toBottomOf="@+id/homePageFaculty" />
+
+            <TextView
+                android:id="@+id/homePageFacility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="36dp"
+                android:drawableStart="@drawable/icons8_location"
+                android:drawablePadding="8dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/namePrint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/namePrint" />
 
             <TextView
                 android:id="@+id/datePrint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/icons8_calendar"
                 android:text="date"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryPrint" />
+                app:layout_constraintStart_toStartOf="@+id/descriptionPrint"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionPrint" />
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
@@ -108,18 +164,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/datePrint"
                 app:layout_constraintTop_toBottomOf="@+id/datePrint">
 
                 <TextView
                     android:id="@+id/startTimePrint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="0dp"
                     android:text="time"
                     android:textColor="@color/darkest_grey"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:layout_editor_absoluteX="42dp"
+                    tools:layout_editor_absoluteY="663dp" />
 
                 <TextView
                     android:id="@+id/dashPrint"
@@ -127,44 +183,19 @@
                     android:layout_height="wrap_content"
                     android:text="  -  "
                     android:textColor="@color/darkest_grey"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:layout_editor_absoluteX="77dp"
+                    tools:layout_editor_absoluteY="663dp" />
 
                 <TextView
                     android:id="@+id/endTimePrint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="0dp"
                     android:text="time"
                     android:textColor="@color/darkest_grey"
                     android:textSize="16sp" />
+
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/descriptionPrint"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="16dp"
-                android:textColor="@color/darkest_grey"
-                android:textSize="16sp"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/textView4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:clickable="false"
-                android:drawableStart="@drawable/ic_up"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                 userPass = passwordInput.getText().toString();
                 if (checkLogin(userEmail, userPass)) {
                     if (checkUserType(userEmail) == 3) {
-                        startActivity(new Intent(getApplicationContext(), StaffAllEventsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
                     } else {
                         startActivity(new Intent(getApplicationContext(), StaffAllEventsActivity.class));
                     }
