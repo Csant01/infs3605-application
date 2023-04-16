@@ -25,6 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:padding="16dp"
-        android:src="@drawable/ic_menu" />
+        android:src="@drawable/circle_user" />
 
 </androidx.appcompat.widget.Toolbar>

@@ -33,8 +33,9 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/poppins_bold"
+                android:text="Testing"
                 android:textColor="@color/darkest_grey"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardImage" />
@@ -44,7 +45,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="testing"
                 android:textColor="@color/darkest_grey"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/namePrint" />
@@ -56,7 +59,9 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
+                android:text="testing"
                 android:textColor="@color/darkest_grey"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/organiserPrint" />
@@ -68,7 +73,9 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
+                android:text="testing"
                 android:textColor="@color/darkest_grey"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cityPrint" />
@@ -83,6 +90,18 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_launcher" />
 
+            <TextView
+                android:id="@+id/datePrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="date"
+                android:textColor="@color/darkest_grey"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categoryPrint" />
+
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="wrap_content"
@@ -91,43 +110,33 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoryPrint">
-
-                <TextView
-                    android:id="@+id/datePrint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:textColor="@color/darkest_grey" />
-
-                <TextView
-                    android:id="@+id/commaPrint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text=", "
-                    android:textColor="@color/darkest_grey" />
+                app:layout_constraintTop_toBottomOf="@+id/datePrint">
 
                 <TextView
                     android:id="@+id/startTimePrint"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:textColor="@color/darkest_grey" />
+                    android:layout_marginEnd="0dp"
+                    android:text="time"
+                    android:textColor="@color/darkest_grey"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/dashPrint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-"
-                    android:textColor="@color/darkest_grey" />
+                    android:text="  -  "
+                    android:textColor="@color/darkest_grey"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/endTimePrint"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:textColor="@color/darkest_grey" />
+                    android:layout_marginEnd="0dp"
+                    android:text="time"
+                    android:textColor="@color/darkest_grey"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <TextView
@@ -139,6 +148,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
                 android:textColor="@color/darkest_grey"
+                android:textSize="16sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toTopOf="@+id/textView4"
                 app:layout_constraintEnd_toEndOf="parent"
