@@ -1,6 +1,8 @@
 package com.example.infs3605_app;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,7 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
     private List<Event> allEvents;
     private OnPastEventClickListener eventClickListener;
     private DatabaseConnector db;
+    private static final String TAG = "StudentPastEventsAdapter";
 
 
     public StudentPastEventsAdapter(Context context, List<Event> allEvents, OnPastEventClickListener eventClickListener) {
@@ -112,6 +115,7 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
 
     @Override
     public int getItemCount() {
+        Log.d(TAG, "getItemCount: " + filteredEvents.size());
         return filteredEvents.size();
     }
 
@@ -136,8 +140,11 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
             feedbackButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(view.getContext(), "Opening feedback page.",
-                            Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, StudentFeedbackFormActivity.class);
+                    intent.putExtra("EVENT_ID", filteredEvents.get(getAdapterPosition()).getEventId());
+                    intent.putExtra("USER_TYPE", "student");
+                    intent.putExtra("PAGE", "StudentPastEvents");
+                    context.startActivity(intent);
                 }
             });
 
@@ -159,31 +166,9 @@ public class StudentPastEventsAdapter extends RecyclerView.Adapter<StudentPastEv
         Instant instant = Instant.ofEpochMilli(value);
         LocalDate date = instant.atZone(ZoneId.systemDefault()).toLocalDate();
         String formattedDate = date.format(DateTimeFormatter.ofPattern("d' 'MMM' 'uuuu"));
-        String daySuffix = getDaySuffix(date.getDayOfMonth());
-        String finalDate = formattedDate + daySuffix;
+        String finalDate = formattedDate;
         return finalDate;
     }
 
-    public static String getDaySuffix(int day) {
-        switch (day % 10) {
-            case 1:
-                if (day != 11) {
-                    return "st";
-                }
-                break;
-            case 2:
-                if (day != 12) {
-                    return "nd";
-                }
-                break;
-            case 3:
-                if (day != 13) {
-                    return "rd";
-                }
-                break;
-            default:
-                break;
-        }
-        return "th";
-    }
+
 }

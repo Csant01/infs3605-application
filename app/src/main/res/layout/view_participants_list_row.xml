@@ -44,7 +44,7 @@
             android:id="@+id/studentParticipantLinkedIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lINKEDIN"
+            android:text="LinkedIn"
             android:textColor="#2196F3" />
     </LinearLayout>
 

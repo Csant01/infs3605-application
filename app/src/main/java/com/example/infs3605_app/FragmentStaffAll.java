@@ -54,7 +54,7 @@ public class FragmentStaffAll extends Fragment implements StaffEventsAdapter.Sta
 
     @Override
     public void onEventClick(int position) {
-        Intent intent = new Intent(getContext(), EventDetailActivity.class);
+        Intent intent = new Intent(getContext(), ManageEventDetailActivity.class);
         intent.putExtra("EVENT_ID", allEvents.get(position).getEventId());
         intent.putExtra("USER_TYPE", "organiser");
         intent.putExtra("PAGE", "StaffEvents");

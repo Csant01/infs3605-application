@@ -121,8 +121,12 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
         String createUserFeedbackTable = "CREATE TABLE IF NOT EXISTS USER_FEEDBACK " +
                 "(" +
-                "USER_FEEDBACK_ID TEXT PRIMARY KEY NOT NULL, " +
-                "SATISFACTION_RATING INT NOT NULL, " +
+                "USER_FEEDBACK_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "Q1 INT NOT NULL, " +
+                "Q2 INT NOT NULL, " +
+                "Q3 INT NOT NULL, " +
+                "Q4 INT NOT NULL, " +
+                "ADDITIONAL_COMMENTS TEXT, " +
                 "USER_ID TEXT NOT NULL, " +
                 "EVENT_ID TEXT NOT NULL, " +
                 "FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID), " +
@@ -181,6 +185,161 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<String> getFeedbackComments (String eventName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String eventId = getEventId(eventName);
+        String query = String.format("SELECT ADDITIONAL_COMMENTS FROM USER_FEEDBACK WHERE EVENT_ID = '%s'", eventId);
+        ArrayList<String> allComments = new ArrayList<>();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                allComments.add(cursor.getString(0));
+                cursor.moveToNext();
+            }
+        }
+
+        return allComments;
+    }
+
+    public ArrayList<FeedbackAverage> getFeedbackAverages (ArrayList<String> eventIds) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<FeedbackAverage> feedbackAverages = new ArrayList<>();
+        for (String eventId : eventIds) {
+            String query = String.format("SELECT Q1, Q2, Q3, Q4 FROM USER_FEEDBACK WHERE EVENT_ID = '%s'", eventId);
+            Cursor cursor = db.rawQuery(query, null);
+            String eventName = getEventName(eventId);
+            ArrayList<Integer> satisfaction = new ArrayList<>();
+            ArrayList<Integer> likeliness = new ArrayList<>();
+            ArrayList<Integer> usefulness = new ArrayList<>();
+            ArrayList<Integer> rating = new ArrayList<>();
+
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    satisfaction.add(cursor.getInt(0));
+                    likeliness.add(cursor.getInt(1));
+                    usefulness.add(cursor.getInt(2));
+                    rating.add(cursor.getInt(3));
+                    cursor.moveToNext();
+                }
+            }
+
+            int satisfactionSum = 0;
+            for (int i : satisfaction) {
+                satisfactionSum += i;
+            }
+
+            int likelinessSum = 0;
+            for (int i : likeliness) {
+                likelinessSum += i;
+            }
+
+            int usefulnessSum = 0;
+            for (int i : usefulness) {
+                likelinessSum += i;
+            }
+
+            int ratingSum = 0;
+            for (int i : rating) {
+                likelinessSum += i;
+            }
+
+            double satisfactionAvg = (double) satisfactionSum / satisfaction.size();
+            double likelinessAvg = (double) likelinessSum / likeliness.size();
+            double usefulnessAvg = (double) usefulnessSum / usefulness.size();
+            double ratingAvg = (double) ratingSum / rating.size();
+
+            FeedbackAverage averages = new FeedbackAverage(eventName, satisfactionAvg, likelinessAvg,
+                    usefulnessAvg, ratingAvg);
+            feedbackAverages.add(averages);
+        }
+
+        return feedbackAverages;
+    }
+
+
+    public String getEventName (String eventId) {
+        ArrayList<Event> allEvents = getEventInfo();
+        for (int i = 0; i < allEvents.size(); i++) {
+            if (allEvents.get(i).getEventId().equals(eventId)) {
+                return allEvents.get(i).getEventName();
+            }
+        }
+        return null;
+    }
+
+    public String getEventId (String eventName) {
+        ArrayList<Event> allEvents = getEventInfo();
+        for (int i = 0; i < allEvents.size(); i++) {
+            if (allEvents.get(i).getEventName().equals(eventName)) {
+                return allEvents.get(i).getEventId();
+            }
+        }
+        return null;
+    }
+
+
+    public void submitFeedback (String userName, String eventId, EventFeedback feedback) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String userId = getUserId(userName);
+        ContentValues cv = new ContentValues();
+        cv.put("Q1", feedback.getQ1());
+        cv.put("Q2", feedback.getQ2());
+        cv.put("Q3", feedback.getQ3());
+        cv.put("Q4", feedback.getQ4());
+        cv.put("ADDITIONAL_COMMENTS", feedback.getAdditional());
+        cv.put("USER_ID", userId);
+        cv.put("EVENT_ID", eventId);
+        db.insert("USER_FEEDBACK", null, cv);
+    }
+
+    public ArrayList<User> getParticipants (String eventId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT USER_ID FROM USER_EVENTS WHERE USER_ATTENDED = 0 AND EVENT_ID = '%s'", eventId);
+        ArrayList<String> userIds = new ArrayList<>();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                userIds.add(cursor.getString(0));
+                cursor.moveToNext();
+            }
+        }
+        ArrayList<User> allUsers = getUserInfo();
+        ArrayList<User> participants = new ArrayList<>();
+        for (String userId : userIds) {
+            for (int i = 0; i < allUsers.size(); i++) {
+                if (allUsers.get(i).getUserID().equals(userId)) {
+                    participants.add(allUsers.get(i));
+                    break;
+                }
+            }
+        }
+        return participants;
+    }
+
+    public void updateEvent(Event event) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("EVENT_NAME", event.getEventName());
+        values.put("EVENT_LOC", event.getEventLocation());
+        values.put("EVENT_DESC", event.getEventDescription());
+        values.put("EVENT_COUNTRY", event.getEventCountry());
+        values.put("EVENT_CITY", event.getEventCity());
+        values.put("EVENT_FACILITY", event.getEventFacility());
+        values.put("EVENT_CAT", event.getEventCategory());
+        values.put("EVENT_PRED_ATTN_NUM", event.getEventPredAttn());
+        values.put("EVENT_BUDGETED_COST", event.getEventCost());
+        values.put("EVENT_TICKETED", event.getEventTicketed());
+        values.put("EVENT_START_TIME", event.getEventStartTime());
+        values.put("EVENT_END_TIME", event.getEventEndTime());
+        values.put("EVENT_ACTUAL_ATTN_NUM", event.getEventActAttn());
+        values.put("EVENT_STAFFING", event.getEventStaffing());
+
+        String[] eventId = {event.getEventId()};
+        db.update("EVENTS", values, "EVENT_ID = ?", eventId);
+        db.close();
+    }
+
     public String getUserName (String userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = String.format("SELECT USER_NAME FROM USERS WHERE USER_ID = '%s'", userId);
@@ -221,7 +380,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         ArrayList<User> allUsers = getUserInfo();
         ArrayList<User> nonStudents = new ArrayList<>();
         for (int i = 0; i < allUsers.size(); i++) {
-            if (Integer.parseInt(allUsers.get(i).getUserType()) != 0) {
+            if (Integer.parseInt(allUsers.get(i).getUserType()) != 3 && Integer.parseInt(allUsers.get(i).getUserType()) != 999) {
                 nonStudents.add(allUsers.get(i));
             }
         }
@@ -271,9 +430,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             while (!cursor.isAfterLast()) {
                 if (cursor.getString(0).equals(followingId)) {
                     return true;
-                } else {
-                    return false;
                 }
+                cursor.moveToNext();
             }
         }
 

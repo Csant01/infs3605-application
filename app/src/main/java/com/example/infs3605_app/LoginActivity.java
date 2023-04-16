@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     String userEmail, userPass;
     Button buttonLogin, buttonAlumniSignUp;
     DatabaseConnector db;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,12 @@ public class LoginActivity extends AppCompatActivity {
                 userEmail = emailInput.getText().toString();
                 userPass = passwordInput.getText().toString();
                 if (checkLogin(userEmail, userPass)) {
-                    startActivity(new Intent(getApplicationContext(), StudentAllEventsActivity.class));
+                    if (checkUserType(userEmail) == 3) {
+                        startActivity(new Intent(getApplicationContext(), StaffAllEventsActivity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), StaffAllEventsActivity.class));
+                    }
+
                 } else {
                     Toast.makeText(LoginActivity.this, "Please ensure all details are correct.",
                             Toast.LENGTH_SHORT).show();
@@ -64,5 +71,17 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    public int checkUserType (String email) {
+        ArrayList<User> allUsers = db.getUserInfo();
+        for (int i = 0; i < allUsers.size(); i++) {
+            if (allUsers.get(i).getUserEmail().equals(email)) {
+                user = allUsers.get(i);
+                return Integer.parseInt(user.getUserType());
+            }
+        }
+
+        return 99;
     }
 }

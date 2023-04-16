@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentStaffOwn extends Fragment implements StaffEventsAdapter.StaffAllEventsInterface{
+public class FragmentStaffOwn extends Fragment implements StaffOwnEventsAdapter.StaffOwnEventsInterface{
     View v;
     RecyclerView staffEventsRv;
     List<Event> allEvents;
@@ -29,7 +29,7 @@ public class FragmentStaffOwn extends Fragment implements StaffEventsAdapter.Sta
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_staff_own, container, false);
         staffEventsRv = v.findViewById(R.id.staffOwnRv);
-        StaffEventsAdapter adapter = new StaffEventsAdapter(getContext(), allEvents, this);
+        StaffOwnEventsAdapter adapter = new StaffOwnEventsAdapter(getContext(), allEvents, this);
         staffEventsRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         staffEventsRv.setAdapter(adapter);
         return v;
@@ -51,7 +51,7 @@ public class FragmentStaffOwn extends Fragment implements StaffEventsAdapter.Sta
 
     @Override
     public void onEventClick(int position) {
-        Intent intent = new Intent(getContext(), EventDetailActivity.class);
+        Intent intent = new Intent(getContext(), ManageEventDetailActivity.class);
         intent.putExtra("EVENT_ID", allEvents.get(position).getEventId());
         intent.putExtra("USER_TYPE", "organiser");
         intent.putExtra("PAGE", "StaffEvents");

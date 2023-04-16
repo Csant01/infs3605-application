@@ -1,6 +1,7 @@
 package com.example.infs3605_app;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class StudentFollowingAdapter extends RecyclerView.Adapter<StudentFollowi
     private List<User> allUsers;
     DatabaseConnector db;
     private FollowingInterface eventClickListener;
+    private static final String TAG = "StudentFollowingAdapter";
 
     public StudentFollowingAdapter(Context context, List<User> allUsers, FollowingInterface eventClickListener) {
         this.context = context;
@@ -44,7 +46,7 @@ public class StudentFollowingAdapter extends RecyclerView.Adapter<StudentFollowi
         }
         db = new DatabaseConnector(context);
         if (db.getUserFollowingString(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1)).contains(allUsers.get(position).getUserID())) {
-            holder.followButton.setImageResource(R.drawable.ic_filled_bookmark);
+            holder.followButton.setImageResource(R.drawable.ic_filled_person);
         } else {
             holder.followButton.setImageResource(R.drawable.ic_friend);
         }
@@ -75,6 +77,7 @@ public class StudentFollowingAdapter extends RecyclerView.Adapter<StudentFollowi
                 public void onClick(View v) {
                     db = new DatabaseConnector(context);
                     String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
+                    Log.d(TAG, "userId: " + allUsers.get(getAdapterPosition()).getUserID());
                     if (db.checkFollowing(user, allUsers.get(getAdapterPosition()).getUserID())) {
                         db.unsetUserFollowing(user, allUsers.get(getAdapterPosition()).getUserID());
                         Toast.makeText(context, "Unfollowed " + allUsers.get(getAdapterPosition()).getUserName(),
@@ -84,7 +87,7 @@ public class StudentFollowingAdapter extends RecyclerView.Adapter<StudentFollowi
                         db.setUserFollowing(user, allUsers.get(getAdapterPosition()).getUserID());
                         Toast.makeText(context, "Followed " + allUsers.get(getAdapterPosition()).getUserName(),
                                 Toast.LENGTH_SHORT).show();
-                        followButton.setImageResource(R.drawable.ic_filled_bookmark);
+                        followButton.setImageResource(R.drawable.ic_filled_person);
                     }
                 }
             });

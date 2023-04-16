@@ -24,6 +24,7 @@
         app:menu="@menu/organiser_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eventFeedbackRv"
         android:layout_width="409dp"
         android:layout_height="732dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"

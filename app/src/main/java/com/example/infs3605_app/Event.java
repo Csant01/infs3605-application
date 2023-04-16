@@ -60,6 +60,7 @@ public class Event {
     public void setEventFacility(String eventFacility) {
         this.eventFacility = eventFacility;
     }
+
     public int getEventStaffing() {
         return eventStaffing;
     }

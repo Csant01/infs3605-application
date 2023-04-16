@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,10 +30,13 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
     Button feedbackButton;
     DatabaseConnector db;
     ArrayList<Event> eventList;
-    long epochSeconds;
+    Date currentDate = new Date();
+    long epochMillis = currentDate.getTime();
+    long epochSeconds = epochMillis / 1000L;
     StudentPastEventsAdapter adapter;
     TextView feedbackCompleted;
     SearchView searchView;
+    private static final String TAG = "StudentPastEventsActivity";
 
 
     @Override
@@ -45,9 +49,6 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
         feedbackCompleted = findViewById(R.id.feedbackStatusLabel);
         String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
         ArrayList<String> userEvents = getUserEvents(user);
-        Date currentDate = new Date();
-        long epochMillis = currentDate.getTime();
-        epochSeconds = epochMillis / 1000L;
         searchView = findViewById(R.id.pastSearchView);
 
         eventList = new ArrayList<>();
@@ -121,6 +122,7 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
             events.add(userEvents.get(i).getEventId());
         }
 
+        Log.d(TAG, "getUserEvents: events size " + events.size());
         return events;
     }
 
@@ -130,12 +132,17 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
 
         for (int i = 0; i < allEvents.size(); i++) {
             if (userEvents.contains(allEvents.get(i).getEventId())) {
-                if (allEvents.get(i).getEventDate() < epochSeconds) {
+                Log.d(TAG, "getEventDetails: event date " + formatEpoch(allEvents.get(i).getEventDate()));
+                Log.d(TAG, "getEventDetails: current date" + formatEpoch(epochMillis));
+                Log.d(TAG, "getEventDetails: epoch check " + formatEpoch(0));
+                Log.d(TAG, "getEventDetails: epoch seconds " + epochSeconds);
+                Log.d(TAG, "getEventDetails: CurrentDate " + currentDate.toString());
+                if (allEvents.get(i).getEventDate() < epochMillis) {
                     filteredEvents.add(allEvents.get(i));
                 }
             }
         }
-
+        Log.d(TAG, "getEventDetails: filteredEventsSize " + filteredEvents.size());
         return filteredEvents;
     }
 
@@ -146,5 +153,10 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
         intent.putExtra("USER_TYPE", "student");
         intent.putExtra("PAGE", "StudentPastEvents");
         startActivity(intent);
+    }
+
+    public String formatEpoch (long value) {
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date(value));
+        return date;
     }
 }
