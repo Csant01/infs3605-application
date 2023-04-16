@@ -87,6 +87,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
                     android:background="@color/white"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="16dp"
                     android:hint="Email"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -95,7 +97,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordInputLayout"
                 android:layout_width="0dp"
-                android:layout_height="58dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="@+id/emailInputLayout"
                 app:layout_constraintStart_toStartOf="@+id/emailInputLayout"
@@ -105,9 +107,11 @@
                 <EditText
                     android:id="@+id/passwordInput"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="58dp"
                     android:background="@color/white"
                     android:contentDescription="text field to enter login details"
+                    android:drawableStart="@drawable/ic_password"
+                    android:drawablePadding="16dp"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:textSize="14sp" />
