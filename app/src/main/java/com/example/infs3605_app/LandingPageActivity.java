@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class LandingPageActivity extends AppCompatActivity {
 
-    Button testBtn;
+    Button testBtn, registerBtn;
     DatabaseConnector db;
 
     @Override
@@ -18,6 +18,7 @@ public class LandingPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
         testBtn = findViewById(R.id.testBtn);
+        registerBtn = findViewById(R.id.toSignUpPageButton);
         db = new DatabaseConnector(this);
 //        db.addSampleEventData();
 //        db.createSampleUser();
@@ -27,6 +28,14 @@ public class LandingPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+            }
+        });
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), CreateUserActivity.class));
 
             }
         });

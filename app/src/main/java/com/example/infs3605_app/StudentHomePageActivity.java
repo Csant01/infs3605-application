@@ -114,7 +114,7 @@ public class StudentHomePageActivity extends AppCompatActivity {
             eventList.clear();
             for (int i = 0; i < allEvents.size(); i++) {
                 eventList.add(allEvents.get(i));
-//                if (allEvents.get(i).getEventIsApproved() != 0) {
+//                if (allEvents.get(i).getEventIsApproved() > 0) {
 //                    eventList.add(allEvents.get(i));
 //                }
             }

@@ -105,7 +105,7 @@
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/cityPrint"
                 app:layout_constraintStart_toStartOf="@+id/namePrint"
-                app:layout_constraintTop_toBottomOf="@+id/cityPrint" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
             <ImageView
                 android:id="@+id/homePageProfPic"
@@ -121,7 +121,6 @@
                 android:id="@+id/homePageFaculty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="TextView"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"
@@ -135,7 +134,8 @@
                 android:layout_marginTop="4dp"
                 android:text="TextView"
                 android:textColor="@color/darkest_grey"
-                android:textSize="16sp"
+                android:textSize="12sp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="@+id/homePageFaculty"
                 app:layout_constraintTop_toBottomOf="@+id/homePageFaculty" />
 

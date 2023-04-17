@@ -30,7 +30,7 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
     StudentAllEventsAdapter adapter;
     SearchView searchView;
     BottomNavigationView bottomNavigationView;
-    TextView clearFilter;
+    TextView clearFilter, eventTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +45,15 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
         socialBtn = findViewById(R.id.socialFilterButton);
         clearFilter = findViewById(R.id.clearFilter);
         searchView = findViewById(R.id.allSearchView);
+        eventTitle = findViewById(R.id.studentAllEventsTitleText);
+        eventTitle.setText("All Events");
         searchView.clearFocus();
 
         clearFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 displayEventData();
+                eventTitle.setText("All Events");
             }
         });
 
@@ -59,6 +62,7 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
             @Override
             public void onClick(View v) {
                 displayFilteredEventData("Network");
+                eventTitle.setText("Networking Events");
 
             }
         });
@@ -67,6 +71,7 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
             @Override
             public void onClick(View v) {
                 displayFilteredEventData("Careers");
+                eventTitle.setText("Careers Events");
 
             }
         });
@@ -75,6 +80,7 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
             @Override
             public void onClick(View v) {
                 displayFilteredEventData("Travel");
+                eventTitle.setText("Travel Events");
 
             }
         });
@@ -83,6 +89,7 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
             @Override
             public void onClick(View v) {
                 displayFilteredEventData("Social");
+                eventTitle.setText("Social Events");
             }
         });
 
@@ -165,10 +172,10 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
             eventList.clear();
             adapter.notifyDataSetChanged();
             for (int i = 0; i < allEvents.size(); i++) {
-//                if (allEvents.get(i).getEventIsApproved() != 0) {
+                if (allEvents.get(i).getEventIsApproved() > 0) {
                     eventList.add(allEvents.get(i));
                     adapter.notifyDataSetChanged();
-//                }
+                }
             }
             return true;
         } else {

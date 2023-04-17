@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (checkLogin(userEmail, userPass)) {
                     if (checkUserType(userEmail) == 3) {
                         startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
+                    } else if(checkUserType(userEmail) == 999) {
+                        startActivity(new Intent(getApplicationContext(), AdminEventApprovals.class));
                     } else {
                         startActivity(new Intent(getApplicationContext(), StaffAllEventsActivity.class));
                     }

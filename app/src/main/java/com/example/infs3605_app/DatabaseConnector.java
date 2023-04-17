@@ -257,6 +257,17 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return feedbackAverages;
     }
 
+    public Event getEventById (String eventId) {
+        ArrayList<Event> allEvents = getEventInfo();
+        for (int i = 0; i < allEvents.size(); i++) {
+            if (allEvents.get(i).getEventId().equals(eventId)) {
+                Event event = allEvents.get(i);
+                return event;
+            }
+        }
+
+        return null;
+    }
 
     public String getEventName (String eventId) {
         ArrayList<Event> allEvents = getEventInfo();
