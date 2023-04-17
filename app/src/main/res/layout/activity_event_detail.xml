@@ -51,7 +51,7 @@
                 android:id="@+id/eventNameField"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="EVENT NAME"
@@ -62,12 +62,16 @@
 
             <TextView
                 android:id="@+id/displayEventName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_name_tag"
                 android:drawablePadding="8dp"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Event Name Here"
                 android:textColor="@color/darkest_grey"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventNameField"
                 app:layout_constraintTop_toBottomOf="@+id/eventNameField" />
 
@@ -85,13 +89,16 @@
 
             <TextView
                 android:id="@+id/displayEventOrganiser"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_conference_foreground_selected"
                 android:drawablePadding="8dp"
                 android:text="Organiser Name"
                 android:textColor="#EDC700"
+                android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventOrganiserField"
                 app:layout_constraintTop_toBottomOf="@+id/eventOrganiserField" />
 
@@ -109,10 +116,13 @@
 
             <TextView
                 android:id="@+id/displayEventCategory"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_tag"
                 android:drawablePadding="8dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventCategoryField"
                 app:layout_constraintTop_toBottomOf="@+id/eventCategoryField" />
 
@@ -130,27 +140,36 @@
 
             <TextView
                 android:id="@+id/displayEventLocation"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_location"
                 android:drawablePadding="8dp"
+                android:text="testing facility"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventLocationField"
                 app:layout_constraintTop_toBottomOf="@+id/eventLocationField" />
 
             <TextView
                 android:id="@+id/displayEventCity"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"
+                android:text="testing city"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/displayEventLocation"
                 app:layout_constraintStart_toStartOf="@+id/displayEventLocation"
                 app:layout_constraintTop_toBottomOf="@+id/displayEventLocation" />
 
             <TextView
                 android:id="@+id/displayEventCountry"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/displayEventCity"
                 app:layout_constraintStart_toStartOf="@+id/displayEventCity"
                 app:layout_constraintTop_toBottomOf="@+id/displayEventCity" />
 
@@ -168,10 +187,13 @@
 
             <TextView
                 android:id="@+id/displayEventDate"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_calendar"
                 android:drawablePadding="8dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventDateField"
                 app:layout_constraintTop_toBottomOf="@+id/eventDateField" />
 
@@ -193,6 +215,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_clock"
                 android:drawablePadding="8dp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/eventStartTimeField"
                 app:layout_constraintTop_toBottomOf="@+id/eventStartTimeField" />
 
@@ -214,6 +237,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_clock"
                 android:drawablePadding="8dp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/eventEndTimeField"
                 app:layout_constraintTop_toBottomOf="@+id/eventEndTimeField" />
 
@@ -221,12 +245,13 @@
                 android:id="@+id/displayEventDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_rename"
+                android:drawablePadding="8dp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventDescriptionField"
-                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionField"
-                android:drawablePadding="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionField" />
 
             <TextView
                 android:id="@+id/eventDescriptionField"
@@ -252,7 +277,7 @@
                 android:backgroundTint="@color/yellow"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="SAVE EVENT"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -44,13 +44,15 @@
 
             <TextView
                 android:id="@+id/organiserPrint"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="24dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="testing"
                 android:textColor="@color/yellow"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/homePageProfPic"
                 app:layout_constraintTop_toTopOf="@+id/homePageProfPic" />
 
@@ -99,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:drawableStart="@drawable/icons8_rename"
+                android:drawablePadding="8dp"
                 android:text="testing long description sdjkfhaskdfj sdlfkjsdflk sdfjlskdfj sdklfj sdlkfjsldkfjdslf ksdjdslkfjsdlfkjsd flk"
                 android:textColor="@color/darkest_grey"
                 android:textSize="16sp"

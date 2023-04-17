@@ -51,7 +51,7 @@
                 android:id="@+id/eventNameFieldApprovals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="EVENT NAME"
@@ -62,12 +62,15 @@
 
             <TextView
                 android:id="@+id/displayEventNameApprovals"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_name_tag"
                 android:drawablePadding="8dp"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/darkest_grey"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventNameFieldApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/eventNameFieldApprovals" />
 
@@ -85,13 +88,16 @@
 
             <TextView
                 android:id="@+id/displayEventOrganiserApprovals"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_conference_foreground_selected"
                 android:drawablePadding="8dp"
                 android:text="Organiser Name"
                 android:textColor="#EDC700"
+                android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventOrganiserFieldApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/eventOrganiserFieldApprovals" />
 
@@ -109,10 +115,13 @@
 
             <TextView
                 android:id="@+id/displayEventCategoryApprovals"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_tag"
                 android:drawablePadding="8dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventCategoryFieldApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/eventCategoryFieldApprovals" />
 
@@ -130,27 +139,33 @@
 
             <TextView
                 android:id="@+id/displayEventLocationApprovals"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_location"
                 android:drawablePadding="8dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventLocationFieldApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/eventLocationFieldApprovals" />
 
             <TextView
                 android:id="@+id/displayEventCityApprovals"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/displayEventLocationApprovals"
                 app:layout_constraintStart_toStartOf="@+id/displayEventLocationApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/displayEventLocationApprovals" />
 
             <TextView
                 android:id="@+id/displayEventCountryApprovals"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/displayEventCityApprovals"
                 app:layout_constraintStart_toStartOf="@+id/displayEventCityApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/displayEventCityApprovals" />
 
@@ -168,10 +183,13 @@
 
             <TextView
                 android:id="@+id/displayEventDateApprovals"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_calendar"
                 android:drawablePadding="8dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventDateFieldApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/eventDateFieldApprovals" />
 
@@ -193,6 +211,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_clock"
                 android:drawablePadding="8dp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/eventStartTimeFieldApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/eventStartTimeFieldApprovals" />
 
@@ -214,6 +233,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icons8_clock"
                 android:drawablePadding="8dp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/eventEndTimeFieldApprovals"
                 app:layout_constraintTop_toBottomOf="@+id/eventEndTimeFieldApprovals" />
 
@@ -221,12 +241,13 @@
                 android:id="@+id/displayEventDescriptionApprovals"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:drawableStart="@drawable/icons8_rename"
+                android:drawablePadding="8dp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/eventDescriptionFieldApprovals"
-                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionFieldApprovals"
-                android:drawablePadding="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/eventDescriptionFieldApprovals" />
 
             <TextView
                 android:id="@+id/eventDescriptionFieldApprovals"
@@ -269,7 +290,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
-                    android:text="Approve Event" />
+                    android:text="Approve Event"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/spacer"
@@ -295,7 +317,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
-                    android:text="Reject Event" />
+                    android:text="Reject Event"
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
