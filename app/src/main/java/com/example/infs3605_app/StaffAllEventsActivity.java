@@ -8,6 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -19,6 +21,8 @@ public class StaffAllEventsActivity extends AppCompatActivity {
     TabLayout staffEventsTabLayout;
     ViewPager staffEventsViewPager;
     StaffEventsViewPagerAdapter adapter;
+    ImageView profileButton;
+    private static final String TAG = "StaffAllEventsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,16 @@ public class StaffAllEventsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("All Events");
         setSupportActionBar(toolbar);
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OrganiserProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
 
         staffEventsTabLayout = findViewById(R.id.staffEventsTabLayout);
         staffEventsViewPager = findViewById(R.id.staffEventsViewPager);

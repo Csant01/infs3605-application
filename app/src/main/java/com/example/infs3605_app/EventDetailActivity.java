@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,17 +27,20 @@ public class EventDetailActivity extends AppCompatActivity {
     TextView eventName, eventCat, eventDate, eventStartTime, eventEndTime, eventLoc,
             eventCity, eventCountry, eventOrg, eventDesc;
     ImageView eventImage;
+    ImageView backButton, profileButton;
     DatabaseConnector db;
     Event event;
     byte[] bytes;
     String fromLocation;
     private static final String TAG = "EventDetailActivity";
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
         db = new DatabaseConnector(this);
+        toolbar = findViewById(R.id.toolbar);
         String eventId = getIntent().getStringExtra("EVENT_ID");
         ArrayList<Event> allEvents = db.getEventInfo();
         for (int i = 0; i < allEvents.size(); i++) {
@@ -78,11 +82,6 @@ public class EventDetailActivity extends AppCompatActivity {
         }
 
 
-        // Set Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(event.getEventName());
-        setSupportActionBar(toolbar);
-
         eventOrg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,8 +94,66 @@ public class EventDetailActivity extends AppCompatActivity {
             }
         });
 
-        // Bottom Navigation set for Events Detail Page
         fromLocation = getIntent().getStringExtra("PAGE");
+        setTitle(event.getEventName());
+        setSupportActionBar(toolbar);
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fromLocation.equals("StudentHomePage")) {
+                    Intent intent = new Intent(getApplicationContext(), StudentHomePageActivity.class);
+                    intent.putExtra("EVENT_ID", event.getEventId());
+                    intent.putExtra("USER_TYPE", "student");
+                    intent.putExtra("PAGE", "EventDetailActivity");
+                    startActivity(intent);
+                    startActivity(new Intent(getApplicationContext(), StudentHomePageActivity.class));
+                } else if (fromLocation.equals("StudentPastEvents")) {
+                    Intent intent = new Intent(getApplicationContext(), StudentPastEventsActivity.class);
+                    intent.putExtra("EVENT_ID", event.getEventId());
+                    intent.putExtra("USER_TYPE", "student");
+                    intent.putExtra("PAGE", "EventDetailActivity");
+                    startActivity(intent);
+                } else if (fromLocation.equals("StudentSavedEvents")) {
+                    Intent intent = new Intent(getApplicationContext(), StudentSavedEventsActivity.class);
+                    intent.putExtra("EVENT_ID", event.getEventId());
+                    intent.putExtra("USER_TYPE", "student");
+                    intent.putExtra("PAGE", "EventDetailActivity");
+                    startActivity(intent);
+                } else if (fromLocation.equals("OrganiserPublicProfile")) {
+                    Intent intent = new Intent(getApplicationContext(), OrganiserPublicProfileActivity.class);
+                    intent.putExtra("EVENT_ID", event.getEventId());
+                    intent.putExtra("USER_TYPE", "student");
+                    intent.putExtra("PAGE", "EventDetailActivity");
+                    startActivity(intent);
+                } else if (fromLocation.equals("StudentAllEvents")) {
+                    Intent intent = new Intent(getApplicationContext(), StudentAllEventsActivity.class);
+                    intent.putExtra("EVENT_ID", event.getEventId());
+                    intent.putExtra("USER_TYPE", "student");
+                    intent.putExtra("PAGE", "EventDetailActivity");
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), StudentHomePageActivity.class);
+                    intent.putExtra("EVENT_ID", event.getEventId());
+                    intent.putExtra("USER_TYPE", "student");
+                    intent.putExtra("PAGE", "EventDetailActivity");
+                    startActivity(intent);
+                }
+            }
+        });
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
+
+        // Bottom Navigation set for Events Detail Page
+
         Log.d(TAG, "fromLocation: " + fromLocation);
         bottomNavigationView = findViewById(R.id.bottomNavigator);
         bottomNavigationView.setSelectedItemId(R.id.eventsNavButton);

@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -14,6 +16,8 @@ import com.google.android.material.navigation.NavigationBarView;
 public class EventsPendingApprovalActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    ImageView profileButton;
+    private static final String TAG = "EventsPendingApprovalActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,16 @@ public class EventsPendingApprovalActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("Approvals");
         setSupportActionBar(toolbar);
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OrganiserProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
+
 
         // Bottom Navigation set for Events Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);

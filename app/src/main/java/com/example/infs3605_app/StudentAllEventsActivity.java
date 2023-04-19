@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
     SearchView searchView;
     BottomNavigationView bottomNavigationView;
     TextView clearFilter, eventTitle;
+    ImageView profileButton;
+    private static final String TAG = "StudentAllEventsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +114,16 @@ public class StudentAllEventsActivity extends AppCompatActivity implements Stude
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("All Events");
         setSupportActionBar(toolbar);
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

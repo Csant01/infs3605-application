@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class ManageEventDetailActivity extends AppCompatActivity {
     Button updateEventDetails;
     String eventFromIntent;
     AutoCompleteTextView eventCategory;
+    ImageView backButton, profileButton;
     DatabaseConnector db;
     Event event;
     RadioGroup ticketedRadioGroup;
@@ -43,6 +45,9 @@ public class ManageEventDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_event_detail);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
         eventName = findViewById(R.id.editEventName);
         eventDescription = findViewById(R.id.editEventDesc);
@@ -70,9 +75,6 @@ public class ManageEventDetailActivity extends AppCompatActivity {
                 event = allEvents.get(i);
             }
         }
-        Log.d(TAG, "User: " + user);
-        Log.d(TAG, "Event Owner: " + event.getEventOwner());
-        Log.d(TAG, "Desc: " + event.getEventDescription());
 
         if (!event.getEventOwner().equals(db.getUserId(user))) {
             eventName.setFocusable(false);
@@ -127,6 +129,25 @@ public class ManageEventDetailActivity extends AppCompatActivity {
             ticketedRadioGroup.check(R.id.editNoTicktedButton);
         }
 
+        setTitle(event.getEventName());
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), StaffAllEventsActivity.class));
+            }
+        });
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OrganiserProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
+
         updateEventDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,10 +187,6 @@ public class ManageEventDetailActivity extends AppCompatActivity {
 
 
 
-        // Set Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(event.getEventName());
-        setSupportActionBar(toolbar);
 
         // Bottom Navigation set for Manage Events Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);

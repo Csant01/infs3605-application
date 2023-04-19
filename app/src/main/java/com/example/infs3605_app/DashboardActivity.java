@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -40,6 +42,8 @@ public class DashboardActivity extends AppCompatActivity {
     TabLayout dashboardTabLayout;
     ViewPager dashboardViewPager;
     DashboardViewPagerAdapter adapter;
+    ImageView profileButton;
+    private static final String TAG = "DashboardActivity";
 
 
     @Override
@@ -61,6 +65,16 @@ public class DashboardActivity extends AppCompatActivity {
         adapter.addFragment(new FragmentDashboardCosting(), "COSTING METRICS");
         dashboardViewPager.setAdapter(adapter);
         dashboardTabLayout.setupWithViewPager(dashboardViewPager);
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OrganiserProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
 
         // Bottom Navigation set for Dashboard Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);

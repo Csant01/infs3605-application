@@ -61,6 +61,9 @@ public class SwipeCardAdapter extends BaseAdapter {
 
 
         orgBytes = db.retrieveOrganiserImageDirect(allEvents.get(position).getEventOwner());
+        if (orgBytes == null) {
+            orgBytes = db.retrieveOrganiserImageFromDatabaseFiltered(allEvents.get(position).getEventOwner());
+        }
         Log.d(TAG, "Event Owner: " + allEvents.get(position).getEventOwner());
         
 

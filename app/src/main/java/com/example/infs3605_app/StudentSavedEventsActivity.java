@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -31,6 +33,8 @@ public class StudentSavedEventsActivity extends AppCompatActivity implements Stu
     ArrayList<Event> eventList;
     long epochSeconds;
     SearchView searchView;
+    private static final String TAG = "StudentSavedEventsActivity";
+    ImageView profileButton;
 
 
 
@@ -65,6 +69,16 @@ public class StudentSavedEventsActivity extends AppCompatActivity implements Stu
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("Saved Events");
         setSupportActionBar(toolbar);
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
 
         //RV Setup
         eventList = new ArrayList<>();

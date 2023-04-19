@@ -55,7 +55,7 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
     int checkTicketed = 0;
     DatabaseConnector db;
     ArrayList<TextView> uiArrayList;
-    ImageView eventImage;
+    ImageView eventImage, profileButton;
     FloatingActionButton selectImage;
     byte[] blob;
 
@@ -69,6 +69,7 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
         eventCategories.add("Careers");
         eventCategories.add("Social");
         eventCategories.add("Travel");
+        String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
 
         eventName = findViewById(R.id.eventNameTextBox);
         eventDescription = findViewById(R.id.eventDescriptionTextBox);
@@ -101,6 +102,16 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("Create New Event");
         setSupportActionBar(toolbar);
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OrganiserProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
 
         ticketedYes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,7 +168,7 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
 
 
                         Event event = new Event(eventId, eventNameString, eventLocationString,
-                                eventDescriptionString, User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1),
+                                eventDescriptionString, db.getUserId(user),
                                 eventCountryString, eventCityString, eventCategoryString, predictedAttnInt,
                                 0, eventCostString,checkTicketed,null,formatEpoch(eventDateString), eventStartTimeString,
                                 eventEndTimeString, 0, 0, eventStaffingInt, eventFacilityString);

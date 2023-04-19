@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -20,9 +22,12 @@ public class ViewParticipantsActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     ViewParticipantsAdapter adapter;
     RecyclerView viewParticipantsRv;
+    ImageView backButton, profileButton;
     ArrayList<User> allUsers;
     DatabaseConnector db;
     String eventId;
+    private static final String TAG = "ViewParticipantsActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,24 @@ public class ViewParticipantsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("Participants");
         setSupportActionBar(toolbar);
+
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), StaffAllEventsActivity.class));
+            }
+        });
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OrganiserProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
 
         // Bottom Navigation set for Events Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);

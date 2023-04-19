@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ public class FragmentStaffAll extends Fragment implements StaffEventsAdapter.Sta
     List<Event> allEvents;
     DatabaseConnector db;
     private static final String TAG = "FragmentStaffAll";
+    String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
 
     public FragmentStaffAll() {
     }
@@ -54,10 +56,17 @@ public class FragmentStaffAll extends Fragment implements StaffEventsAdapter.Sta
 
     @Override
     public void onEventClick(int position) {
-        Intent intent = new Intent(getContext(), ManageEventDetailActivity.class);
-        intent.putExtra("EVENT_ID", allEvents.get(position).getEventId());
-        intent.putExtra("USER_TYPE", "organiser");
-        intent.putExtra("PAGE", "StaffEvents");
-        startActivity(intent);
+        String userId = db.getUserId(user);
+        if (allEvents.get(position).getEventOwner().equals(userId)) {
+            Log.d(TAG, "onEventClick: EventOwner" + allEvents.get(position).getEventOwner());
+            Log.d(TAG, "onEventClick: Owner" + userId);
+            Intent intent = new Intent(getContext(), ManageEventDetailActivity.class);
+            intent.putExtra("EVENT_ID", allEvents.get(position).getEventId());
+            intent.putExtra("USER_TYPE", "organiser");
+            intent.putExtra("PAGE", "StaffEvents");
+            startActivity(intent);
+        } else {
+            Toast.makeText(getContext(), "You don't have access to view this event's detais.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

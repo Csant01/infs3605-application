@@ -9,6 +9,9 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -20,6 +23,8 @@ public class StudentFollowingListActivity extends AppCompatActivity {
     TabLayout followingTabLayout;
     ViewPager followingViewPager;
     StudentFollowingViewPagerAdapter adapter;
+    private static final String TAG = "StudentFollowingListActivity";
+    ImageView profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +46,6 @@ public class StudentFollowingListActivity extends AppCompatActivity {
 
         followingViewPager.setAdapter(adapter);
         followingTabLayout.setupWithViewPager(followingViewPager);
-//        followingTabLayout.addTab(followingTabLayout.newTab().setText("GLOBAL"));
-//        followingTabLayout.addTab(followingTabLayout.newTab().setText("FOLLOWING"));
         followingViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -60,6 +63,16 @@ public class StudentFollowingListActivity extends AppCompatActivity {
             @Override
             public void onPageScrollStateChanged(int state) {
 
+            }
+        });
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
             }
         });
 

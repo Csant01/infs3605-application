@@ -2,6 +2,7 @@ package com.example.infs3605_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 public class StudentFeedbackFormActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    ImageView feedbackFormImage;
+    ImageView feedbackFormImage, profileButton;
     TextView eventName, eventOrg, eventDate;
     RadioGroup satisfied, likelyToAttend, usefulness, overallRating;
     TextView additionalComments;
@@ -48,6 +49,8 @@ public class StudentFeedbackFormActivity extends AppCompatActivity {
         String eventId = getIntent().getStringExtra("EVENT_ID");
         Log.d(TAG, "eventId: " + eventId);
         db = new DatabaseConnector(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
 
         feedbackFormImage = findViewById(R.id.feedbackFormImage);
         eventName = findViewById(R.id.eventNameFormPrint);
@@ -77,6 +80,8 @@ public class StudentFeedbackFormActivity extends AppCompatActivity {
         eventDate.setText(formatEpoch(event.getEventDate()));
         feedbackFormImage.setImageBitmap(ImageUtils.getImage(bytes));
 
+        setTitle(event.getEventName() + " Feedback");
+        setSupportActionBar(toolbar);
 
         q11 = findViewById(R.id.questionOneOne);
         q12 = findViewById(R.id.questionOneTwo);
@@ -127,14 +132,11 @@ public class StudentFeedbackFormActivity extends AppCompatActivity {
                 }
 
                 if (allGroupsSelected) {
-                    // Get references to the selected radio buttons
                     RadioButton selected1 = findViewById(selectedId1);
                     RadioButton selected2 = findViewById(selectedId2);
                     RadioButton selected3 = findViewById(selectedId3);
                     RadioButton selected4 = findViewById(selectedId4);
 
-                    // Do something with the selected radio buttons
-                    // For example:
                     int answer1 = Integer.parseInt(selected1.getText().toString());
                     int answer2 = Integer.parseInt(selected2.getText().toString());
                     int answer3 = Integer.parseInt(selected3.getText().toString());
@@ -146,6 +148,16 @@ public class StudentFeedbackFormActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Feedback submitted for " + event.getEventName(), Toast.LENGTH_SHORT).show();
 
                 }
+            }
+        });
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
             }
         });
 

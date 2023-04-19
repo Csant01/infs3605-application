@@ -7,6 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.daprlabs.cardstack.SwipeDeck;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,6 +23,8 @@ public class StudentHomePageActivity extends AppCompatActivity {
     private SwipeDeck eventSwipeDeck;
     private ArrayList<Event> eventList;
     DatabaseConnector db;
+    ImageView profileButton;
+    private static final String TAG = "StudentHomePageActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,14 @@ public class StudentHomePageActivity extends AppCompatActivity {
 
             @Override
             public void cardSwipedRight(int position) {
+                db = new DatabaseConnector(getApplicationContext());
+                int userGoing = db.setUserGoing(User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1),
+                        eventList.get(position).getEventId());
+                if (userGoing == 0) {
+                    Toast.makeText(getApplicationContext(), "You are now RSVP'ed for " + eventList.get(position).getEventName(),
+                            Toast.LENGTH_SHORT).show();
+                }
+
 
             }
 
@@ -65,6 +78,16 @@ public class StudentHomePageActivity extends AppCompatActivity {
             @Override
             public void cardActionUp() {
 
+            }
+        });
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
             }
         });
 

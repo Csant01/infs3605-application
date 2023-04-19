@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -22,6 +24,8 @@ public class EventFeedbackActivity extends AppCompatActivity {
     ArrayList<FeedbackAverage> feedbackAverages;
     EventFeedbackAdapter adapter;
     DatabaseConnector db;
+    ImageView profileButton;
+    private static final String TAG = "EventFeedbackActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,16 @@ public class EventFeedbackActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("Feedback");
         setSupportActionBar(toolbar);
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OrganiserProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
 
         feedbackAverages = db.getFeedbackAverages(eventIds);
         feedbackRv = findViewById(R.id.eventFeedbackRv);

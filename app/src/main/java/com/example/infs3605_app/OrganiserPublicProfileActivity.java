@@ -29,6 +29,7 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
     TextView organiserName, organiserFaculty, organiserType, clearFilter;
     RecyclerView organiserRv;
     ImageView organiserPicture;
+    ImageView backButton, profileButton;
     ImageButton pastEvents;
     Button followButton;
     OrganiserProfileEventsAdapter adapter;
@@ -43,7 +44,7 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
     User user;
     String followingCheck;
     boolean bool;
-    private static final String TAG = "OrganiserPublicProfile";
+    private static final String TAG = "OrganiserPublicProfileActivity";
 
     BottomNavigationView bottomNavigationView;
 
@@ -203,6 +204,26 @@ public class OrganiserPublicProfileActivity extends AppCompatActivity implements
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("Explore Profile");
         setSupportActionBar(toolbar);
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
+
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentFollowingListActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
 
     }
 

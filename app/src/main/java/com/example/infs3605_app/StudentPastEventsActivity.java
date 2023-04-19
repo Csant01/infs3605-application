@@ -11,7 +11,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,6 +31,7 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
     RecyclerView pastEventsRv;
     Button feedbackButton;
     DatabaseConnector db;
+    ImageView profileButton;
     ArrayList<Event> eventList;
     Date currentDate = new Date();
     long epochMillis = currentDate.getTime();
@@ -76,6 +79,16 @@ public class StudentPastEventsActivity extends AppCompatActivity implements Stud
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle("Past Events");
         setSupportActionBar(toolbar);
+
+        profileButton = findViewById(R.id.menuButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentProfileActivity.class);
+                intent.putExtra("PAGE", TAG);
+                startActivity(intent);
+            }
+        });
 
         // Bottom Navigation set for Past Events (student view)
         bottomNavigationView = findViewById(R.id.bottomNavigator);
