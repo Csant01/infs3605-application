@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/dashboardCostBarChart"
+        android:layout_width="411dp"
+        android:layout_height="248dp"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></com.github.mikephil.charting.charts.BarChart>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/dashboardCostLineChart"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@drawable/border"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/dashboardDonationsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:background="@drawable/border"
+        android:text="Percentage of Budget Remaining"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardDonations"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/dashboardDonations"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/grey"
+        android:paddingBottom="10dp"
+        android:text="$433.05"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardBudgetRemainingTitle" />
+
+    <TextView
+        android:id="@+id/dashboardBudgetRemainingTitle"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/border"
+        android:text="Total Donations Received"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardCostBarChart" />
+
+    <TextView
+        android:id="@+id/dashboardBudgetRemaining"
+        android:layout_width="match_parent"
+        android:layout_height="113dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/grey"
+        android:paddingBottom="10dp"
+        android:text="24.3%"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardDonationsTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

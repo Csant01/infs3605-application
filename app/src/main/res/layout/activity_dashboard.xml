@@ -7,16 +7,37 @@
     android:layout_height="match_parent"
     tools:context=".DashboardActivity">
 
+
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/dashboardPieChart"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/dashboardTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="618dp"
-        app:layout_constraintBottom_toBottomOf="@id/bottomNavigator"
-        app:layout_constraintTop_toTopOf="@id/toolbar" />
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="to switch between who the user is following and accounts they are not following"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:tabIndicatorColor="#ffffff"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#ffffff"
+        app:tabTextColor="#ffffff"></com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/dashboardViewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="who the user is following and accounts they are not following"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardTabLayout">
+    </androidx.viewpager.widget.ViewPager>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
@@ -30,4 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/organiser_menu" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,9 +46,9 @@ public class FragmentStaffAll extends Fragment implements StaffEventsAdapter.Sta
         Log.d(TAG, "allEventsSize: " + allEvents.size());
         allEvents = new ArrayList<>();
         for (int i = 0; i < tmpEvents.size(); i++) {
-            if (tmpEvents.get(i).getEventIsApproved() > 0) {
+//            if (tmpEvents.get(i).getEventIsApproved() > 0) {
                 allEvents.add(tmpEvents.get(i));
-            }
+//            }
         }
     }
 

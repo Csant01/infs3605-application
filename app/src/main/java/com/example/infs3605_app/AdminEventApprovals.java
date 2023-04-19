@@ -42,7 +42,7 @@ public class AdminEventApprovals extends AppCompatActivity {
 
         // Bottom Navigation set for Admin Event Approvals Page
         bottomNavigationView = findViewById(R.id.bottomNavigator);
-        bottomNavigationView.setSelectedItemId(R.id.dashboardNavButton);
+        bottomNavigationView.setSelectedItemId(R.id.adminEventApprovalsButton);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

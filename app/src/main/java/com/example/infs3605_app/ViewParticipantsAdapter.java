@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ public class ViewParticipantsAdapter extends RecyclerView.Adapter<ViewParticipan
         holder.studentName.setText(allUsers.get(position).getUserName());
         holder.studentEmail.setText(allUsers.get(position).getUserEmail());
         holder.studentLinkedIn.setText("LinkedIn");
+        holder.studentImage.setImageResource(R.drawable.circle_user);
     }
 
     @Override
@@ -46,12 +48,14 @@ public class ViewParticipantsAdapter extends RecyclerView.Adapter<ViewParticipan
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView studentName, studentEmail, studentLinkedIn;
+        ImageView studentImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Random rand = new Random();
             studentName = itemView.findViewById(R.id.studentParticipantName);
             studentEmail = itemView.findViewById(R.id.studentParticipantEmail);
             studentLinkedIn = itemView.findViewById(R.id.studentParticipantLinkedIn);
+            studentImage = itemView.findViewById(R.id.participantProfilePicture);
             studentLinkedIn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

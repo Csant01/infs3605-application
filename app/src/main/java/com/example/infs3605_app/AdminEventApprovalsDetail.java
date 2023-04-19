@@ -73,7 +73,7 @@ public class AdminEventApprovalsDetail extends AppCompatActivity {
             rejectButton.setLayoutParams(params);
             rejectButton.setVisibility(View.VISIBLE);
             rejectText.setVisibility(View.VISIBLE);
-        } else {
+        } else if (event.getEventIsApproved() == -1) {
             rejectButton.setVisibility(View.GONE);
             rejectText.setVisibility(View.GONE);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) approveButton.getLayoutParams();

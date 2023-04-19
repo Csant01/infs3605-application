@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/dashboardAverageFeedbackRating"
+        android:layout_width="207dp"
+        android:layout_height="85dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/grey"
+        android:paddingBottom="10dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardFeedbackRateTitle" />
+
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/dashboardPieChart"
+        android:layout_width="204dp"
+        android:layout_height="239dp"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/dashboardAttnPieChart"
+        android:layout_width="208dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="204dp"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardAverageFeedbackRating" />
+
+    <TextView
+        android:id="@+id/dashboardEventCountTitle"
+        android:layout_width="207dp"
+        android:layout_height="26dp"
+        android:background="@drawable/border"
+        android:text="Upcoming Event Count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/dashboardPieChart" />
+
+    <TextView
+        android:id="@+id/dashboardFeedbackRateTitle"
+        android:layout_width="207dp"
+        android:layout_height="25dp"
+        android:background="@drawable/border"
+        android:text="Average Feedback Ratings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dashboardPieChart"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardUpcomingEvents" />
+
+    <TextView
+        android:id="@+id/dashboardUpcomingEvents"
+        android:layout_width="207dp"
+        android:layout_height="73dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/grey"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardEventCountTitle" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/dashboardBarChart"
+        android:layout_width="204dp"
+        android:layout_height="418dp"
+        android:background="@drawable/border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardPieChart"></com.github.mikephil.charting.charts.BarChart>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dashboardCommentsRv"
+        android:layout_width="206dp"
+        android:layout_height="315dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardAttnPieChart" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

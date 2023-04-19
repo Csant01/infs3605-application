@@ -202,6 +202,23 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         return allComments;
     }
 
+    public ArrayList<String> getFeedbackCommentsAll () {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = String.format("SELECT ADDITIONAL_COMMENTS FROM USER_FEEDBACK");
+        ArrayList<String> allComments = new ArrayList<>();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                allComments.add(cursor.getString(0));
+                cursor.moveToNext();
+            }
+        }
+
+        return allComments;
+    }
+
     public ArrayList<FeedbackAverage> getFeedbackAverages (ArrayList<String> eventIds) {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<FeedbackAverage> feedbackAverages = new ArrayList<>();
@@ -249,9 +266,15 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             double usefulnessAvg = (double) usefulnessSum / usefulness.size();
             double ratingAvg = (double) ratingSum / rating.size();
 
-            FeedbackAverage averages = new FeedbackAverage(eventName, satisfactionAvg, likelinessAvg,
-                    usefulnessAvg, ratingAvg);
+            String satisfactionAvgFormatted = String.format("%.2f", satisfactionAvg);
+            String likelinessAvgFormatted = String.format("%.2f", likelinessAvg);
+            String usefulnessAvgFormatted = String.format("%.2f", usefulnessAvg);
+            String ratingAvgFormatted = String.format("%.2f", ratingAvg);
+
+            FeedbackAverage averages = new FeedbackAverage(eventName, Double.parseDouble(satisfactionAvgFormatted), Double.parseDouble(likelinessAvgFormatted),
+                    Double.parseDouble(usefulnessAvgFormatted), Double.parseDouble(ratingAvgFormatted));
             feedbackAverages.add(averages);
+
         }
 
         return feedbackAverages;
