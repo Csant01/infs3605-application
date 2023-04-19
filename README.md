@@ -11,8 +11,9 @@ Insert the `database.db` file into the location.
 Events need to be created using an Organiser account -> Events need to be approved by Admin account -> Events are made visible for Students.
 
 ## Process flow for Users
-User needs to register via CREATE ACCOUNT button on Landing Page -> User needs to be approved by Admin account
-Important Note - created users are only for organiser accounts. Sample student accounts will need to be used for the student side of the application.
+User needs to register via CREATE ACCOUNT button on Landing Page -> User needs to be approved by Admin account.
+
+*Important Note - created users are only for organiser accounts. Sample student & admin accounts provided will need to be used for the student side of the application.*
 
 ## Sample Accounts
 ### Admin Account:
