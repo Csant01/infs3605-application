@@ -1,6 +1,6 @@
 # IMPORTANT DETAILS FOR MARKER
 
-Please ensure to upload the database.db file into the emulator before testing the application.
+Please ensure to upload the `database.db` file into the emulator before testing the application.
 The application is **non-functional** without the necessary data in place.
 
 Firstly run the emulator and complete the following steps:
