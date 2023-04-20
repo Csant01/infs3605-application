@@ -20,8 +20,7 @@ public class LandingPageActivity extends AppCompatActivity {
         testBtn = findViewById(R.id.testBtn);
         registerBtn = findViewById(R.id.toSignUpPageButton);
         db = new DatabaseConnector(this);
-//        db.addSampleEventData();
-//        db.createSampleUser();
+        db.tmpQuery();
 
 
         testBtn.setOnClickListener(new View.OnClickListener() {

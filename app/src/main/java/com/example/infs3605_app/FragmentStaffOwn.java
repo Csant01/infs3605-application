@@ -43,7 +43,7 @@ public class FragmentStaffOwn extends Fragment implements StaffOwnEventsAdapter.
         String user = User.currentlyLoggedIn.get(User.currentlyLoggedIn.size()-1);
         allEvents = new ArrayList<>();
         for (int i = 0; i < tmpAllEvents.size(); i++) {
-            if (/*tmpAllEvents.get(i).getEventIsApproved() > 0 && */tmpAllEvents.get(i).getEventOwner().equals(db.getUserId(user))) {
+            if (tmpAllEvents.get(i).getEventIsApproved() > 0 && tmpAllEvents.get(i).getEventOwner().equals(db.getUserId(user))) {
                 allEvents.add(tmpAllEvents.get(i));
             }
         }

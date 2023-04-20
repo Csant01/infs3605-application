@@ -149,7 +149,8 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
                     if (emptyFields.isEmpty() && regexCheck(eventDate.getText().toString(), 0)
                             && regexCheck(eventEndTime.getText().toString(), 1)
                             && regexCheck(eventStartTime.getText().toString(), 1)
-                            && dateCheck(eventDate.getText().toString())) {
+                            && dateCheck(eventDate.getText().toString())
+                            && blob != null ) {
                         String eventNameString = eventName.getText().toString();
                         String eventDescriptionString= eventDescription.getText().toString();
                         String eventLocationString= eventLocation.getText().toString();
@@ -197,6 +198,9 @@ public class CreateEventActivity extends AppCompatActivity implements View.OnCli
                     } else if (!dateCheck(eventDate.getText().toString())) {
                         eventDate.setError("Please ensure date is not in the past.");
                         Toast.makeText(CreateEventActivity.this, "Please ensure date is not in the past.",
+                                Toast.LENGTH_SHORT).show();
+                    } else if (blob == null) {
+                        Toast.makeText(CreateEventActivity.this, "Please ensure you add an image.",
                                 Toast.LENGTH_SHORT).show();
                     }
                 } catch (ParseException e) {

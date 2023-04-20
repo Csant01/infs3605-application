@@ -185,6 +185,33 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
+    public void tmpQuery () {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE EVENTS SET EVENT_ISAPPROVED = 1;";
+        db.execSQL(query);
+    }
+    public ArrayList<Event> getPendingEvents (String userName) {
+        String userId = getUserId(userName);
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT EVENT_ID FROM EVENTS WHERE EVENT_ISAPPROVED = 0 AND EVENT_OWNER = '%s'", userId);
+        ArrayList<Event> pendingEvents = new ArrayList<>();
+        ArrayList<Event> allEvents = getEventInfo();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()){
+            while (!cursor.isAfterLast()) {
+                for (int i = 0; i < allEvents.size(); i++) {
+                    if (allEvents.get(i).getEventId().equals(cursor.getString(0))) {
+                        pendingEvents.add(allEvents.get(i));
+                    }
+                }
+                cursor.moveToNext();
+            }
+        }
+
+        return pendingEvents;
+    }
+
     public ArrayList<String> getFeedbackComments (String eventName) {
         SQLiteDatabase db = this.getReadableDatabase();
         String eventId = getEventId(eventName);
@@ -505,41 +532,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
-    public void createSampleUsers() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        String query = "INSERT INTO USERS (USER_ID, USER_NAME, USER_FNAME, USER_LNAME, USER_GENDER, USER_DOB, USER_COUNTRY, USER_CITY, USER_PROF_IMAGE, USER_EMAIL, USER_TYPE, USER_PASS, USER_IMAGE, USER_FACULTY)\n" +
-                "VALUES\n" +
-                "('user001', 'UNSW Engineering Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'engsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Engineering'),\n" +
-                "('user002', 'John Doe', 'John', 'Doe', 'Male', 316012800, 'Australia', 'Melbourne', '#IMAGE', 'johndoe@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Business'),\n" +
-                "('user003', 'UNSW Law Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'lawsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Law'),\n" +
-                "('user004', 'UNSW Computing Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'compsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Computer Science'),\n" +
-                "('user005', 'UNSW Medical Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'medsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Medicine'),\n" +
-                "('user006', 'Jane Smith', 'Jane', 'Smith', 'Female', 416515200, 'Australia', 'Perth', '#IMAGE', 'janesmith@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Arts & Literature'),\n" +
-                "('user007', 'UNSW Accounting Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'accsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Business'),\n" +
-                "('user008', 'David Lee', 'David', 'Lee', 'Male', 220924800, 'Australia', 'Sydney', '#IMAGE', 'davidlee@ad.unsw.edu.au', 2, 369939368, '#IMAGE', 'Engineering'),\n" +
-                "('user009', 'UNSW Marketing Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'marketsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Business'),\n" +
-                "('user010', 'UNSW Psychology Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'psychsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Other'),\n" +
-                "('user011', 'Sarah Brown', 'Sarah', 'Brown', 'Female', 289708800, 'Australia', 'Brisbane', '#IMAGE', 'sarahbrown@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Law'),\n" +
-                "('user026', 'Alice Green', 'Alice', 'Green', 'Female', 352723200, 'Australia', 'Sydney', '#IMAGE', 'alicegreen@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL),\n" +
-                "('user027', 'David Johnson', 'David', 'Johnson', 'Male', 364131200, 'Australia', 'Melbourne', '#IMAGE', 'davidjohnson@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL),\n" +
-                "('user028', 'Sophie Williams', 'Sophie', 'Williams', 'Female', 377123200, 'Australia', 'Perth', '#IMAGE', 'sophiewilliams@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL),\n" +
-                "('user029', 'Mark Lee', 'Mark', 'Lee', 'Male', 385344000, 'Australia', 'Sydney', '#IMAGE', 'marklee@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL),\n" +
-                "('user030', 'Lucy Wilson', 'Lucy', 'Wilson', 'Female', 404236800, 'Australia', 'Brisbane', '#IMAGE', 'lucywilson@ad.unsw.edu.au', 0, 369939368, '#IMAGE', NULL), " +
-                "('user016', 'UNSW Music Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'musicsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Arts & Literature'),\n" +
-                "('user017', 'Emily Jones', 'Emily', 'Jones', 'Female', 219148800, 'Australia', 'Sydney', '#IMAGE', 'emilyjones@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Medicine'),\n" +
-                "('user018', 'UNSW Drama Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'dramasoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Arts & Literature'),\n" +
-                "('user019', 'UNSW Physics Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'physocsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Other'),\n" +
-                "('user020', 'Andrew Chen', 'Andrew', 'Chen', 'Male', 386755200, 'Australia', 'Melbourne', '#IMAGE', 'andrewchen@ad.unsw.edu.au', 2, 369939368, '#IMAGE', 'Engineering'),\n" +
-                "('user021', 'UNSW Environmental Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'envsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Other'),\n" +
-                "('user022', 'Mary Brown', 'Mary', 'Brown', 'Female', 428236800, 'Australia', 'Perth', '#IMAGE', 'marybrown@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Computer Science'),\n" +
-                "('user023', 'UNSW Debate Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'debsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Arts & Literature'),\n" +
-                "('user024', 'UNSW Astronomy Society', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'astronsoc@ad.unsw.edu.au', 1, 369939368, '#IMAGE', 'Other'),\n" +
-                "('user030', 'UNSW Unite Admin', NULL, NULL, 'N/A', 1641753600, 'Australia', 'Sydney', '#IMAGE', 'astronsoc@ad.unsw.edu.au', 999, 369939368, '#IMAGE', 'Other'),\n" +
-                "('user025', 'Tom Smith', 'Tom', 'Smith', 'Male', 152275200, 'Australia', 'Melbourne', '#IMAGE', 'tomsmith@ad.unsw.edu.au', 3, 369939368, '#IMAGE', 'Business');";
-
-    }
-
     public String getUserId (String userName) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = String.format("SELECT USER_ID FROM USERS WHERE USER_NAME = '%s'", userName);
@@ -857,13 +849,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
-    public void tmpQuery (String userName) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String userId = getUserId(userName);
-        String query = String.format("DELETE FROM USER_EVENTS WHERE USER_ID = '%s'", userId);
-        db.execSQL(query);
-    }
-
     public boolean checkEventDate (String eventId) {
         Date currentDate = new Date();
         long epochMillis = currentDate.getTime();
@@ -899,131 +884,5 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
         return false;
 
-    }
-
-
-    public void addSampleUserFeedbackData () {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-//        "USER_FEEDBACK_ID TEXT PRIMARY KEY NOT NULL, " +
-//                "SATISFACTION_RATING INT NOT NULL, " +
-//                "USER_ID TEXT NOT NULL, " +
-//                "EVENT_ID TEXT NOT NULL, " +
-//                "FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID), " +
-//                "FOREIGN KEY (EVENT_ID) REFERENCES EVENTS(EVENT_ID)" +
-        cv.put("USER_FEEDBACK_ID", "uf1");
-        cv.put("SATISFACTION_RATING", 1);
-        cv.put("USER_ID", "s2856906");
-        cv.put("EVENT_ID", "e4352561");
-        db.insert("USER_FEEDBACK", null, cv);
-
-        ContentValues cv2 = new ContentValues();
-        cv2.put("USER_FEEDBACK_ID", "uf2");
-        cv2.put("SATISFACTION_RATING", 5);
-        cv2.put("USER_ID", "s2856906");
-        cv2.put("EVENT_ID", "e3084510");
-        db.insert("USER_FEEDBACK", null, cv2);
-
-    }
-
-    public void addSampleUserEventData () {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-
-        cv.put("USER_EVENT_ID", "ue1");
-        cv.put("USER_FAV", 1);
-        cv.put("USER_ATTENDED", 0);
-        cv.put("USER_ID", "s2856906");
-        cv.put("EVENT_ID", "e4352561");
-        cv.put("USER_FEEDBACK_ID", "uf1");
-        cv.put("DONATION_AMOUNT", 0);
-
-        ContentValues cv2 = new ContentValues();
-        cv2.put("USER_EVENT_ID", "ue2");
-        cv2.put("USER_FAV", 1);
-        cv2.put("USER_ATTENDED", 0);
-        cv2.put("USER_ID", "s2856906");
-        cv2.put("EVENT_ID", "e3084510");
-        cv2.put("USER_FEEDBACK_ID", "uf2");
-        cv2.put("DONATION_AMOUNT", 0);
-
-
-        db.insert("USER_EVENTS", null, cv);
-        db.insert("USER_EVENTS", null, cv2);
-
-    }
-
-    public void addSampleEventData () {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        for (int i = 0; i < 10; i++) {
-            ContentValues cv = new ContentValues();
-            cv.put("EVENT_ID", String.format("eventid0%d", i));
-            cv.put("EVENT_NAME", String.format("evname0%d", i));
-            cv.put("EVENT_LOC", String.format("evloc0%d", i));
-            cv.put("EVENT_OWNER", String.format("evowner0%d", i));
-            cv.put("EVENT_DESC", String.format("evdesc0%d", i));
-            cv.put("EVENT_COUNTRY", String.format("evcountry0%d", i));
-            cv.put("EVENT_CITY", String.format("evcity0%d", i));
-            cv.put("EVENT_CAT", "Network");
-            cv.put("EVENT_PRED_ATTN_NUM", 100);
-            cv.put("EVENT_ACTUAL_ATTN_NUM", 105);
-            cv.put("EVENT_BUDGETED_COST", 55.55);
-            cv.put("EVENT_TICKETED", 0);
-            cv.put("EVENT_STAFFING", 10);
-            cv.put("EVENT_DATE", 1679660928);
-            cv.put("EVENT_START_TIME", 4);
-            cv.put("EVENT_END_TIME", 6);
-            cv.put("EVENT_ISAPPROVED", 1);
-
-            db.insert("EVENTS", null, cv);
-        }
-
-        for (int i = 100; i > 90; i--) {
-            ContentValues cv = new ContentValues();
-            cv.put("EVENT_ID", String.format("eventid0%d", i));
-            cv.put("EVENT_NAME", String.format("evname0%d", i));
-            cv.put("EVENT_LOC", String.format("evloc0%d", i));
-            cv.put("EVENT_OWNER", String.format("evowner0%d", i));
-            cv.put("EVENT_DESC", String.format("evdesc0%d", i));
-            cv.put("EVENT_COUNTRY", String.format("evcountry0%d", i));
-            cv.put("EVENT_CITY", String.format("evcity0%d", i));
-            cv.put("EVENT_CAT", "Travel");
-            cv.put("EVENT_PRED_ATTN_NUM", 100);
-            cv.put("EVENT_ACTUAL_ATTN_NUM", 105);
-            cv.put("EVENT_BUDGETED_COST", 55.55);
-            cv.put("EVENT_TICKETED", 0);
-            cv.put("EVENT_STAFFING", 10);
-            cv.put("EVENT_DATE", 1679660928);
-            cv.put("EVENT_START_TIME", 4);
-            cv.put("EVENT_END_TIME", 6);
-            cv.put("EVENT_ISAPPROVED", 1);
-
-            db.insert("EVENTS", null, cv);
-        }
-
-        for (int i = 1000; i > 990; i--) {
-            ContentValues cv = new ContentValues();
-            cv.put("EVENT_ID", String.format("eventid0%d", i));
-            cv.put("EVENT_NAME", String.format("evname0%d", i));
-            cv.put("EVENT_LOC", String.format("evloc0%d", i));
-            cv.put("EVENT_OWNER", String.format("evowner0%d", i));
-            cv.put("EVENT_DESC", String.format("evdesc0%d", i));
-            cv.put("EVENT_COUNTRY", String.format("evcountry0%d", i));
-            cv.put("EVENT_CITY", String.format("evcity0%d", i));
-            cv.put("EVENT_CAT", "Social");
-            cv.put("EVENT_PRED_ATTN_NUM", 100);
-            cv.put("EVENT_ACTUAL_ATTN_NUM", 105);
-            cv.put("EVENT_BUDGETED_COST", 55.55);
-            cv.put("EVENT_TICKETED", 0);
-            cv.put("EVENT_STAFFING", 10);
-            cv.put("EVENT_DATE", 1679660928);
-            cv.put("EVENT_START_TIME", 4);
-            cv.put("EVENT_END_TIME", 6);
-            cv.put("EVENT_ISAPPROVED", 1);
-
-            db.insert("EVENTS", null, cv);
-            Log.d(">> addSampleData", "sample entries complete.");
-        }
     }
 }
