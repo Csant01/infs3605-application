@@ -8,7 +8,9 @@
 
     <include
         android:id="@+id/toolbar_log_out"
-        layout="@layout/toolbar_log_out" />
+        layout="@layout/toolbar_log_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/eventApprovalTabLayout"

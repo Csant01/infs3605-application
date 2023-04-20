@@ -4,11 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AdminUserApprovals">
+    tools:context=".AdminUserApprovals">
 
     <include
         android:id="@+id/toolbar_log_out"
         layout="@layout/toolbar_log_out" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/userApprovalTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSecondary"
+        android:contentDescription="to switch between who the user is following and accounts they are not following"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_log_out"
+        app:tabIndicatorColor="#ffffff"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#ffffff"
+        app:tabTextColor="#ffffff"></com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/userApprovalViewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="who the user is following and accounts they are not following"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userApprovalTabLayout">
+
+    </androidx.viewpager.widget.ViewPager>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigator"
@@ -23,11 +48,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/admin_menu" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_log_out" />
 </androidx.constraintlayout.widget.ConstraintLayout>

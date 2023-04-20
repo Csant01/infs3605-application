@@ -185,9 +185,23 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     }
 
+
+    public int getUserApprovedStatus (String userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = String.format("SELECT USER_ISAPPROVED FROM USERS WHERE USER_ID = '%s' AND USER_TYPE NOT IN (3, 999)", userId);
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            return cursor.getInt(0);
+        }
+
+        return 99;
+
+    }
+
     public void tmpQuery () {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "UPDATE EVENTS SET EVENT_ISAPPROVED = 1;";
+        String query = "UPDATE USERS SET USER_ISAPPROVED = 1 WHERE USER_ID = 'USR021'";
         db.execSQL(query);
     }
     public ArrayList<Event> getPendingEvents (String userName) {
@@ -401,6 +415,20 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         db.close();
     }
 
+    public String getUserType (int user) {
+        if (user == 1) {
+            return "UNSW Student Society";
+        } else if (user == 2) {
+            return "Partner University";
+        } else if (user == 3) {
+            return "Other";
+        } else if (user == 4) {
+            return "UNSW Alumni";
+        } else {
+            return "Other";
+        }
+    }
+
     public String getUserName (String userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = String.format("SELECT USER_NAME FROM USERS WHERE USER_ID = '%s'", userId);
@@ -427,13 +455,13 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     public void rejectUser (String userId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = String.format("UPDATE USERS SET USER_ISAPPROVED = -1 WHERE EVENT_ID = '%s'", userId);
+        String query = String.format("UPDATE USERS SET USER_ISAPPROVED = -1 WHERE USER_ID = '%s'", userId);
         db.execSQL(query);
     }
 
     public void setUserApproval (String userId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = String.format("UPDATE USERS SET USER_ISAPPROVED = 1 WHERE EVENT_ID = '%s'", userId);
+        String query = String.format("UPDATE USERS SET USER_ISAPPROVED = 1 WHERE USER_ID = '%s'", userId);
         db.execSQL(query);
     }
 

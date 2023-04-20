@@ -1,9 +1,12 @@
 package com.example.infs3605_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -106,6 +110,27 @@ public class AdminEventApprovalsDetail extends AppCompatActivity {
         }  else {
             eventImage.setImageBitmap(ImageUtils.getImage(bytes));
         }
+
+        bottomNavigationView = findViewById(R.id.bottomNavigator);
+        bottomNavigationView.setSelectedItemId(R.id.adminEventApprovalsButton);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId())
+                {
+                    case R.id.adminUserApprovalsButton:
+                        startActivity(new Intent(getApplicationContext(), AdminUserApprovals.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.adminEventApprovalsButton:
+                        return true;
+                }
+                return false;
+            }
+        });
 
 
 

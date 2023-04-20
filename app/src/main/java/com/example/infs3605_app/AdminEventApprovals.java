@@ -8,6 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -19,6 +21,7 @@ public class AdminEventApprovals extends AppCompatActivity {
     TabLayout eventApprovalTabLayout;
     ViewPager eventApprovalViewPager;
     AdminEventApprovalViewPagerAdapter adapter;
+    ImageView logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,14 @@ public class AdminEventApprovals extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_log_out);
         setTitle("Event Approvals");
         setSupportActionBar(toolbar);
+        logout = findViewById(R.id.logOutButton);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LandingPageActivity.class));
+            }
+        });
 
         eventApprovalTabLayout = findViewById(R.id.eventApprovalTabLayout);
         eventApprovalViewPager = findViewById(R.id.eventApprovalViewPager);
